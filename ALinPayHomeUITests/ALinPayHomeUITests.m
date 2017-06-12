@@ -1,18 +1,18 @@
 //
-//  YTOHomeUITests.m
-//  YTOHomeUITests
+//  ALinPayHomeUITests.m
+//  ALinPayHomeUITests
 //
-//  Created by Qing Chang on 2017/6/7.
+//  Created by Qing Chang on 2017/6/12.
 //  Copyright © 2017年 Qing Chang. All rights reserved.
 //
 
 #import <XCTest/XCTest.h>
 
-@interface YTOHomeUITests : XCTestCase
+@interface ALinPayHomeUITests : XCTestCase
 
 @end
 
-@implementation YTOHomeUITests
+@implementation ALinPayHomeUITests
 
 - (void)setUp {
     [super setUp];
