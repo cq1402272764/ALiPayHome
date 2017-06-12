@@ -14,7 +14,6 @@
 #import "NavView.h"
 #import "CompleteNavView.h"
 
-
 @interface HomeVC ()<UIScrollViewDelegate>
 @property (nonatomic, strong) UIScrollView *mainScrollView;
 @property (nonatomic, weak) MainTableView *mainTableView;
