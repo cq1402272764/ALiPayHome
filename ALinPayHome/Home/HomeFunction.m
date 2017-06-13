@@ -51,11 +51,20 @@ static NSString *cellId = @"HomeFunction";
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     
     HomeFunctionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellId forIndexPath:indexPath];
+    if (indexPath.row == 11) {
+        cell.more.text = @"更多";
+        cell.more.textColor = [UIColor redColor];
+    }
     return cell;
 }
 
 #pragma mark UICollectionViewDelegate
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    if (indexPath.row == 11) {
+        if (self.moreCategory) {
+            self.moreCategory();
+        }
+    }
     NSLog(@"-----%zd",indexPath.row);
 }
 

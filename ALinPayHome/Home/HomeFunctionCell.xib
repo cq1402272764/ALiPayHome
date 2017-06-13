@@ -42,6 +42,9 @@
                 <constraint firstItem="C3x-Uv-63e" firstAttribute="top" secondItem="K1k-Bf-K8k" secondAttribute="bottom" id="t9o-US-ait"/>
             </constraints>
             <size key="customSize" width="78" height="70"/>
+            <connections>
+                <outlet property="more" destination="C3x-Uv-63e" id="y1T-Ko-5Vg"/>
+            </connections>
             <point key="canvasLocation" x="48" y="64"/>
         </collectionViewCell>
     </objects>

@@ -13,6 +13,8 @@
 #import "MainTableView.h"
 #import "NavView.h"
 #import "CompleteNavView.h"
+#import "CategoryVC.h"
+
 
 @interface HomeVC ()<UIScrollViewDelegate>
 @property (nonatomic, strong) UIScrollView *mainScrollView;
@@ -35,8 +37,12 @@ const CGFloat headerViewH = functionHeaderViewHeight + singleAppHeaderViewHeight
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = KFMainBackColor;
-    self.navigationController.navigationBar.hidden = YES;
     [self setUpSubView];
+}
+
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    self.navigationController.navigationBar.hidden = YES;
 }
 
 -(void)setUpSubView {
@@ -63,7 +69,7 @@ const CGFloat headerViewH = functionHeaderViewHeight + singleAppHeaderViewHeight
     
     self.mainScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, classViewY, kFBaseWidth, kFBaseHeight-classViewY)];
     self.mainScrollView.contentSize = CGSizeMake(0, kFBaseHeight * 5);
-    self.mainScrollView.scrollIndicatorInsets = UIEdgeInsetsMake((headerViewH + 10), 0, 0, 0);
+    self.mainScrollView.scrollIndicatorInsets = UIEdgeInsetsMake((headerViewH), 0, 0, 0);
     self.mainScrollView.delegate = self;
     [self.view addSubview:self.mainScrollView];
     
@@ -82,6 +88,10 @@ const CGFloat headerViewH = functionHeaderViewHeight + singleAppHeaderViewHeight
     HomeFunction *appView = [[HomeFunction alloc] initWithFrame:CGRectMake(0, functionHeaderViewHeight, kFBaseWidth, singleAppHeaderViewHeight)];
     appView.backgroundColor = [UIColor whiteColor];
     [headerView addSubview:appView];
+    appView.moreCategory = ^{
+        CategoryVC *category = [[CategoryVC alloc] init];
+        [self.navigationController pushViewController:category animated:YES];
+    };
     
     MainTableView *mainTableView = [[MainTableView alloc] initWithFrame:CGRectMake(0, headerViewH, kFBaseWidth, kFBaseHeight * 5 - headerViewH) style:UITableViewStylePlain];
     self.mainTableView = mainTableView;

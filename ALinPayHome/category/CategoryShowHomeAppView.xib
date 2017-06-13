@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="CategoryShowHomeAppView">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="290"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="首页应用" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vFZ-wn-CaW">
+                    <rect key="frame" x="10" y="0.0" width="60" height="44"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="44" id="VUs-d4-d4Z"/>
+                        <constraint firstAttribute="width" constant="60" id="nFq-Yy-WQr"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(按住拖动调整排序)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K5N-Zo-sGo">
+                    <rect key="frame" x="75" y="0.0" width="300" height="44"/>
+                    <fontDescription key="fontDescription" type="system" weight="light" pointSize="13"/>
+                    <color key="textColor" red="0.39215686274509803" green="0.39215686274509803" blue="0.39215686274509803" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="K5N-Zo-sGo" secondAttribute="trailing" id="Fba-qb-awq"/>
+                <constraint firstItem="K5N-Zo-sGo" firstAttribute="top" secondItem="vFZ-wn-CaW" secondAttribute="top" id="G9g-pU-H9L"/>
+                <constraint firstItem="K5N-Zo-sGo" firstAttribute="bottom" secondItem="vFZ-wn-CaW" secondAttribute="bottom" id="Iak-Gd-tuB"/>
+                <constraint firstItem="vFZ-wn-CaW" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="N2A-on-O14"/>
+                <constraint firstItem="K5N-Zo-sGo" firstAttribute="leading" secondItem="vFZ-wn-CaW" secondAttribute="trailing" constant="5" id="jZb-a6-Wah"/>
+                <constraint firstItem="vFZ-wn-CaW" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="10" id="wCm-GE-XF6"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="20" y="-191"/>
+        </view>
+    </objects>
+</document>

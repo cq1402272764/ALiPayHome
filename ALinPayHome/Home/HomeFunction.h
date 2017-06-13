@@ -10,4 +10,6 @@
 
 @interface HomeFunction : UIView
 
+@property (nonatomic, strong) void (^moreCategory)();
+
 @end

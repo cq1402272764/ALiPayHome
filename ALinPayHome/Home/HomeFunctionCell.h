@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface HomeFunctionCell : UICollectionViewCell
+@property (weak, nonatomic) IBOutlet UILabel *more;
 
 @end

@@ -28,7 +28,6 @@
 		6669AB971EEE338B004CAABA /* MainTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6669AB581EEE338B004CAABA /* MainTableView.m */; };
 		6669AB981EEE338B004CAABA /* NavView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6669AB5A1EEE338B004CAABA /* NavView.m */; };
 		6669AB991EEE338B004CAABA /* NavView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6669AB5B1EEE338B004CAABA /* NavView.xib */; };
-		6669AB9A1EEE338B004CAABA /* TitleImageBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = 6669AB5D1EEE338B004CAABA /* TitleImageBtn.m */; };
 		6669AB9B1EEE338B004CAABA /* MJRefreshAutoFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6669AB611EEE338B004CAABA /* MJRefreshAutoFooter.m */; };
 		6669AB9C1EEE338B004CAABA /* MJRefreshBackFooter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6669AB631EEE338B004CAABA /* MJRefreshBackFooter.m */; };
 		6669AB9D1EEE338B004CAABA /* MJRefreshComponent.m in Sources */ = {isa = PBXBuildFile; fileRef = 6669AB651EEE338B004CAABA /* MJRefreshComponent.m */; };
@@ -49,6 +48,17 @@
 		6669ABAC1EEE338B004CAABA /* UIScrollView+MJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 6669AB881EEE338B004CAABA /* UIScrollView+MJExtension.m */; };
 		6669ABAD1EEE338B004CAABA /* UIScrollView+MJRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 6669AB8A1EEE338B004CAABA /* UIScrollView+MJRefresh.m */; };
 		6669ABAE1EEE338B004CAABA /* UIView+MJExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 6669AB8C1EEE338B004CAABA /* UIView+MJExtension.m */; };
+		6669ABB21EEF6A9B004CAABA /* CategoryVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6669ABB11EEF6A9B004CAABA /* CategoryVC.m */; };
+		6669ABB71EEF72FB004CAABA /* TitleImageBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = 6669ABB61EEF72FB004CAABA /* TitleImageBtn.m */; };
+		6669ABBA1EEF7816004CAABA /* CategoryHomeAppView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6669ABB91EEF7816004CAABA /* CategoryHomeAppView.m */; };
+		6669ABBC1EEF7827004CAABA /* CategoryHomeAppView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6669ABBB1EEF7827004CAABA /* CategoryHomeAppView.xib */; };
+		6669ABBF1EEF7FD4004CAABA /* CategoryTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6669ABBE1EEF7FD4004CAABA /* CategoryTableView.m */; };
+		6669ABC21EEF8571004CAABA /* CategoryShowHomeAppView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6669ABC11EEF8571004CAABA /* CategoryShowHomeAppView.m */; };
+		6669ABC41EEF8581004CAABA /* CategoryShowHomeAppView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6669ABC31EEF8581004CAABA /* CategoryShowHomeAppView.xib */; };
+		6669ABC71EEF8EC8004CAABA /* GategroyNavView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6669ABC61EEF8EC8004CAABA /* GategroyNavView.m */; };
+		6669ABCA1EEF8EE1004CAABA /* GategroyShowNavView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6669ABC91EEF8EE1004CAABA /* GategroyShowNavView.m */; };
+		6669ABCC1EEF8EED004CAABA /* GategroyNavView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6669ABCB1EEF8EED004CAABA /* GategroyNavView.xib */; };
+		6669ABCE1EEF8EFA004CAABA /* GategroyShowNavView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6669ABCD1EEF8EFA004CAABA /* GategroyShowNavView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -101,14 +111,11 @@
 		6669AB531EEE338B004CAABA /* HomeMainTableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HomeMainTableCell.xib; sourceTree = "<group>"; };
 		6669AB541EEE338B004CAABA /* HomeVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeVC.h; sourceTree = "<group>"; };
 		6669AB551EEE338B004CAABA /* HomeVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeVC.m; sourceTree = "<group>"; };
-		6669AB561EEE338B004CAABA /* Macro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Macro.h; sourceTree = "<group>"; };
 		6669AB571EEE338B004CAABA /* MainTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainTableView.h; sourceTree = "<group>"; };
 		6669AB581EEE338B004CAABA /* MainTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainTableView.m; sourceTree = "<group>"; };
 		6669AB591EEE338B004CAABA /* NavView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NavView.h; sourceTree = "<group>"; };
 		6669AB5A1EEE338B004CAABA /* NavView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavView.m; sourceTree = "<group>"; };
 		6669AB5B1EEE338B004CAABA /* NavView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NavView.xib; sourceTree = "<group>"; };
-		6669AB5C1EEE338B004CAABA /* TitleImageBtn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TitleImageBtn.h; sourceTree = "<group>"; };
-		6669AB5D1EEE338B004CAABA /* TitleImageBtn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TitleImageBtn.m; sourceTree = "<group>"; };
 		6669AB601EEE338B004CAABA /* MJRefreshAutoFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshAutoFooter.h; sourceTree = "<group>"; };
 		6669AB611EEE338B004CAABA /* MJRefreshAutoFooter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MJRefreshAutoFooter.m; sourceTree = "<group>"; };
 		6669AB621EEE338B004CAABA /* MJRefreshBackFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshBackFooter.h; sourceTree = "<group>"; };
@@ -149,6 +156,25 @@
 		6669AB8A1EEE338B004CAABA /* UIScrollView+MJRefresh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+MJRefresh.m"; sourceTree = "<group>"; };
 		6669AB8B1EEE338B004CAABA /* UIView+MJExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+MJExtension.h"; sourceTree = "<group>"; };
 		6669AB8C1EEE338B004CAABA /* UIView+MJExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+MJExtension.m"; sourceTree = "<group>"; };
+		6669ABB01EEF6A9B004CAABA /* CategoryVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryVC.h; sourceTree = "<group>"; };
+		6669ABB11EEF6A9B004CAABA /* CategoryVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryVC.m; sourceTree = "<group>"; };
+		6669ABB41EEF72FB004CAABA /* Macro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Macro.h; sourceTree = "<group>"; };
+		6669ABB51EEF72FB004CAABA /* TitleImageBtn.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TitleImageBtn.h; sourceTree = "<group>"; };
+		6669ABB61EEF72FB004CAABA /* TitleImageBtn.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TitleImageBtn.m; sourceTree = "<group>"; };
+		6669ABB81EEF7816004CAABA /* CategoryHomeAppView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryHomeAppView.h; sourceTree = "<group>"; };
+		6669ABB91EEF7816004CAABA /* CategoryHomeAppView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryHomeAppView.m; sourceTree = "<group>"; };
+		6669ABBB1EEF7827004CAABA /* CategoryHomeAppView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CategoryHomeAppView.xib; sourceTree = "<group>"; };
+		6669ABBD1EEF7FD4004CAABA /* CategoryTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryTableView.h; sourceTree = "<group>"; };
+		6669ABBE1EEF7FD4004CAABA /* CategoryTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryTableView.m; sourceTree = "<group>"; };
+		6669ABC01EEF8571004CAABA /* CategoryShowHomeAppView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryShowHomeAppView.h; sourceTree = "<group>"; };
+		6669ABC11EEF8571004CAABA /* CategoryShowHomeAppView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryShowHomeAppView.m; sourceTree = "<group>"; };
+		6669ABC31EEF8581004CAABA /* CategoryShowHomeAppView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CategoryShowHomeAppView.xib; sourceTree = "<group>"; };
+		6669ABC51EEF8EC8004CAABA /* GategroyNavView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GategroyNavView.h; sourceTree = "<group>"; };
+		6669ABC61EEF8EC8004CAABA /* GategroyNavView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GategroyNavView.m; sourceTree = "<group>"; };
+		6669ABC81EEF8EE1004CAABA /* GategroyShowNavView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GategroyShowNavView.h; sourceTree = "<group>"; };
+		6669ABC91EEF8EE1004CAABA /* GategroyShowNavView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GategroyShowNavView.m; sourceTree = "<group>"; };
+		6669ABCB1EEF8EED004CAABA /* GategroyNavView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GategroyNavView.xib; sourceTree = "<group>"; };
+		6669ABCD1EEF8EFA004CAABA /* GategroyShowNavView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GategroyShowNavView.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -199,6 +225,8 @@
 		6669AB111EEE3365004CAABA /* ALinPayHome */ = {
 			isa = PBXGroup;
 			children = (
+				6669ABB31EEF72C9004CAABA /* tool */,
+				6669ABAF1EEF6A7F004CAABA /* category */,
 				6669AB451EEE338B004CAABA /* Home */,
 				6669AB5E1EEE338B004CAABA /* MJRefresh */,
 				6669AB151EEE3365004CAABA /* AppDelegate.h */,
@@ -243,9 +271,19 @@
 		6669AB451EEE338B004CAABA /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				6669AB541EEE338B004CAABA /* HomeVC.h */,
+				6669AB551EEE338B004CAABA /* HomeVC.m */,
+				6669AB591EEE338B004CAABA /* NavView.h */,
+				6669AB5A1EEE338B004CAABA /* NavView.m */,
+				6669AB5B1EEE338B004CAABA /* NavView.xib */,
 				6669AB461EEE338B004CAABA /* CompleteNavView.h */,
 				6669AB471EEE338B004CAABA /* CompleteNavView.m */,
 				6669AB481EEE338B004CAABA /* CompleteNavView.xib */,
+				6669AB571EEE338B004CAABA /* MainTableView.h */,
+				6669AB581EEE338B004CAABA /* MainTableView.m */,
+				6669AB511EEE338B004CAABA /* HomeMainTableCell.h */,
+				6669AB521EEE338B004CAABA /* HomeMainTableCell.m */,
+				6669AB531EEE338B004CAABA /* HomeMainTableCell.xib */,
 				6669AB491EEE338B004CAABA /* HomeClassificationView.h */,
 				6669AB4A1EEE338B004CAABA /* HomeClassificationView.m */,
 				6669AB4B1EEE338B004CAABA /* HomeClassificationView.xib */,
@@ -254,19 +292,6 @@
 				6669AB4E1EEE338B004CAABA /* HomeFunctionCell.h */,
 				6669AB4F1EEE338B004CAABA /* HomeFunctionCell.m */,
 				6669AB501EEE338B004CAABA /* HomeFunctionCell.xib */,
-				6669AB511EEE338B004CAABA /* HomeMainTableCell.h */,
-				6669AB521EEE338B004CAABA /* HomeMainTableCell.m */,
-				6669AB531EEE338B004CAABA /* HomeMainTableCell.xib */,
-				6669AB541EEE338B004CAABA /* HomeVC.h */,
-				6669AB551EEE338B004CAABA /* HomeVC.m */,
-				6669AB561EEE338B004CAABA /* Macro.h */,
-				6669AB571EEE338B004CAABA /* MainTableView.h */,
-				6669AB581EEE338B004CAABA /* MainTableView.m */,
-				6669AB591EEE338B004CAABA /* NavView.h */,
-				6669AB5A1EEE338B004CAABA /* NavView.m */,
-				6669AB5B1EEE338B004CAABA /* NavView.xib */,
-				6669AB5C1EEE338B004CAABA /* TitleImageBtn.h */,
-				6669AB5D1EEE338B004CAABA /* TitleImageBtn.m */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -364,6 +389,39 @@
 				6669AB801EEE338B004CAABA /* MJRefreshStateHeader.m */,
 			);
 			path = Header;
+			sourceTree = "<group>";
+		};
+		6669ABAF1EEF6A7F004CAABA /* category */ = {
+			isa = PBXGroup;
+			children = (
+				6669ABB01EEF6A9B004CAABA /* CategoryVC.h */,
+				6669ABB11EEF6A9B004CAABA /* CategoryVC.m */,
+				6669ABB81EEF7816004CAABA /* CategoryHomeAppView.h */,
+				6669ABB91EEF7816004CAABA /* CategoryHomeAppView.m */,
+				6669ABBB1EEF7827004CAABA /* CategoryHomeAppView.xib */,
+				6669ABBD1EEF7FD4004CAABA /* CategoryTableView.h */,
+				6669ABBE1EEF7FD4004CAABA /* CategoryTableView.m */,
+				6669ABC01EEF8571004CAABA /* CategoryShowHomeAppView.h */,
+				6669ABC11EEF8571004CAABA /* CategoryShowHomeAppView.m */,
+				6669ABC31EEF8581004CAABA /* CategoryShowHomeAppView.xib */,
+				6669ABC51EEF8EC8004CAABA /* GategroyNavView.h */,
+				6669ABC61EEF8EC8004CAABA /* GategroyNavView.m */,
+				6669ABCB1EEF8EED004CAABA /* GategroyNavView.xib */,
+				6669ABC81EEF8EE1004CAABA /* GategroyShowNavView.h */,
+				6669ABC91EEF8EE1004CAABA /* GategroyShowNavView.m */,
+				6669ABCD1EEF8EFA004CAABA /* GategroyShowNavView.xib */,
+			);
+			path = category;
+			sourceTree = "<group>";
+		};
+		6669ABB31EEF72C9004CAABA /* tool */ = {
+			isa = PBXGroup;
+			children = (
+				6669ABB41EEF72FB004CAABA /* Macro.h */,
+				6669ABB51EEF72FB004CAABA /* TitleImageBtn.h */,
+				6669ABB61EEF72FB004CAABA /* TitleImageBtn.m */,
+			);
+			path = tool;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -473,13 +531,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				6669AB951EEE338B004CAABA /* HomeMainTableCell.xib in Resources */,
+				6669ABC41EEF8581004CAABA /* CategoryShowHomeAppView.xib in Resources */,
 				6669AB931EEE338B004CAABA /* HomeFunctionCell.xib in Resources */,
 				6669AB221EEE3365004CAABA /* LaunchScreen.storyboard in Resources */,
 				6669AB8E1EEE338B004CAABA /* CompleteNavView.xib in Resources */,
 				6669AB991EEE338B004CAABA /* NavView.xib in Resources */,
+				6669ABCC1EEF8EED004CAABA /* GategroyNavView.xib in Resources */,
 				6669AB901EEE338B004CAABA /* HomeClassificationView.xib in Resources */,
 				6669AB1F1EEE3365004CAABA /* Assets.xcassets in Resources */,
+				6669ABBC1EEF7827004CAABA /* CategoryHomeAppView.xib in Resources */,
 				6669AB1D1EEE3365004CAABA /* Main.storyboard in Resources */,
+				6669ABCE1EEF8EFA004CAABA /* GategroyShowNavView.xib in Resources */,
 				6669ABA91EEE338B004CAABA /* MJRefresh.bundle in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -511,11 +573,14 @@
 				6669ABA41EEE338B004CAABA /* MJRefreshBackNormalFooter.m in Sources */,
 				6669AB9E1EEE338B004CAABA /* MJRefreshFooter.m in Sources */,
 				6669ABAA1EEE338B004CAABA /* MJRefreshConst.m in Sources */,
+				6669ABC71EEF8EC8004CAABA /* GategroyNavView.m in Sources */,
+				6669ABCA1EEF8EE1004CAABA /* GategroyShowNavView.m in Sources */,
 				6669AB1A1EEE3365004CAABA /* ViewController.m in Sources */,
 				6669ABA71EEE338B004CAABA /* MJRefreshNormalHeader.m in Sources */,
 				6669ABAE1EEE338B004CAABA /* UIView+MJExtension.m in Sources */,
 				6669ABAD1EEE338B004CAABA /* UIScrollView+MJRefresh.m in Sources */,
 				6669AB9D1EEE338B004CAABA /* MJRefreshComponent.m in Sources */,
+				6669ABB71EEF72FB004CAABA /* TitleImageBtn.m in Sources */,
 				6669AB921EEE338B004CAABA /* HomeFunctionCell.m in Sources */,
 				6669ABA31EEE338B004CAABA /* MJRefreshBackGifFooter.m in Sources */,
 				6669AB971EEE338B004CAABA /* MainTableView.m in Sources */,
@@ -523,7 +588,10 @@
 				6669AB961EEE338B004CAABA /* HomeVC.m in Sources */,
 				6669ABA61EEE338B004CAABA /* MJRefreshGifHeader.m in Sources */,
 				6669ABAB1EEE338B004CAABA /* NSBundle+MJRefresh.m in Sources */,
+				6669ABBF1EEF7FD4004CAABA /* CategoryTableView.m in Sources */,
 				6669AB911EEE338B004CAABA /* HomeFunction.m in Sources */,
+				6669ABBA1EEF7816004CAABA /* CategoryHomeAppView.m in Sources */,
+				6669ABC21EEF8571004CAABA /* CategoryShowHomeAppView.m in Sources */,
 				6669AB981EEE338B004CAABA /* NavView.m in Sources */,
 				6669ABA21EEE338B004CAABA /* MJRefreshAutoStateFooter.m in Sources */,
 				6669ABA81EEE338B004CAABA /* MJRefreshStateHeader.m in Sources */,
@@ -534,7 +602,7 @@
 				6669AB9B1EEE338B004CAABA /* MJRefreshAutoFooter.m in Sources */,
 				6669AB141EEE3365004CAABA /* main.m in Sources */,
 				6669AB8F1EEE338B004CAABA /* HomeClassificationView.m in Sources */,
-				6669AB9A1EEE338B004CAABA /* TitleImageBtn.m in Sources */,
+				6669ABB21EEF6A9B004CAABA /* CategoryVC.m in Sources */,
 				6669ABAC1EEE338B004CAABA /* UIScrollView+MJExtension.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -769,6 +837,7 @@
 				6669AB3E1EEE3365004CAABA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		6669AB3F1EEE3365004CAABA /* Build configuration list for PBXNativeTarget "ALinPayHomeTests" */ = {
 			isa = XCConfigurationList;
@@ -777,6 +846,7 @@
 				6669AB411EEE3365004CAABA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		6669AB421EEE3365004CAABA /* Build configuration list for PBXNativeTarget "ALinPayHomeUITests" */ = {
 			isa = XCConfigurationList;
@@ -785,6 +855,7 @@
 				6669AB441EEE3365004CAABA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
