@@ -14,6 +14,7 @@
 #import "GategroyNavView.h"
 #import "GategroyShowNavView.h"
 
+
 @interface CategoryVC ()<CategoryHomeAppViewDelegate,GategroyShowNavViewDelegate,GategroyNavViewDelegate>
 @property (nonatomic, strong) UIScrollView *categoryScrollView;
 @property (nonatomic, strong) CategoryShowHomeAppView *showHomeAppView;
@@ -66,58 +67,10 @@
     
 }
 
-
-- (void)showSubView:(BOOL)show{
-    if (show) {
-        if ([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
-            self.navigationController.interactivePopGestureRecognizer.enabled = YES;
-        }
-        [UIView animateWithDuration:0.3 animations:^{
-            self.homeAppView.alpha = 1;
-            self.showHomeAppView.alpha = 0;
-            self.navView.alpha = 1;
-            self.showNavView.alpha = 0;
-            
-            CGRect newFrame = self.homeAppView.editApplication.frame;
-            newFrame.origin.y = 0;
-            self.homeAppView.editApplication.frame = newFrame;
-            
-        }];
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [UIView animateWithDuration:0.3 animations:^{
-                CGRect newFrame = self.tableView.frame;
-                newFrame.origin.y = 52;
-                self.tableView.frame = newFrame;
-            }];
-            
-        });
-    }else{
-        if ([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
-            self.navigationController.interactivePopGestureRecognizer.enabled = NO;
-        }
-        [UIView animateWithDuration:0.3 animations:^{
-            self.homeAppView.alpha = 0;
-            self.showHomeAppView.alpha = 1;
-            self.navView.alpha = 0;
-            self.showNavView.alpha = 1;
-            
-            CGRect newFrame = self.homeAppView.editApplication.frame;
-            newFrame.origin.y = 22;
-            self.homeAppView.editApplication.frame = newFrame;
-            
-            newFrame = self.tableView.frame;
-            newFrame.origin.y = 290+10;
-            self.tableView.frame = newFrame;
-        }];
-        
-        
-    }
-}
-
 #pragma mark CategoryHomeAppViewDelegate
+// 编辑
 - (void)categoryHomeAppViewWithEdit:(CategoryHomeAppView *)edit{
     [self showSubView:NO];
-    //     self.categoryScrollView.scrollEnabled = NO;
 }
 
 #pragma mark GategroyShowNavViewDelegate
@@ -132,9 +85,62 @@
 }
 
 #pragma mark GategroyNavViewDelegate
+// 返回
 - (void)setUpGategroyNavViewPopHomeVC{
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+
+- (void)showSubView:(BOOL)show{
+    if (show) {
+        [self setUpInteractivePopGestureRecognizerEnabled:YES];
+        self.categoryScrollView.scrollEnabled = YES;
+        
+        [UIView animateWithDuration:0.3 animations:^{
+            self.navView.alpha = 1;
+            self.showNavView.alpha = 0;
+        }];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [UIView animateWithDuration:0.3 animations:^{
+                self.homeAppView.alpha = 1;
+                self.showHomeAppView.alpha = 0;
+                
+                CGRect newFrame = self.homeAppView.editApplication.frame;
+                newFrame.origin.y = 0;
+                self.homeAppView.editApplication.frame = newFrame;
+            }];
+        });
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.7 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [UIView animateWithDuration:0.3 animations:^{
+                CGRect newFrame = self.tableView.frame;
+                newFrame.origin.y = 52;
+                self.tableView.frame = newFrame;
+            }];
+        });
+    }else{
+        [self setUpInteractivePopGestureRecognizerEnabled:NO];
+        self.categoryScrollView.scrollEnabled = NO;
+        [UIView animateWithDuration:0.3 animations:^{
+            self.navView.alpha = 0;
+            self.showNavView.alpha = 1;
+            self.homeAppView.alpha = 0;
+            self.showHomeAppView.alpha = 1;
+            
+            CGRect newFrame = self.homeAppView.editApplication.frame;
+            newFrame.origin.y = 22;
+            self.homeAppView.editApplication.frame = newFrame;
+            
+            newFrame = self.tableView.frame;
+            newFrame.origin.y = 290+10;
+            self.tableView.frame = newFrame;
+        }];
+    }
+}
+
+- (void)setUpInteractivePopGestureRecognizerEnabled:(BOOL)enabled{
+    if ([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
+        self.navigationController.interactivePopGestureRecognizer.enabled = enabled;
+    }
+}
 
 @end
