@@ -1,9 +1,9 @@
 //
 //  UIView+LoadNib.m
-//  AtourLiftAdmin
+//  ALinPayHome
 //
-//  Created by vvusu on 3/21/16.
-//  Copyright © 2016 atour. All rights reserved.
+//  Created by Qing Chang on 2017/6/13.
+//  Copyright © 2017年 Qing Chang. All rights reserved.
 //
 
 #import "UIView+LoadNib.h"

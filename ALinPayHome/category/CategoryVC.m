@@ -14,7 +14,6 @@
 #import "GategroyNavView.h"
 #import "GategroyShowNavView.h"
 
-
 @interface CategoryVC ()<CategoryHomeAppViewDelegate,GategroyShowNavViewDelegate,GategroyNavViewDelegate>
 @property (nonatomic, strong) UIScrollView *categoryScrollView;
 @property (nonatomic, strong) CategoryShowHomeAppView *showHomeAppView;
@@ -23,6 +22,10 @@
 @property (nonatomic, strong) GategroyNavView *navView;
 @property (nonatomic, strong) GategroyShowNavView *showNavView;
 @end
+
+const CGFloat navViewH = 64;
+const CGFloat homeAppViewH = 44;
+const CGFloat showHomeAppViewH = 290;
 
 @implementation CategoryVC
 
@@ -34,35 +37,35 @@
 
 - (void)subView{
     self.navView = [GategroyNavView createWithXib];
-    self.navView.frame = CGRectMake(0, 0, kFBaseWidth, 64);
+    self.navView.frame = CGRectMake(0, 0, kFBaseWidth, navViewH);
     [self.view addSubview:self.navView];
     self.navView.delegate = self;
     
     self.showNavView = [GategroyShowNavView createWithXib];
-    self.showNavView.frame = CGRectMake(0, 0, kFBaseWidth, 64);
+    self.showNavView.frame = CGRectMake(0, 0, kFBaseWidth, navViewH);
     self.showNavView.alpha = 0;
     [self.view addSubview:self.showNavView];
     self.showNavView.delegate = self;
     
-    self.categoryScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 64, kFBaseWidth, kFBaseHeight-64)];
+    self.categoryScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, navViewH, kFBaseWidth, kFBaseHeight-navViewH)];
     self.categoryScrollView.contentSize = CGSizeMake(0, kFBaseHeight * 5);
     self.categoryScrollView.scrollIndicatorInsets = UIEdgeInsetsMake(0, 0, 0, 0);
     [self.view addSubview:self.categoryScrollView];
     self.categoryScrollView.backgroundColor = [UIColor whiteColor];
     
     self.homeAppView = [CategoryHomeAppView createWithXib];
-    self.homeAppView.frame= CGRectMake(0, 0, kFBaseWidth, 44);
+    self.homeAppView.frame= CGRectMake(0, 0, kFBaseWidth, homeAppViewH);
     [self.categoryScrollView addSubview:self.homeAppView];
     self.homeAppView.backgroundColor = [UIColor whiteColor];
     self.homeAppView.delegate = self;
 
     self.showHomeAppView = [CategoryShowHomeAppView createWithXib];
-    self.showHomeAppView.frame = CGRectMake(0, 0, kFBaseWidth, 290);
+    self.showHomeAppView.frame = CGRectMake(0, 0, kFBaseWidth, showHomeAppViewH);
     [self.categoryScrollView addSubview:self.showHomeAppView ];
     self.showHomeAppView .alpha = 0;
     
     self.tableView = [[CategoryTableView alloc] init];
-    self.tableView.frame = CGRectMake(0, 52, kFBaseWidth, kFBaseHeight * 5-52);
+    self.tableView.frame = CGRectMake(0, homeAppViewH+8, kFBaseWidth, kFBaseHeight * 5-(homeAppViewH+8));
     [self.categoryScrollView addSubview:self.tableView];
     
 }
@@ -112,7 +115,7 @@
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.7 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [UIView animateWithDuration:0.3 animations:^{
                 CGRect newFrame = self.tableView.frame;
-                newFrame.origin.y = 52;
+                newFrame.origin.y = homeAppViewH+8;
                 self.tableView.frame = newFrame;
             }];
         });
@@ -126,11 +129,11 @@
             self.showHomeAppView.alpha = 1;
             
             CGRect newFrame = self.homeAppView.editApplication.frame;
-            newFrame.origin.y = 22;
+            newFrame.origin.y = homeAppViewH/2;
             self.homeAppView.editApplication.frame = newFrame;
             
             newFrame = self.tableView.frame;
-            newFrame.origin.y = 290+10;
+            newFrame.origin.y = showHomeAppViewH+10;
             self.tableView.frame = newFrame;
         }];
     }

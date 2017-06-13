@@ -1,6 +1,6 @@
 //
 //  HomeVC.m
-//  YTOHome
+//  ALinPayHome
 //
 //  Created by Qing Chang on 2017/6/7.
 //  Copyright © 2017年 Qing Chang. All rights reserved.
@@ -45,7 +45,7 @@ const CGFloat headerViewH = functionHeaderViewHeight + singleAppHeaderViewHeight
     self.navigationController.navigationBar.hidden = YES;
 }
 
--(void)setUpSubView {
+- (void)setUpSubView {
     
     UIView *navBackView = [[UIView alloc] init];
     navBackView.frame = CGRectMake(0, 0, kFBaseWidth, classViewY);
@@ -100,7 +100,7 @@ const CGFloat headerViewH = functionHeaderViewHeight + singleAppHeaderViewHeight
 
 
 #pragma mark scrollViewDelegate
--(void)scrollViewDidScroll:(UIScrollView *)scrollView {
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
     
     CGFloat y = scrollView.contentOffset.y;
     if (y <= 0) {
@@ -138,8 +138,7 @@ const CGFloat headerViewH = functionHeaderViewHeight + singleAppHeaderViewHeight
     }
 }
 
--(void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
-    
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
     // 松手时判断是否刷新
     CGFloat y = scrollView.contentOffset.y;
     NSLog(@"========%f",y);
