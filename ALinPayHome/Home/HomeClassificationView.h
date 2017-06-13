@@ -14,6 +14,4 @@
 @property (weak, nonatomic) IBOutlet TitleImageBtn *paymentBtn;
 @property (weak, nonatomic) IBOutlet TitleImageBtn *collectMoneyBtn;
 @property (weak, nonatomic) IBOutlet TitleImageBtn *cardPackageBtn;
-
-+ (instancetype)nibView;
 @end

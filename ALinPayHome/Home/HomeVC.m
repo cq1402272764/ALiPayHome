@@ -53,14 +53,14 @@ const CGFloat headerViewH = functionHeaderViewHeight + singleAppHeaderViewHeight
     [self.view addSubview:navBackView];
     
     // 滑动前的navView
-    NavView *navView = [NavView nibView];
+    NavView *navView = [NavView createWithXib];
     navView.frame = CGRectMake(0, 0, kFBaseWidth, classViewY);
     navView.backgroundColor = kFMainColor;
     self.navView = navView;
     [self.view addSubview:navView];
     
     // 滑动后的navView
-    CompleteNavView *completeNavView = [CompleteNavView nibView];
+    CompleteNavView *completeNavView = [CompleteNavView createWithXib];
     completeNavView.frame = CGRectMake(0, 0, kFBaseWidth, classViewY);
     completeNavView.backgroundColor = kFMainColor;
     self.completeNavView = completeNavView;
@@ -79,7 +79,7 @@ const CGFloat headerViewH = functionHeaderViewHeight + singleAppHeaderViewHeight
     headerView.backgroundColor = kFMainColor;
     [self.mainScrollView addSubview:headerView];
     
-    HomeClassificationView *functionView = [HomeClassificationView nibView];
+    HomeClassificationView *functionView = [HomeClassificationView createWithXib];
     functionView.frame = CGRectMake(0, 0, kFBaseWidth, functionHeaderViewHeight);
     [headerView addSubview:functionView];
     functionView.backgroundColor = [UIColor clearColor];

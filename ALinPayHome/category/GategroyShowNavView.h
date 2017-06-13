@@ -16,5 +16,4 @@
 
 @interface GategroyShowNavView : UIView
 @property (weak, nonatomic) id<GategroyShowNavViewDelegate>delegate;
-+ (instancetype)nibView;
 @end

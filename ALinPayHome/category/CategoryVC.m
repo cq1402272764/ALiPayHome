@@ -33,12 +33,12 @@
 }
 
 - (void)subView{
-    self.navView = [GategroyNavView nibView];
+    self.navView = [GategroyNavView createWithXib];
     self.navView.frame = CGRectMake(0, 0, kFBaseWidth, 64);
     [self.view addSubview:self.navView];
     self.navView.delegate = self;
     
-    self.showNavView = [GategroyShowNavView nibView];
+    self.showNavView = [GategroyShowNavView createWithXib];
     self.showNavView.frame = CGRectMake(0, 0, kFBaseWidth, 64);
     self.showNavView.alpha = 0;
     [self.view addSubview:self.showNavView];
@@ -50,13 +50,13 @@
     [self.view addSubview:self.categoryScrollView];
     self.categoryScrollView.backgroundColor = [UIColor whiteColor];
     
-    self.homeAppView = [CategoryHomeAppView nibView];
+    self.homeAppView = [CategoryHomeAppView createWithXib];
     self.homeAppView.frame= CGRectMake(0, 0, kFBaseWidth, 44);
     [self.categoryScrollView addSubview:self.homeAppView];
     self.homeAppView.backgroundColor = [UIColor whiteColor];
     self.homeAppView.delegate = self;
 
-    self.showHomeAppView = [CategoryShowHomeAppView nibView];
+    self.showHomeAppView = [CategoryShowHomeAppView createWithXib];
     self.showHomeAppView.frame = CGRectMake(0, 0, kFBaseWidth, 290);
     [self.categoryScrollView addSubview:self.showHomeAppView ];
     self.showHomeAppView .alpha = 0;
@@ -89,7 +89,6 @@
 - (void)setUpGategroyNavViewPopHomeVC{
     [self.navigationController popViewControllerAnimated:YES];
 }
-
 
 - (void)showSubView:(BOOL)show{
     if (show) {

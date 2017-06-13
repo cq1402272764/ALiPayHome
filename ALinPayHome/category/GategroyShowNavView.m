@@ -11,9 +11,6 @@
 @implementation GategroyShowNavView
 
 
-+ (instancetype)nibView{
-    return [[[NSBundle mainBundle]loadNibNamed:NSStringFromClass([self class]) owner:nil options:nil]lastObject];
-}
 - (IBAction)cancelBtn {
     if ([_delegate respondsToSelector:@selector(setUpGategroyShowNavViewWithCancel)]) {
         [_delegate setUpGategroyShowNavViewWithCancel];

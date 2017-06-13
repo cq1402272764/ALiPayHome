@@ -10,9 +10,6 @@
 
 @implementation CategoryHomeAppView
 
-+ (instancetype)nibView{
-    return [[[NSBundle mainBundle]loadNibNamed:NSStringFromClass([self class]) owner:nil options:nil]lastObject];
-}
 
 - (IBAction)editSelectBtn:(id)sender {
     if ([_delegate respondsToSelector:@selector(categoryHomeAppViewWithEdit:)]) {

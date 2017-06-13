@@ -59,6 +59,7 @@
 		6669ABCA1EEF8EE1004CAABA /* GategroyShowNavView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6669ABC91EEF8EE1004CAABA /* GategroyShowNavView.m */; };
 		6669ABCC1EEF8EED004CAABA /* GategroyNavView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6669ABCB1EEF8EED004CAABA /* GategroyNavView.xib */; };
 		6669ABCE1EEF8EFA004CAABA /* GategroyShowNavView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6669ABCD1EEF8EFA004CAABA /* GategroyShowNavView.xib */; };
+		6669ABD61EEFD315004CAABA /* UIView+LoadNib.m in Sources */ = {isa = PBXBuildFile; fileRef = 6669ABD51EEFD315004CAABA /* UIView+LoadNib.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -175,6 +176,8 @@
 		6669ABC91EEF8EE1004CAABA /* GategroyShowNavView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GategroyShowNavView.m; sourceTree = "<group>"; };
 		6669ABCB1EEF8EED004CAABA /* GategroyNavView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GategroyNavView.xib; sourceTree = "<group>"; };
 		6669ABCD1EEF8EFA004CAABA /* GategroyShowNavView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GategroyShowNavView.xib; sourceTree = "<group>"; };
+		6669ABD41EEFD315004CAABA /* UIView+LoadNib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+LoadNib.h"; sourceTree = "<group>"; };
+		6669ABD51EEFD315004CAABA /* UIView+LoadNib.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+LoadNib.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -417,6 +420,8 @@
 		6669ABB31EEF72C9004CAABA /* tool */ = {
 			isa = PBXGroup;
 			children = (
+				6669ABD41EEFD315004CAABA /* UIView+LoadNib.h */,
+				6669ABD51EEFD315004CAABA /* UIView+LoadNib.m */,
 				6669ABB41EEF72FB004CAABA /* Macro.h */,
 				6669ABB51EEF72FB004CAABA /* TitleImageBtn.h */,
 				6669ABB61EEF72FB004CAABA /* TitleImageBtn.m */,
@@ -589,6 +594,7 @@
 				6669ABA61EEE338B004CAABA /* MJRefreshGifHeader.m in Sources */,
 				6669ABAB1EEE338B004CAABA /* NSBundle+MJRefresh.m in Sources */,
 				6669ABBF1EEF7FD4004CAABA /* CategoryTableView.m in Sources */,
+				6669ABD61EEFD315004CAABA /* UIView+LoadNib.m in Sources */,
 				6669AB911EEE338B004CAABA /* HomeFunction.m in Sources */,
 				6669ABBA1EEF7816004CAABA /* CategoryHomeAppView.m in Sources */,
 				6669ABC21EEF8571004CAABA /* CategoryShowHomeAppView.m in Sources */,

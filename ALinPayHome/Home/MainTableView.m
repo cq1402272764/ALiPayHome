@@ -50,7 +50,7 @@ static NSString *cellID = @"MainTableViewCell";
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     HomeMainTableCell * cell = [tableView dequeueReusableCellWithIdentifier:cellID];
     if (!cell) {
-        cell = [HomeMainTableCell nibView];
+        cell = [HomeMainTableCell createWithXib];
     }
     return cell;
 }

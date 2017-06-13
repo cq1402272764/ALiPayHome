@@ -7,6 +7,7 @@
 //
 
 #import "MJRefresh.h"
+#import "UIView+LoadNib.h"
 
 #define kFBaseHeight [[UIScreen mainScreen]bounds].size.height
 #define kFBaseWidth [[UIScreen mainScreen]bounds].size.width

@@ -19,5 +19,4 @@
 @property (weak, nonatomic) IBOutlet UIButton *editBtn;
 @property (weak, nonatomic) IBOutlet UIView *editApplication;
 @property (weak, nonatomic) IBOutlet UILabel *homeAppTitle;
-+ (instancetype)nibView;
 @end

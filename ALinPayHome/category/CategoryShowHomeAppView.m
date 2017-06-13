@@ -10,9 +10,6 @@
 
 @implementation CategoryShowHomeAppView
 
-+ (instancetype)nibView{
-    return [[[NSBundle mainBundle]loadNibNamed:NSStringFromClass([self class]) owner:nil options:nil]lastObject];
-}
 
 
 @end

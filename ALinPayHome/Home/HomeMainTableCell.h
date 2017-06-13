@@ -10,5 +10,4 @@
 
 @interface HomeMainTableCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UILabel *index;
-+ (instancetype)nibView;
 @end
