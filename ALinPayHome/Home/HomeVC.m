@@ -80,7 +80,7 @@ const CGFloat classViewY = 64;
     completeNavView.alpha = 0;
     
     self.mainScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, classViewY, kFBaseWidth, kFBaseHeight-classViewY)];
-    self.mainScrollView.contentSize = CGSizeMake(0, kFBaseHeight * 5);
+    
     self.mainScrollView.scrollIndicatorInsets = UIEdgeInsetsMake((headerViewH), 0, 0, 0);
     self.mainScrollView.delegate = self;
     [self.view addSubview:self.mainScrollView];
@@ -97,8 +97,15 @@ const CGFloat classViewY = 64;
     functionView.backgroundColor = [UIColor clearColor];
     self.functionView = functionView;
     
-    MainTableView *mainTableView = [[MainTableView alloc] initWithFrame:CGRectMake(0, headerViewH, kFBaseWidth, kFBaseHeight * 5 - headerViewH) style:UITableViewStylePlain];
+    MainTableView *mainTableView = [[MainTableView alloc] init];
+    CGFloat mainTableViewH = mainTableView.homeDataArray.count * 200 + headerViewH;
+    
+    mainTableView.frame = CGRectMake(0, headerViewH, kFBaseWidth, mainTableViewH);
+    
+    self.mainScrollView.contentSize = CGSizeMake(0, mainTableViewH);
+    
     self.mainTableView = mainTableView;
+    
     [self.mainScrollView addSubview:mainTableView];
     
     [headerView addSubview:appView];
@@ -107,7 +114,6 @@ const CGFloat classViewY = 64;
 
 #pragma mark scrollViewDelegate
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView {
-    
     CGFloat y = scrollView.contentOffset.y;
     if (y <= 0) {
         CGRect newFrame = self.headerView.frame;
@@ -134,11 +140,11 @@ const CGFloat classViewY = 64;
     
     self.functionView.alpha = alpha;
     if (alpha > 0.5) {
-        CGFloat newAlpha =  alpha*2 - 1;
+        CGFloat newAlpha = alpha*2 - 1;
         self.navView.alpha = newAlpha;
         self.completeNavView.alpha = 0;
     } else {
-        CGFloat newAlpha =  alpha*2;
+        CGFloat newAlpha = alpha*2;
         self.navView.alpha = 0;
         self.completeNavView.alpha = 1 - newAlpha;
     }

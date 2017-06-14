@@ -21,7 +21,7 @@ static NSString *cellId = @"HomeFunction";
 - (NSMutableArray *)homeFunctionArray{
     if (_homeFunctionArray == nil) {
         _homeFunctionArray = [NSMutableArray array];
-        for (int i = 1; i <= 4; i++) {
+        for (int i = 1; i <= 12; i++) {
             NSString *imageName = [NSString stringWithFormat:@"%d",i];
             [_homeFunctionArray addObject:imageName];
         }

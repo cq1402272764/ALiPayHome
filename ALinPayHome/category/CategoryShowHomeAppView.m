@@ -111,6 +111,7 @@ static NSString *cellId = @"ShowHomeAppView";
 }
 
 - (void)setUpCategoryHomeShowAppCellWithDeleteApp:(CategoryHomeShowAppCell *)deleteApp{
+    NSLog(@"self.homeAppArray======%@",self.homeAppArray);
     id objc = [self.homeAppArray objectAtIndex:deleteApp.indexPath.row];
     //从资源数组中移除该数据
     [self.homeAppArray removeObject:objc];
@@ -127,17 +128,18 @@ static NSString *cellId = @"ShowHomeAppView";
 }
 
 - (void)randamArry:(NSArray *)arry indexPath:(NSIndexPath *)indexPath{
-    // 对数组乱序
-    arry = [arry sortedArrayUsingComparator:^NSComparisonResult(NSString *str1, NSString *str2) {
-        NSInteger seed = indexPath.row;
-        NSLog(@"-=-=-=%@=====%@",str1,str2);
-        if (seed) {
-            return [str1 compare:str2];
-        } else {
-            return [str2 compare:str1];
-        }
-    }];
-    for (NSString *str in arry) {
+    NSComparator cmptr = ^(id obj1, id obj2){
+//        if ([obj1 integerValue] > [obj2 integerValue]) {
+//            return (NSComparisonResult)NSOrderedDescending;
+//        }
+//        if ([obj1 integerValue] < [obj2 integerValue]) {
+//            return (NSComparisonResult)NSOrderedAscending;
+//        }
+        return (NSComparisonResult)NSOrderedSame;
+    };
+    arry = [arry sortedArrayUsingComparator:cmptr];
+    
+    for (NSString *str in self.homeAppArray) {
         NSLog(@"arry======%@",str);
     }
 }

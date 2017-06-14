@@ -10,6 +10,7 @@
 #import "Macro.h"
 
 @interface MainTableView : UITableView
+@property (nonatomic, strong) NSMutableArray *homeDataArray;
 @property(nonatomic, assign) CGFloat contentOffsetY;
 -(void)startRefreshing;
 -(void)endRefreshing;

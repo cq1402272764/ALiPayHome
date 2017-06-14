@@ -17,6 +17,17 @@ static NSString *cellID = @"MainTableViewCell";
 
 @implementation MainTableView
 
+- (NSMutableArray *)homeDataArray{
+    if (_homeDataArray == nil) {
+        _homeDataArray = [[NSMutableArray alloc] init];
+        for (int i = 1; i <= 20; i++) {
+            NSString *imageName = [NSString stringWithFormat:@"%d",i];
+            [_homeDataArray addObject:imageName];
+        }
+    }
+    return _homeDataArray;
+}
+
 - (instancetype)initWithFrame:(CGRect)frame style:(UITableViewStyle)style {
     
     self = [super initWithFrame:frame style:style];
@@ -25,6 +36,7 @@ static NSString *cellID = @"MainTableViewCell";
         self.delegate = self;
         self.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:nil];
         self.backgroundColor = KFMainBackColor;
+        self.scrollEnabled = NO;
     }
     return self;
 }
@@ -44,7 +56,7 @@ static NSString *cellID = @"MainTableViewCell";
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 20;
+    return self.homeDataArray.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -52,6 +64,7 @@ static NSString *cellID = @"MainTableViewCell";
     if (!cell) {
         cell = [HomeMainTableCell createWithXib];
     }
+    cell.index.text = self.homeDataArray[indexPath.row];
     return cell;
 }
 
@@ -60,7 +73,8 @@ static NSString *cellID = @"MainTableViewCell";
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return (kFBaseHeight * 5 - 310) / 20;
+    
+    return 200;
 }
 
 @end
