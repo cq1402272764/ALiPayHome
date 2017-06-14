@@ -31,6 +31,22 @@
                     <color key="textColor" red="0.39215686274509803" green="0.39215686274509803" blue="0.39215686274509803" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9FY-Ic-2jx">
+                    <rect key="frame" x="0.0" y="290" width="375" height="30"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="3" translatesAutoresizingMaskIntoConstraints="NO" id="U78-at-qjw">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="30"/>
+                        </imageView>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstItem="U78-at-qjw" firstAttribute="leading" secondItem="9FY-Ic-2jx" secondAttribute="leading" id="4oV-XH-owS"/>
+                        <constraint firstAttribute="bottom" secondItem="U78-at-qjw" secondAttribute="bottom" id="6Jj-DI-JfQ"/>
+                        <constraint firstItem="U78-at-qjw" firstAttribute="top" secondItem="9FY-Ic-2jx" secondAttribute="top" id="H92-Z1-edV"/>
+                        <constraint firstAttribute="trailing" secondItem="U78-at-qjw" secondAttribute="trailing" id="jfw-Ar-tlX"/>
+                        <constraint firstAttribute="height" constant="30" id="yRY-FH-ugC"/>
+                    </constraints>
+                </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nQI-rd-JVO">
                     <rect key="frame" x="0.0" y="44" width="375" height="246"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -45,12 +61,21 @@
                 <constraint firstItem="K5N-Zo-sGo" firstAttribute="bottom" secondItem="vFZ-wn-CaW" secondAttribute="bottom" id="Iak-Gd-tuB"/>
                 <constraint firstItem="vFZ-wn-CaW" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="N2A-on-O14"/>
                 <constraint firstItem="nQI-rd-JVO" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="OP7-9x-He2"/>
+                <constraint firstItem="9FY-Ic-2jx" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="RGD-Zk-WMl"/>
                 <constraint firstItem="nQI-rd-JVO" firstAttribute="top" secondItem="K5N-Zo-sGo" secondAttribute="bottom" id="V0a-fj-hGU"/>
+                <constraint firstAttribute="trailing" secondItem="9FY-Ic-2jx" secondAttribute="trailing" id="fji-h4-aR4"/>
                 <constraint firstItem="K5N-Zo-sGo" firstAttribute="leading" secondItem="vFZ-wn-CaW" secondAttribute="trailing" constant="5" id="jZb-a6-Wah"/>
                 <constraint firstItem="vFZ-wn-CaW" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="10" id="wCm-GE-XF6"/>
+                <constraint firstItem="9FY-Ic-2jx" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="290" id="yHW-bx-gbS"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="16" y="-307"/>
+            <connections>
+                <outlet property="homeAppView" destination="nQI-rd-JVO" id="yLH-gH-mbH"/>
+            </connections>
+            <point key="canvasLocation" x="15.5" y="-307"/>
         </view>
     </objects>
+    <resources>
+        <image name="3" width="742" height="38"/>
+    </resources>
 </document>

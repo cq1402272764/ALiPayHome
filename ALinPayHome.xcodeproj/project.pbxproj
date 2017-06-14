@@ -60,6 +60,8 @@
 		6669ABCC1EEF8EED004CAABA /* GategroyNavView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6669ABCB1EEF8EED004CAABA /* GategroyNavView.xib */; };
 		6669ABCE1EEF8EFA004CAABA /* GategroyShowNavView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6669ABCD1EEF8EFA004CAABA /* GategroyShowNavView.xib */; };
 		6669ABD61EEFD315004CAABA /* UIView+LoadNib.m in Sources */ = {isa = PBXBuildFile; fileRef = 6669ABD51EEFD315004CAABA /* UIView+LoadNib.m */; };
+		6669ABDF1EEFD979004CAABA /* CategoryHomeShowAppCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6669ABDD1EEFD979004CAABA /* CategoryHomeShowAppCell.m */; };
+		6669ABE01EEFD979004CAABA /* CategoryHomeShowAppCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6669ABDE1EEFD979004CAABA /* CategoryHomeShowAppCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -178,6 +180,9 @@
 		6669ABCD1EEF8EFA004CAABA /* GategroyShowNavView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GategroyShowNavView.xib; sourceTree = "<group>"; };
 		6669ABD41EEFD315004CAABA /* UIView+LoadNib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+LoadNib.h"; sourceTree = "<group>"; };
 		6669ABD51EEFD315004CAABA /* UIView+LoadNib.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+LoadNib.m"; sourceTree = "<group>"; };
+		6669ABDC1EEFD979004CAABA /* CategoryHomeShowAppCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryHomeShowAppCell.h; sourceTree = "<group>"; };
+		6669ABDD1EEFD979004CAABA /* CategoryHomeShowAppCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryHomeShowAppCell.m; sourceTree = "<group>"; };
+		6669ABDE1EEFD979004CAABA /* CategoryHomeShowAppCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CategoryHomeShowAppCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -402,11 +407,14 @@
 				6669ABB81EEF7816004CAABA /* CategoryHomeAppView.h */,
 				6669ABB91EEF7816004CAABA /* CategoryHomeAppView.m */,
 				6669ABBB1EEF7827004CAABA /* CategoryHomeAppView.xib */,
-				6669ABBD1EEF7FD4004CAABA /* CategoryTableView.h */,
-				6669ABBE1EEF7FD4004CAABA /* CategoryTableView.m */,
 				6669ABC01EEF8571004CAABA /* CategoryShowHomeAppView.h */,
 				6669ABC11EEF8571004CAABA /* CategoryShowHomeAppView.m */,
 				6669ABC31EEF8581004CAABA /* CategoryShowHomeAppView.xib */,
+				6669ABDC1EEFD979004CAABA /* CategoryHomeShowAppCell.h */,
+				6669ABDD1EEFD979004CAABA /* CategoryHomeShowAppCell.m */,
+				6669ABDE1EEFD979004CAABA /* CategoryHomeShowAppCell.xib */,
+				6669ABBD1EEF7FD4004CAABA /* CategoryTableView.h */,
+				6669ABBE1EEF7FD4004CAABA /* CategoryTableView.m */,
 				6669ABC51EEF8EC8004CAABA /* GategroyNavView.h */,
 				6669ABC61EEF8EC8004CAABA /* GategroyNavView.m */,
 				6669ABCB1EEF8EED004CAABA /* GategroyNavView.xib */,
@@ -538,6 +546,7 @@
 				6669AB951EEE338B004CAABA /* HomeMainTableCell.xib in Resources */,
 				6669ABC41EEF8581004CAABA /* CategoryShowHomeAppView.xib in Resources */,
 				6669AB931EEE338B004CAABA /* HomeFunctionCell.xib in Resources */,
+				6669ABE01EEFD979004CAABA /* CategoryHomeShowAppCell.xib in Resources */,
 				6669AB221EEE3365004CAABA /* LaunchScreen.storyboard in Resources */,
 				6669AB8E1EEE338B004CAABA /* CompleteNavView.xib in Resources */,
 				6669AB991EEE338B004CAABA /* NavView.xib in Resources */,
@@ -588,6 +597,7 @@
 				6669ABB71EEF72FB004CAABA /* TitleImageBtn.m in Sources */,
 				6669AB921EEE338B004CAABA /* HomeFunctionCell.m in Sources */,
 				6669ABA31EEE338B004CAABA /* MJRefreshBackGifFooter.m in Sources */,
+				6669ABDF1EEFD979004CAABA /* CategoryHomeShowAppCell.m in Sources */,
 				6669AB971EEE338B004CAABA /* MainTableView.m in Sources */,
 				6669AB8D1EEE338B004CAABA /* CompleteNavView.m in Sources */,
 				6669AB961EEE338B004CAABA /* HomeVC.m in Sources */,
