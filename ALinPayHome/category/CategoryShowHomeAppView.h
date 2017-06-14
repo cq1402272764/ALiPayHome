@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface CategoryShowHomeAppView : UIView
-
+@property (strong, nonatomic) NSMutableArray *homeAppArray;
 @end

@@ -12,4 +12,6 @@
 
 @property (nonatomic, strong) void (^moreCategory)();
 
+@property (nonatomic, strong) NSMutableArray *homeFunctionArray;
+
 @end

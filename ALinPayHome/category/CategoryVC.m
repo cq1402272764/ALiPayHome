@@ -15,6 +15,9 @@
 #import "GategroyShowNavView.h"
 
 @interface CategoryVC ()<CategoryHomeAppViewDelegate,GategroyShowNavViewDelegate,GategroyNavViewDelegate>
+{
+    CGFloat showHomeAppViewH;
+}
 @property (nonatomic, strong) UIScrollView *categoryScrollView;
 @property (nonatomic, strong) CategoryShowHomeAppView *showHomeAppView;
 @property (nonatomic, strong) CategoryHomeAppView *homeAppView;
@@ -25,7 +28,6 @@
 
 const CGFloat navViewH = 64;
 const CGFloat homeAppViewH = 44;
-const CGFloat showHomeAppViewH = 290;
 
 @implementation CategoryVC
 
@@ -60,7 +62,7 @@ const CGFloat showHomeAppViewH = 290;
     self.homeAppView.delegate = self;
 
     self.showHomeAppView = [CategoryShowHomeAppView createWithXib];
-    self.showHomeAppView.frame = CGRectMake(0, 0, kFBaseWidth, showHomeAppViewH);
+    [self setUphomeFunctionArrayCount:self.showHomeAppView.homeAppArray.count];
     [self.categoryScrollView addSubview:self.showHomeAppView ];
     self.showHomeAppView .alpha = 0;
     
@@ -143,6 +145,17 @@ const CGFloat showHomeAppViewH = 290;
     if ([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
         self.navigationController.interactivePopGestureRecognizer.enabled = enabled;
     }
+}
+
+- (void)setUphomeFunctionArrayCount:(NSInteger)count{
+    if ( count > 8) {
+        showHomeAppViewH = 290;
+    }else if (count > 4 & count <= 8){
+        showHomeAppViewH = 290 * 2 / 3;
+    }else{
+        showHomeAppViewH = 290/3;
+    }
+    self.showHomeAppView.frame = CGRectMake(0, 0, kFBaseWidth, showHomeAppViewH);
 }
 
 @end

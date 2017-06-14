@@ -37,6 +37,9 @@
                         <state key="normal" title="-">
                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         </state>
+                        <connections>
+                            <action selector="deleteApp" destination="gTV-IL-0wX" eventType="touchUpInside" id="XS6-Gi-XG2"/>
+                        </connections>
                     </button>
                 </subviews>
             </view>
@@ -56,6 +59,7 @@
             <size key="customSize" width="95" height="85"/>
             <connections>
                 <outlet property="appTitle" destination="yQj-jU-Vj4" id="f6R-fh-hrM"/>
+                <outlet property="delegateApp" destination="fGc-5C-iKA" id="k3l-dS-Hji"/>
                 <outlet property="signBtn" destination="fGc-5C-iKA" id="dPy-TR-EZD"/>
             </connections>
             <point key="canvasLocation" x="18.5" y="-66.5"/>

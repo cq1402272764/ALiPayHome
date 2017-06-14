@@ -16,7 +16,11 @@
 #import "CategoryVC.h"
 
 
-@interface HomeVC ()<UIScrollViewDelegate>
+@interface HomeVC ()<UIScrollViewDelegate>{
+    CGFloat singleAppHeaderViewHeight;
+    CGFloat headerViewH;
+}
+
 @property (nonatomic, strong) UIScrollView *mainScrollView;
 @property (nonatomic, weak) MainTableView *mainTableView;
 @property (nonatomic, weak) HomeClassificationView *functionView;
@@ -27,10 +31,8 @@
 
 @end
 
-const CGFloat classViewY = 64;
 const CGFloat functionHeaderViewHeight = 100;
-const CGFloat singleAppHeaderViewHeight = KFAppHeight;
-const CGFloat headerViewH = functionHeaderViewHeight + singleAppHeaderViewHeight;
+const CGFloat classViewY = 64;
 
 @implementation HomeVC
 
@@ -51,6 +53,16 @@ const CGFloat headerViewH = functionHeaderViewHeight + singleAppHeaderViewHeight
     navBackView.frame = CGRectMake(0, 0, kFBaseWidth, classViewY);
     navBackView.backgroundColor = kFMainColor;
     [self.view addSubview:navBackView];
+    
+    HomeFunction *appView = [[HomeFunction alloc] init];
+    self.appView = appView;
+    appView.backgroundColor = [UIColor whiteColor];
+    [self setUphomeFunctionArrayCount:appView.homeFunctionArray.count];
+    headerViewH = functionHeaderViewHeight + singleAppHeaderViewHeight;
+    appView.moreCategory = ^{
+        CategoryVC *category = [[CategoryVC alloc] init];
+        [self.navigationController pushViewController:category animated:YES];
+    };
     
     // 滑动前的navView
     NavView *navView = [NavView createWithXib];
@@ -85,17 +97,11 @@ const CGFloat headerViewH = functionHeaderViewHeight + singleAppHeaderViewHeight
     functionView.backgroundColor = [UIColor clearColor];
     self.functionView = functionView;
     
-    HomeFunction *appView = [[HomeFunction alloc] initWithFrame:CGRectMake(0, functionHeaderViewHeight, kFBaseWidth, singleAppHeaderViewHeight)];
-    appView.backgroundColor = [UIColor whiteColor];
-    [headerView addSubview:appView];
-    appView.moreCategory = ^{
-        CategoryVC *category = [[CategoryVC alloc] init];
-        [self.navigationController pushViewController:category animated:YES];
-    };
-    
     MainTableView *mainTableView = [[MainTableView alloc] initWithFrame:CGRectMake(0, headerViewH, kFBaseWidth, kFBaseHeight * 5 - headerViewH) style:UITableViewStylePlain];
     self.mainTableView = mainTableView;
     [self.mainScrollView addSubview:mainTableView];
+    
+    [headerView addSubview:appView];
 }
 
 
@@ -141,7 +147,6 @@ const CGFloat headerViewH = functionHeaderViewHeight + singleAppHeaderViewHeight
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
     // 松手时判断是否刷新
     CGFloat y = scrollView.contentOffset.y;
-    NSLog(@"========%f",y);
     if (y < -65) {
         [self.mainTableView startRefreshing];
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
@@ -149,5 +154,18 @@ const CGFloat headerViewH = functionHeaderViewHeight + singleAppHeaderViewHeight
         });
     }
 }
+
+
+- (void)setUphomeFunctionArrayCount:(NSInteger)count{
+    if (count > 8) {
+        singleAppHeaderViewHeight = KFAppHeight;
+    }else if (count > 4 & count <= 8){
+        singleAppHeaderViewHeight = KFAppHeight * 2 / 3;
+    }else{
+        singleAppHeaderViewHeight = KFAppHeight/3;
+    }
+    self.appView.frame = CGRectMake(0, functionHeaderViewHeight, kFBaseWidth, singleAppHeaderViewHeight);
+}
+
 
 @end

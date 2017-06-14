@@ -10,11 +10,11 @@
 #import "Macro.h"
 #import "CategoryHomeShowAppCell.h"
 
-@interface CategoryShowHomeAppView ()<UICollectionViewDelegate,UICollectionViewDataSource>
+@interface CategoryShowHomeAppView ()<UICollectionViewDelegate,UICollectionViewDataSource,CategoryHomeShowAppCellDelegate>
 
 @property (weak, nonatomic) IBOutlet UIView *homeAppView;
 @property (weak, nonatomic) UICollectionView *collectionView;
-@property (strong, nonatomic) NSMutableArray *homeAppArray;
+
 @end
 
 static NSString *cellId = @"ShowHomeAppView";
@@ -60,6 +60,8 @@ static NSString *cellId = @"ShowHomeAppView";
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     CategoryHomeShowAppCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellId forIndexPath:indexPath];
     UILongPressGestureRecognizer *longPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(handlelongGesture:)];
+    cell.delegate = self;
+    cell.indexPath = indexPath;
     [cell addGestureRecognizer:longPress];
     cell.appTitle.text = [NSString stringWithFormat:@"余额宝%@",self.homeAppArray[indexPath.row]];
     return cell;
@@ -81,9 +83,7 @@ static NSString *cellId = @"ShowHomeAppView";
         case UIGestureRecognizerStateBegan:{
             //判断手势落点位置是否在路径上
             NSIndexPath *indexPath = [self.collectionView indexPathForItemAtPoint:[longGesture locationInView:self.collectionView]];
-            if (indexPath == nil) {
-                break;
-            }
+            if (indexPath == nil) break;
             //在路径上则开始移动该路径上的cell
             [self.collectionView beginInteractiveMovementForItemAtIndexPath:indexPath];
         }
@@ -92,9 +92,13 @@ static NSString *cellId = @"ShowHomeAppView";
             //移动过程当中随时更新cell位置
             [self.collectionView updateInteractiveMovementTargetPosition:[longGesture locationInView:self.collectionView]];
             break;
-        case UIGestureRecognizerStateEnded:
+        case UIGestureRecognizerStateEnded:{
             //移动结束后关闭cell移动
             [self.collectionView endInteractiveMovement];
+            NSIndexPath *indexPath = [self.collectionView indexPathForItemAtPoint:[longGesture locationInView:self.collectionView]];
+            NSLog(@"=======%ld",indexPath.row);
+            [self randamArry:self.homeAppArray indexPath:indexPath];
+        }
             break;
         default:
             [self.collectionView cancelInteractiveMovement];
@@ -106,6 +110,13 @@ static NSString *cellId = @"ShowHomeAppView";
     return YES;
 }
 
+- (void)setUpCategoryHomeShowAppCellWithDeleteApp:(CategoryHomeShowAppCell *)deleteApp{
+    id objc = [self.homeAppArray objectAtIndex:deleteApp.indexPath.row];
+    //从资源数组中移除该数据
+    [self.homeAppArray removeObject:objc];
+    [self.collectionView reloadData];
+}
+
 - (void)collectionView:(UICollectionView *)collectionView moveItemAtIndexPath:(NSIndexPath *)sourceIndexPath toIndexPath:(NSIndexPath*)destinationIndexPath {
     //取出源item数据
     id objc = [self.homeAppArray objectAtIndex:sourceIndexPath.item];
@@ -115,4 +126,19 @@ static NSString *cellId = @"ShowHomeAppView";
     [self.homeAppArray insertObject:objc atIndex:destinationIndexPath.item];
 }
 
+- (void)randamArry:(NSArray *)arry indexPath:(NSIndexPath *)indexPath{
+    // 对数组乱序
+    arry = [arry sortedArrayUsingComparator:^NSComparisonResult(NSString *str1, NSString *str2) {
+        NSInteger seed = indexPath.row;
+        NSLog(@"-=-=-=%@=====%@",str1,str2);
+        if (seed) {
+            return [str1 compare:str2];
+        } else {
+            return [str2 compare:str1];
+        }
+    }];
+    for (NSString *str in arry) {
+        NSLog(@"arry======%@",str);
+    }
+}
 @end

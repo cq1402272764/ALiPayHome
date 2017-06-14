@@ -18,11 +18,20 @@ static NSString *cellId = @"HomeFunction";
 
 @implementation HomeFunction
 
+- (NSMutableArray *)homeFunctionArray{
+    if (_homeFunctionArray == nil) {
+        _homeFunctionArray = [NSMutableArray array];
+        for (int i = 1; i <= 4; i++) {
+            NSString *imageName = [NSString stringWithFormat:@"%d",i];
+            [_homeFunctionArray addObject:imageName];
+        }
+    }
+    return _homeFunctionArray;
+}
 
 - (instancetype)initWithFrame:(CGRect)frame{
     self = [super initWithFrame:frame];
     if (self) {
-        
         UICollectionViewFlowLayout *layout=[[UICollectionViewFlowLayout alloc]init];
         //同一行相邻两个cell的最小间距
         layout.minimumInteritemSpacing = 0;
@@ -37,7 +46,6 @@ static NSString *cellId = @"HomeFunction";
         [self addSubview:collectionView];
         
         [collectionView registerNib:[UINib nibWithNibName:@"HomeFunctionCell" bundle:nil] forCellWithReuseIdentifier:cellId];
-
     }
     return self;
 }
@@ -45,27 +53,29 @@ static NSString *cellId = @"HomeFunction";
 #pragma mark UICollectionViewDataSource
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-    return 12;
+    return self.homeFunctionArray.count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     
     HomeFunctionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellId forIndexPath:indexPath];
-    if (indexPath.row == 11) {
+    
+    if (indexPath.row == (self.homeFunctionArray.count-1)) {
         cell.more.text = @"更多";
         cell.more.textColor = [UIColor redColor];
+    }else{
+        cell.more.text = [NSString stringWithFormat:@"余额宝%@",self.homeFunctionArray[indexPath.row]];
     }
     return cell;
 }
 
 #pragma mark UICollectionViewDelegate
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
-    if (indexPath.row == 11) {
+    if (indexPath.row == (self.homeFunctionArray.count-1)) {
         if (self.moreCategory) {
             self.moreCategory();
         }
     }
-    NSLog(@"-----%zd",indexPath.row);
 }
 
 //每一个分组的上左下右间距
