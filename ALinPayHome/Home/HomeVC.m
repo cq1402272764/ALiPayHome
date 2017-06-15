@@ -80,8 +80,7 @@ const CGFloat classViewY = 64;
     completeNavView.alpha = 0;
     
     self.mainScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, classViewY, kFBaseWidth, kFBaseHeight-classViewY)];
-    
-    self.mainScrollView.scrollIndicatorInsets = UIEdgeInsetsMake((headerViewH), 0, 0, 0);
+    self.mainScrollView.scrollIndicatorInsets = UIEdgeInsetsMake(headerViewH, 0, 0, 0);
     self.mainScrollView.delegate = self;
     [self.view addSubview:self.mainScrollView];
     
@@ -89,7 +88,6 @@ const CGFloat classViewY = 64;
     UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kFBaseWidth, headerViewH)];
     self.headerView = headerView;
     headerView.backgroundColor = kFMainColor;
-    [self.mainScrollView addSubview:headerView];
     
     HomeClassificationView *functionView = [HomeClassificationView createWithXib];
     functionView.frame = CGRectMake(0, 0, kFBaseWidth, functionHeaderViewHeight);
@@ -107,6 +105,7 @@ const CGFloat classViewY = 64;
     self.mainTableView = mainTableView;
     
     [self.mainScrollView addSubview:mainTableView];
+    [self.mainScrollView addSubview:headerView];
     
     [headerView addSubview:appView];
 }
@@ -134,10 +133,16 @@ const CGFloat classViewY = 64;
         CGRect newFrame = self.functionView.frame;
         newFrame.origin.y = y/2;
         self.functionView.frame = newFrame;
+//        if (y == 103.0) {
+//            self.mainTableView.scrollEnabled = YES;
+//            self.mainScrollView.scrollEnabled = NO;
+//        }else{
+//            self.mainTableView.scrollEnabled = NO;
+//            self.mainScrollView.scrollEnabled = YES;
+//        }
     }
 
-    CGFloat alpha = (1 - y/functionHeaderViewHeight*2.5 ) > 0 ? (1 - y/functionHeaderViewHeight*2.5 ) : 0;
-    
+    CGFloat alpha = (1 - y/functionHeaderViewHeight * 2.5 ) > 0 ? (1 - y/functionHeaderViewHeight * 2.5 ) : 0;
     self.functionView.alpha = alpha;
     if (alpha > 0.5) {
         CGFloat newAlpha = alpha*2 - 1;
@@ -160,7 +165,6 @@ const CGFloat classViewY = 64;
         });
     }
 }
-
 
 - (void)setUphomeFunctionArrayCount:(NSInteger)count{
     if (count > 8) {
