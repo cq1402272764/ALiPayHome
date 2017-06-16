@@ -133,13 +133,6 @@ const CGFloat classViewY = 64;
         CGRect newFrame = self.functionView.frame;
         newFrame.origin.y = y/2;
         self.functionView.frame = newFrame;
-//        if (y == 103.0) {
-//            self.mainTableView.scrollEnabled = YES;
-//            self.mainScrollView.scrollEnabled = NO;
-//        }else{
-//            self.mainTableView.scrollEnabled = NO;
-//            self.mainScrollView.scrollEnabled = YES;
-//        }
     }
 
     CGFloat alpha = (1 - y/functionHeaderViewHeight * 2.5 ) > 0 ? (1 - y/functionHeaderViewHeight * 2.5 ) : 0;
@@ -153,7 +146,9 @@ const CGFloat classViewY = 64;
         self.navView.alpha = 0;
         self.completeNavView.alpha = 1 - newAlpha;
     }
+    
 }
+
 
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
     // 松手时判断是否刷新
