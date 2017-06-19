@@ -139,7 +139,7 @@ const CGFloat spacing = 8;
             
             newFrame = self.tableView.frame;
             newFrame.origin.y = showHomeAppViewH+spacing;
-            newFrame.size.height = kFBaseHeight -(homeAppViewH+spacing)-homeAppBackViewH;
+            newFrame.size.height = kFBaseHeight -(navViewH+spacing)-homeAppBackViewH;
             self.tableView.frame = newFrame;
         }];
     }
