@@ -14,7 +14,8 @@
 {
     CGFloat singleAppHeaderViewHeight; 
 }
-@property (nonatomic, weak) UICollectionView *collectionView;
+@property (nonatomic, strong) UICollectionViewFlowLayout *layout;
+@property (nonatomic, strong) UICollectionView *collectionView;
 @end
 
 static NSString *cellId = @"HomeFunction";
@@ -35,14 +36,14 @@ static NSString *cellId = @"HomeFunction";
 - (instancetype)initWithFrame:(CGRect)frame{
     self = [super initWithFrame:frame];
     if (self) {
-        
-        UICollectionViewFlowLayout *layout=[[UICollectionViewFlowLayout alloc]init];
-        //同一行相邻两个cell的最小间距
-        layout.minimumInteritemSpacing = 0;
-        //最小两行之间的间距
-        layout.minimumLineSpacing = 0;
-        
-        layout.itemSize = CGSizeMake(kFBaseWidth/5, KFAppHeight/3);
+        if (self.layout == nil) {
+            self.layout=[[UICollectionViewFlowLayout alloc]init];
+            //同一行相邻两个cell的最小间距
+            self.layout.minimumInteritemSpacing = 0;
+            //最小两行之间的间距
+            self.layout.minimumLineSpacing = 0;
+            self.layout.itemSize = CGSizeMake(kFBaseWidth/5, KFAppHeight/3);
+        }
         NSInteger count = self.homeFunctionArray.count;
         if (count > 8) {
             singleAppHeaderViewHeight = KFAppHeight;
@@ -52,14 +53,14 @@ static NSString *cellId = @"HomeFunction";
             singleAppHeaderViewHeight = KFAppHeight/3;
         }
         self.collectionView.frame = CGRectMake(0, 0, kFBaseWidth, singleAppHeaderViewHeight);
-        
-        UICollectionView  *collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, kFBaseWidth, singleAppHeaderViewHeight) collectionViewLayout:layout];
-        self.collectionView = collectionView;        
-        collectionView.delegate = self;
-        collectionView.dataSource = self;
-        collectionView.backgroundColor = [UIColor whiteColor];
-        [self addSubview:self.collectionView];
-        [collectionView registerNib:[UINib nibWithNibName:@"HomeFunctionCell" bundle:nil] forCellWithReuseIdentifier:cellId];
+        if (self.collectionView == nil) {
+            self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, kFBaseWidth, singleAppHeaderViewHeight) collectionViewLayout:self.layout];
+            self.collectionView .delegate = self;
+            self.collectionView .dataSource = self;
+            self.collectionView .backgroundColor = [UIColor whiteColor];
+            [self addSubview:self.collectionView];
+            [self.collectionView  registerNib:[UINib nibWithNibName:@"HomeFunctionCell" bundle:nil] forCellWithReuseIdentifier:cellId];
+        }
     }
     return self;
 }

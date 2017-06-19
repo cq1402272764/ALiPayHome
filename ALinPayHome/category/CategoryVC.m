@@ -29,7 +29,7 @@
 
 const CGFloat navViewH = 64;
 const CGFloat homeAppViewH = 44;
-const CGFloat homeAppBackViewH = 290;
+const CGFloat homeAppBackViewH = 280;
 const CGFloat spacing = 8;
 
 @implementation CategoryVC

@@ -35,26 +35,11 @@ static NSString *cellID = @"CategoryTableViewCell";
     if (self) {
         self.dataSource = self;
         self.delegate = self;
-//        self.mj_header = [MJRefreshNormalHeader headerWithRefreshingBlock:nil];
         self.backgroundColor = KFMainBackColor;
         self.scrollEnabled = NO;
     }
     return self;
 }
-
-//- (void)setContentOffsetY:(CGFloat)contentOffsetY {
-//    _contentOffsetY = contentOffsetY;
-//    if (![self.mj_header isRefreshing]) {
-//        self.contentOffset = CGPointMake(0, contentOffsetY);
-//    }
-//}
-
-//- (void)startRefreshing {
-//    [self.mj_header beginRefreshing];
-//}
-//- (void)endRefreshing {
-//    [self.mj_header endRefreshing];
-//}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.homeDataArray.count;
