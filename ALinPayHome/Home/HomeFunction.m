@@ -11,7 +11,10 @@
 #import "HomeFunctionCell.h"
 
 @interface HomeFunction ()<UICollectionViewDelegate,UICollectionViewDataSource>
-
+{
+    CGFloat singleAppHeaderViewHeight; 
+}
+@property (nonatomic, weak) UICollectionView *collectionView;
 @end
 
 static NSString *cellId = @"HomeFunction";
@@ -21,7 +24,7 @@ static NSString *cellId = @"HomeFunction";
 - (NSMutableArray *)homeFunctionArray{
     if (_homeFunctionArray == nil) {
         _homeFunctionArray = [NSMutableArray array];
-        for (int i = 1; i <= 12; i++) {
+        for (int i = 1; i <= 7; i++) {
             NSString *imageName = [NSString stringWithFormat:@"%d",i];
             [_homeFunctionArray addObject:imageName];
         }
@@ -32,6 +35,7 @@ static NSString *cellId = @"HomeFunction";
 - (instancetype)initWithFrame:(CGRect)frame{
     self = [super initWithFrame:frame];
     if (self) {
+        
         UICollectionViewFlowLayout *layout=[[UICollectionViewFlowLayout alloc]init];
         //同一行相邻两个cell的最小间距
         layout.minimumInteritemSpacing = 0;
@@ -39,12 +43,22 @@ static NSString *cellId = @"HomeFunction";
         layout.minimumLineSpacing = 0;
         
         layout.itemSize = CGSizeMake(kFBaseWidth/5, KFAppHeight/3);
-        UICollectionView *collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, kFBaseWidth, 194) collectionViewLayout:layout];
+        NSInteger count = self.homeFunctionArray.count;
+        if (count > 8) {
+            singleAppHeaderViewHeight = KFAppHeight;
+        }else if (count > 4 & count <= 8){
+            singleAppHeaderViewHeight = KFAppHeight * 2 / 3;
+        }else{
+            singleAppHeaderViewHeight = KFAppHeight/3;
+        }
+        self.collectionView.frame = CGRectMake(0, 0, kFBaseWidth, singleAppHeaderViewHeight);
+        
+        UICollectionView  *collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, kFBaseWidth, singleAppHeaderViewHeight) collectionViewLayout:layout];
+        self.collectionView = collectionView;        
         collectionView.delegate = self;
         collectionView.dataSource = self;
         collectionView.backgroundColor = [UIColor whiteColor];
-        [self addSubview:collectionView];
-        
+        [self addSubview:self.collectionView];
         [collectionView registerNib:[UINib nibWithNibName:@"HomeFunctionCell" bundle:nil] forCellWithReuseIdentifier:cellId];
     }
     return self;
@@ -82,4 +96,5 @@ static NSString *cellId = @"HomeFunction";
 -(UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section{
     return UIEdgeInsetsMake(0, 10, 0, 10);
 }
+
 @end

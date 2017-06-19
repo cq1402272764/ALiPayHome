@@ -17,6 +17,7 @@
 @interface CategoryVC ()<CategoryHomeAppViewDelegate,GategroyShowNavViewDelegate,GategroyNavViewDelegate>
 {
     CGFloat showHomeAppViewH;
+    CGFloat tableViewH;
 }
 @property (nonatomic, strong) UIScrollView *categoryScrollView;
 @property (nonatomic, strong) CategoryShowHomeAppView *showHomeAppView;
@@ -28,6 +29,8 @@
 
 const CGFloat navViewH = 64;
 const CGFloat homeAppViewH = 44;
+const CGFloat homeAppBackViewH = 290;
+const CGFloat spacing = 8;
 
 @implementation CategoryVC
 
@@ -50,7 +53,6 @@ const CGFloat homeAppViewH = 44;
     self.showNavView.delegate = self;
     
     self.categoryScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, navViewH, kFBaseWidth, kFBaseHeight-navViewH)];
-    self.categoryScrollView.contentSize = CGSizeMake(0, kFBaseHeight * 5);
     self.categoryScrollView.scrollIndicatorInsets = UIEdgeInsetsMake(0, 0, 0, 0);
     [self.view addSubview:self.categoryScrollView];
     self.categoryScrollView.backgroundColor = [UIColor whiteColor];
@@ -67,9 +69,11 @@ const CGFloat homeAppViewH = 44;
     self.showHomeAppView .alpha = 0;
     
     self.tableView = [[CategoryTableView alloc] init];
-    self.tableView.frame = CGRectMake(0, homeAppViewH+8, kFBaseWidth, kFBaseHeight * 5-(homeAppViewH+8));
+    tableViewH = self.tableView.homeDataArray.count * 200 + (homeAppViewH+spacing);
+    self.tableView.frame = CGRectMake(0, homeAppViewH+spacing, kFBaseWidth, tableViewH);
+    self.categoryScrollView.contentSize = CGSizeMake(0, tableViewH);
     [self.categoryScrollView addSubview:self.tableView];
-    
+
 }
 
 #pragma mark CategoryHomeAppViewDelegate
@@ -97,9 +101,8 @@ const CGFloat homeAppViewH = 44;
 
 - (void)showSubView:(BOOL)show{
     if (show) {
-        [self setUpInteractivePopGestureRecognizerEnabled:YES];
-        self.categoryScrollView.scrollEnabled = YES;
-        
+        [self setUpInteractivePopGestureRecognizerEnabled:YES scrollEnabled:NO];
+        [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:NO scrollPosition:UITableViewScrollPositionTop];
         [UIView animateWithDuration:0.3 animations:^{
             self.navView.alpha = 1;
             self.showNavView.alpha = 0;
@@ -117,13 +120,13 @@ const CGFloat homeAppViewH = 44;
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.7 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [UIView animateWithDuration:0.3 animations:^{
                 CGRect newFrame = self.tableView.frame;
-                newFrame.origin.y = homeAppViewH+8;
+                newFrame.origin.y = homeAppViewH+spacing;
+                newFrame.size.height = tableViewH;
                 self.tableView.frame = newFrame;
             }];
         });
     }else{
-        [self setUpInteractivePopGestureRecognizerEnabled:NO];
-        self.categoryScrollView.scrollEnabled = NO;
+        [self setUpInteractivePopGestureRecognizerEnabled:NO scrollEnabled:YES];
         [UIView animateWithDuration:0.3 animations:^{
             self.navView.alpha = 0;
             self.showNavView.alpha = 1;
@@ -135,25 +138,33 @@ const CGFloat homeAppViewH = 44;
             self.homeAppView.editApplication.frame = newFrame;
             
             newFrame = self.tableView.frame;
-            newFrame.origin.y = showHomeAppViewH+10;
+            newFrame.origin.y = showHomeAppViewH+spacing;
+            newFrame.size.height = kFBaseHeight -(homeAppViewH+spacing)-homeAppBackViewH;
             self.tableView.frame = newFrame;
         }];
     }
 }
 
-- (void)setUpInteractivePopGestureRecognizerEnabled:(BOOL)enabled{
+- (void)setUpInteractivePopGestureRecognizerEnabled:(BOOL)enabled scrollEnabled:(BOOL)scrollEnabled{
     if ([self.navigationController respondsToSelector:@selector(interactivePopGestureRecognizer)]) {
         self.navigationController.interactivePopGestureRecognizer.enabled = enabled;
+    }
+    if (scrollEnabled) {
+        self.categoryScrollView.scrollEnabled = NO;
+        self.tableView.scrollEnabled = YES;
+    }else{
+        self.categoryScrollView.scrollEnabled = YES;
+        self.tableView.scrollEnabled = NO;
     }
 }
 
 - (void)setUphomeFunctionArrayCount:(NSInteger)count{
     if ( count > 8) {
-        showHomeAppViewH = 290;
+        showHomeAppViewH = homeAppBackViewH;
     }else if (count > 4 & count <= 8){
-        showHomeAppViewH = 290 * 2 / 3;
+        showHomeAppViewH = homeAppBackViewH * 2 / 3;
     }else{
-        showHomeAppViewH = 290/3;
+        showHomeAppViewH = homeAppBackViewH/3;
     }
     self.showHomeAppView.frame = CGRectMake(0, 0, kFBaseWidth, showHomeAppViewH);
 }

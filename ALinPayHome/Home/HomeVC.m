@@ -36,6 +36,14 @@ const CGFloat classViewY = 64;
 
 @implementation HomeVC
 
+- (NSMutableArray *)homeAppArray{
+    if (_homeAppArray == nil) {
+        _homeAppArray = [NSMutableArray array];
+    }
+    return _homeAppArray;
+}
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = KFMainBackColor;
@@ -57,8 +65,10 @@ const CGFloat classViewY = 64;
     HomeFunction *appView = [[HomeFunction alloc] init];
     self.appView = appView;
     appView.backgroundColor = [UIColor whiteColor];
-    [self setUphomeFunctionArrayCount:appView.homeFunctionArray.count];
-    headerViewH = functionHeaderViewHeight + singleAppHeaderViewHeight;
+    self.homeAppArray = appView.homeFunctionArray;
+    [self setUphomeFunctionArrayCount:self.homeAppArray.count];
+    self.appView.frame = CGRectMake(0, functionHeaderViewHeight, kFBaseWidth, singleAppHeaderViewHeight);
+     headerViewH = functionHeaderViewHeight + singleAppHeaderViewHeight;
     appView.moreCategory = ^{
         CategoryVC *category = [[CategoryVC alloc] init];
         [self.navigationController pushViewController:category animated:YES];
@@ -146,9 +156,7 @@ const CGFloat classViewY = 64;
         self.navView.alpha = 0;
         self.completeNavView.alpha = 1 - newAlpha;
     }
-    
 }
-
 
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
     // 松手时判断是否刷新

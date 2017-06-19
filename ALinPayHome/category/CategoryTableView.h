@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface CategoryTableView : UITableView
-
+@property (nonatomic, strong) NSMutableArray *homeDataArray;
+@property(nonatomic, assign) CGFloat contentOffsetY;
 @end

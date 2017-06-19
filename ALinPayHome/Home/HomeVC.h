@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface HomeVC : UIViewController
-
+@property (nonatomic, strong) NSMutableArray *homeAppArray;
 @end
