@@ -52,7 +52,6 @@ static NSString *cellID = @"CategoryTableViewCell";
         cell = [CategoryTableViewCell createWithXib];
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-
     return cell;
 }
 
@@ -61,7 +60,6 @@ static NSString *cellID = @"CategoryTableViewCell";
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    
     return 200;
 }
 

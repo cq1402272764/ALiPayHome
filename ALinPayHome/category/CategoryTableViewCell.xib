@@ -25,10 +25,18 @@
                             <constraint firstAttribute="height" constant="0.5" id="AEn-bM-Fbd"/>
                         </constraints>
                     </view>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bC7-rB-upy" customClass="CategoryHomeAppView">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="207"/>
+                        <color key="backgroundColor" red="0.88604910714285712" green="0.63596540178571426" blue="0.57433035714285718" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
                 </subviews>
-                <color key="backgroundColor" red="0.90518973214285714" green="0.47301897321428571" blue="0.1405970982142857" alpha="1" colorSpace="calibratedRGB"/>
+                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                 <constraints>
+                    <constraint firstItem="bC7-rB-upy" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="2Ry-dT-FWP"/>
                     <constraint firstAttribute="trailing" secondItem="KdZ-xs-MUJ" secondAttribute="trailing" id="BM4-Nh-GCv"/>
+                    <constraint firstItem="bC7-rB-upy" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="HU4-yO-NPV"/>
+                    <constraint firstAttribute="trailing" secondItem="bC7-rB-upy" secondAttribute="trailing" id="N0R-KJ-ABk"/>
+                    <constraint firstItem="KdZ-xs-MUJ" firstAttribute="top" secondItem="bC7-rB-upy" secondAttribute="bottom" id="O6J-hM-avB"/>
                     <constraint firstItem="KdZ-xs-MUJ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="SUC-d2-sdw"/>
                     <constraint firstAttribute="bottom" secondItem="KdZ-xs-MUJ" secondAttribute="bottom" id="WCO-WU-Vf1"/>
                 </constraints>

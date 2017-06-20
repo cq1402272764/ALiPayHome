@@ -31,7 +31,7 @@
 
 @end
 
-const CGFloat functionHeaderViewHeight = 100;
+const CGFloat functionHeaderViewHeight = 70;
 const CGFloat classViewY = 64;
 
 @implementation HomeVC
