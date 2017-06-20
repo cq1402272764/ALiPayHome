@@ -7,11 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "TitleImageBtn.h"
+//#import "TitleImageBtn.h"
 
 @interface HomeClassificationView : UIView
-@property (weak, nonatomic) IBOutlet TitleImageBtn *scanBtn;
-@property (weak, nonatomic) IBOutlet TitleImageBtn *paymentBtn;
-@property (weak, nonatomic) IBOutlet TitleImageBtn *collectMoneyBtn;
-@property (weak, nonatomic) IBOutlet TitleImageBtn *cardPackageBtn;
+@property (weak, nonatomic) IBOutlet UIButton *scanBtn;
+@property (weak, nonatomic) IBOutlet UIButton *paymentBtn;
+@property (weak, nonatomic) IBOutlet UIButton *collectMoneyBtn;
+@property (weak, nonatomic) IBOutlet UIButton *cardPackageBtn;
 @end
