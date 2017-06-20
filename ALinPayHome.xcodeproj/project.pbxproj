@@ -62,6 +62,8 @@
 		6669ABD61EEFD315004CAABA /* UIView+LoadNib.m in Sources */ = {isa = PBXBuildFile; fileRef = 6669ABD51EEFD315004CAABA /* UIView+LoadNib.m */; };
 		6669ABDF1EEFD979004CAABA /* CategoryHomeShowAppCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6669ABDD1EEFD979004CAABA /* CategoryHomeShowAppCell.m */; };
 		6669ABE01EEFD979004CAABA /* CategoryHomeShowAppCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6669ABDE1EEFD979004CAABA /* CategoryHomeShowAppCell.xib */; };
+		66DA906B1EF8A6F20000DBB0 /* CategoryTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 66DA90691EF8A6F20000DBB0 /* CategoryTableViewCell.m */; };
+		66DA906C1EF8A6F20000DBB0 /* CategoryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 66DA906A1EF8A6F20000DBB0 /* CategoryTableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -183,6 +185,9 @@
 		6669ABDC1EEFD979004CAABA /* CategoryHomeShowAppCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryHomeShowAppCell.h; sourceTree = "<group>"; };
 		6669ABDD1EEFD979004CAABA /* CategoryHomeShowAppCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryHomeShowAppCell.m; sourceTree = "<group>"; };
 		6669ABDE1EEFD979004CAABA /* CategoryHomeShowAppCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CategoryHomeShowAppCell.xib; sourceTree = "<group>"; };
+		66DA90681EF8A6F20000DBB0 /* CategoryTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryTableViewCell.h; sourceTree = "<group>"; };
+		66DA90691EF8A6F20000DBB0 /* CategoryTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryTableViewCell.m; sourceTree = "<group>"; };
+		66DA906A1EF8A6F20000DBB0 /* CategoryTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CategoryTableViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -415,6 +420,9 @@
 				6669ABDE1EEFD979004CAABA /* CategoryHomeShowAppCell.xib */,
 				6669ABBD1EEF7FD4004CAABA /* CategoryTableView.h */,
 				6669ABBE1EEF7FD4004CAABA /* CategoryTableView.m */,
+				66DA90681EF8A6F20000DBB0 /* CategoryTableViewCell.h */,
+				66DA90691EF8A6F20000DBB0 /* CategoryTableViewCell.m */,
+				66DA906A1EF8A6F20000DBB0 /* CategoryTableViewCell.xib */,
 				6669ABC51EEF8EC8004CAABA /* GategroyNavView.h */,
 				6669ABC61EEF8EC8004CAABA /* GategroyNavView.m */,
 				6669ABCB1EEF8EED004CAABA /* GategroyNavView.xib */,
@@ -549,6 +557,7 @@
 				6669ABE01EEFD979004CAABA /* CategoryHomeShowAppCell.xib in Resources */,
 				6669AB221EEE3365004CAABA /* LaunchScreen.storyboard in Resources */,
 				6669AB8E1EEE338B004CAABA /* CompleteNavView.xib in Resources */,
+				66DA906C1EF8A6F20000DBB0 /* CategoryTableViewCell.xib in Resources */,
 				6669AB991EEE338B004CAABA /* NavView.xib in Resources */,
 				6669ABCC1EEF8EED004CAABA /* GategroyNavView.xib in Resources */,
 				6669AB901EEE338B004CAABA /* HomeClassificationView.xib in Resources */,
@@ -592,6 +601,7 @@
 				6669AB1A1EEE3365004CAABA /* ViewController.m in Sources */,
 				6669ABA71EEE338B004CAABA /* MJRefreshNormalHeader.m in Sources */,
 				6669ABAE1EEE338B004CAABA /* UIView+MJExtension.m in Sources */,
+				66DA906B1EF8A6F20000DBB0 /* CategoryTableViewCell.m in Sources */,
 				6669ABAD1EEE338B004CAABA /* UIScrollView+MJRefresh.m in Sources */,
 				6669AB9D1EEE338B004CAABA /* MJRefreshComponent.m in Sources */,
 				6669ABB71EEF72FB004CAABA /* TitleImageBtn.m in Sources */,

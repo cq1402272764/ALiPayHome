@@ -12,9 +12,9 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    // Initialization code
     self.signBtn.layer.cornerRadius = 7.5;
 }
+
 - (IBAction)deleteApp {
     if ([_delegate respondsToSelector:@selector(setUpCategoryHomeShowAppCellWithDeleteApp:)]) {
         [_delegate setUpCategoryHomeShowAppCellWithDeleteApp:self];

@@ -25,6 +25,7 @@
 @property (nonatomic, strong) CategoryTableView *tableView;
 @property (nonatomic, strong) GategroyNavView *navView;
 @property (nonatomic, strong) GategroyShowNavView *showNavView;
+
 @end
 
 const CGFloat navViewH = 64;
@@ -120,7 +121,7 @@ const CGFloat spacing = 8;
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.7 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [UIView animateWithDuration:0.3 animations:^{
                 CGRect newFrame = self.tableView.frame;
-                newFrame.origin.y = homeAppViewH+spacing;
+                newFrame.origin.y = homeAppViewH+spacing+spacing;
                 newFrame.size.height = tableViewH;
                 self.tableView.frame = newFrame;
             }];

@@ -7,7 +7,7 @@
 //
 
 #import "CategoryTableView.h"
-#import "HomeMainTableCell.h"
+#import "CategoryTableViewCell.h"
 #import "Macro.h"
 
 @interface CategoryTableView ()<UITableViewDataSource,UITableViewDelegate>
@@ -21,7 +21,7 @@ static NSString *cellID = @"CategoryTableViewCell";
 - (NSMutableArray *)homeDataArray{
     if (_homeDataArray == nil) {
         _homeDataArray = [[NSMutableArray alloc] init];
-        for (int i = 1; i <= 10; i++) {
+        for (int i = 1; i <= 5; i++) {
             NSString *imageName = [NSString stringWithFormat:@"%d",i];
             [_homeDataArray addObject:imageName];
         }
@@ -37,6 +37,7 @@ static NSString *cellID = @"CategoryTableViewCell";
         self.delegate = self;
         self.backgroundColor = KFMainBackColor;
         self.scrollEnabled = NO;
+        self.separatorStyle = UITableViewCellSeparatorStyleNone;
     }
     return self;
 }
@@ -46,12 +47,12 @@ static NSString *cellID = @"CategoryTableViewCell";
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    HomeMainTableCell * cell = [tableView dequeueReusableCellWithIdentifier:cellID];
+    CategoryTableViewCell * cell = [tableView dequeueReusableCellWithIdentifier:cellID];
     if (!cell) {
-        cell = [HomeMainTableCell createWithXib];
+        cell = [CategoryTableViewCell createWithXib];
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    cell.index.text = self.homeDataArray[indexPath.row];
+
     return cell;
 }
 

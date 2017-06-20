@@ -27,13 +27,14 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fGc-5C-iKA">
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fGc-5C-iKA">
                         <rect key="frame" x="75" y="5" width="15" height="15"/>
                         <color key="backgroundColor" red="1" green="0.14009486607142857" blue="0.14271763392857142" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="15" id="3AG-ao-kgj"/>
                             <constraint firstAttribute="width" constant="15" id="sHX-IZ-0XY"/>
                         </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
                         <state key="normal" title="-">
                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         </state>
@@ -62,7 +63,7 @@
                 <outlet property="delegateApp" destination="fGc-5C-iKA" id="k3l-dS-Hji"/>
                 <outlet property="signBtn" destination="fGc-5C-iKA" id="dPy-TR-EZD"/>
             </connections>
-            <point key="canvasLocation" x="18.5" y="-66.5"/>
+            <point key="canvasLocation" x="41.5" y="-167.5"/>
         </collectionViewCell>
     </objects>
     <resources>
