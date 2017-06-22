@@ -11,15 +11,57 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="CategoryCollectionCell">
-            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="RMr-Qn-Mlg" userLabel="Category Collection Cell" customClass="CategoryCollectionCell">
+            <rect key="frame" x="0.0" y="0.0" width="95" height="85"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                <rect key="frame" x="0.0" y="0.0" width="95" height="85"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="2" translatesAutoresizingMaskIntoConstraints="NO" id="gnH-ad-KIy">
+                        <rect key="frame" x="0.0" y="0.0" width="95" height="55"/>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="余额宝" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8zU-vo-mDS">
+                        <rect key="frame" x="0.0" y="55" width="95" height="30"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UlB-RJ-Uow">
+                        <rect key="frame" x="75" y="5" width="15" height="15"/>
+                        <color key="backgroundColor" red="0.28235294117647058" green="0.50588235294117645" blue="0.92549019607843142" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="15" id="Sz8-Q9-wzt"/>
+                            <constraint firstAttribute="width" constant="15" id="fU6-aw-FIP"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                        <state key="normal" title="+">
+                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        </state>
+                    </button>
+                </subviews>
             </view>
-            <color key="backgroundColor" red="1" green="1" blue="0.75518973214285712" alpha="1" colorSpace="calibratedRGB"/>
-            <point key="canvasLocation" x="-127" y="3"/>
+            <color key="backgroundColor" red="0.96470153329999997" green="0.96470439429999999" blue="0.96471095090000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="8zU-vo-mDS" secondAttribute="bottom" id="2bK-g7-CiL"/>
+                <constraint firstItem="8zU-vo-mDS" firstAttribute="leading" secondItem="RMr-Qn-Mlg" secondAttribute="leading" id="5Tz-yg-GsV"/>
+                <constraint firstItem="UlB-RJ-Uow" firstAttribute="top" secondItem="RMr-Qn-Mlg" secondAttribute="top" constant="5" id="QZB-Hs-GDZ"/>
+                <constraint firstItem="8zU-vo-mDS" firstAttribute="top" secondItem="gnH-ad-KIy" secondAttribute="bottom" id="YHU-5g-rW2"/>
+                <constraint firstAttribute="bottom" secondItem="gnH-ad-KIy" secondAttribute="bottom" constant="30" id="dWZ-uZ-XbE"/>
+                <constraint firstItem="gnH-ad-KIy" firstAttribute="top" secondItem="RMr-Qn-Mlg" secondAttribute="top" id="hdY-ls-bP5"/>
+                <constraint firstAttribute="trailing" secondItem="UlB-RJ-Uow" secondAttribute="trailing" constant="5" id="i48-EC-c35"/>
+                <constraint firstAttribute="trailing" secondItem="gnH-ad-KIy" secondAttribute="trailing" id="r10-f7-MlA"/>
+                <constraint firstItem="gnH-ad-KIy" firstAttribute="leading" secondItem="RMr-Qn-Mlg" secondAttribute="leading" id="sw2-18-QcP"/>
+                <constraint firstAttribute="trailing" secondItem="8zU-vo-mDS" secondAttribute="trailing" id="uSk-tP-V9T"/>
+            </constraints>
+            <size key="customSize" width="95" height="85"/>
+            <connections>
+                <outlet property="addAppBtn" destination="UlB-RJ-Uow" id="til-Lf-wXW"/>
+            </connections>
+            <point key="canvasLocation" x="40" y="-99"/>
         </collectionViewCell>
     </objects>
+    <resources>
+        <image name="2" width="77" height="73"/>
+    </resources>
 </document>

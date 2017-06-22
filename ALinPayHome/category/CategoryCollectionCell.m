@@ -12,7 +12,8 @@
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    // Initialization code
+    self.addAppBtn.layer.cornerRadius = 7.5;
+    
 }
 
 @end

@@ -9,5 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @interface CategoryCollectionCell : UICollectionViewCell
+@property (weak, nonatomic) IBOutlet UIButton *addAppBtn;
 
 @end

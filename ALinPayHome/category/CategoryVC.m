@@ -76,7 +76,6 @@ static NSString *cellId = @"CategoryCollectionCell";
     self.homeAppView = [CategoryHomeAppView createWithXib];
     self.homeAppView.frame= CGRectMake(0, 0, kFBaseWidth, homeAppViewH);
     [self.categoryScrollView addSubview:self.homeAppView];
-    self.homeAppView.backgroundColor = [UIColor whiteColor];
     self.homeAppView.delegate = self;
     
     self.showHomeAppView = [CategoryShowHomeAppView createWithXib];
@@ -85,8 +84,8 @@ static NSString *cellId = @"CategoryCollectionCell";
     self.showHomeAppView .alpha = 0;
     
     UICollectionViewFlowLayout *layout=[[UICollectionViewFlowLayout alloc]init];
-    layout.minimumInteritemSpacing = 0;
-    layout.minimumLineSpacing = 0;
+    layout.minimumInteritemSpacing = 10;
+    layout.minimumLineSpacing = 10;
     layout.itemSize = CGSizeMake(kFBaseWidth/5, KFAppHeight/3);
     
     self.appCollectionView.backgroundColor = [UIColor whiteColor];
@@ -97,7 +96,7 @@ static NSString *cellId = @"CategoryCollectionCell";
     }else{
         number = self.homeDataArray.count / 4;
     }
-    CGFloat appH = number * homeAppBackViewH / 3  * self.homeDataArray.count;
+    CGFloat appH = number * (homeAppBackViewH / 3 - 10)  * self.homeDataArray.count;
     
     appCollectionViewH = appH + (homeAppViewH+spacing);
     self.appCollectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, homeAppViewH+spacing, kFBaseWidth, appCollectionViewH) collectionViewLayout:layout];
@@ -220,16 +219,16 @@ static NSString *cellId = @"CategoryCollectionCell";
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
-    return CGSizeMake(80, 80);
+    return CGSizeMake(70, 70);
 }
 
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section{
-    return UIEdgeInsetsMake(10, 10, 5, 10);
+    return UIEdgeInsetsMake(0, 10, 10, 10);
 }
 
-- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section{
-    return 10.0f;
-}
+//- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section{
+//    return 10.0f;
+//}
 
 - (UIColor *)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout colorForSectionAtIndex:(NSInteger)section{
     return [UIColor redColor];

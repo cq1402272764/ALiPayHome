@@ -72,9 +72,13 @@ static NSString *cellId = @"ShowHomeAppView";
     NSLog(@"-----%zd",indexPath.row);
 }
 
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
+    return CGSizeMake(70, 70);
+}
+
 //每一个分组的上左下右间距
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section{
-    return UIEdgeInsetsMake(10, 10, 10, 10);
+    return UIEdgeInsetsMake(10, 10, 0, 10);
 }
 
 - (void)handlelongGesture:(UILongPressGestureRecognizer *)longGesture {
