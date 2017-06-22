@@ -1,5 +1,5 @@
 //
-//  CategoryTableViewCell.h
+//  CategoryCollectionCell.h
 //  ALinPayHome
 //
 //  Created by Qing Chang on 2017/6/20.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface CategoryTableViewCell : UITableViewCell
+@interface CategoryCollectionCell : UICollectionViewCell
 
 @end

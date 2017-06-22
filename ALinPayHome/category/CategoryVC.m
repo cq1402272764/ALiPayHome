@@ -9,22 +9,23 @@
 #import "CategoryVC.h"
 #import "Macro.h"
 #import "CategoryHomeAppView.h"
-#import "CategoryTableView.h"
 #import "CategoryShowHomeAppView.h"
 #import "GategroyNavView.h"
 #import "GategroyShowNavView.h"
+#import "CategoryCollectionCell.h"
 
-@interface CategoryVC ()<CategoryHomeAppViewDelegate,GategroyShowNavViewDelegate,GategroyNavViewDelegate>
+@interface CategoryVC ()<CategoryHomeAppViewDelegate,GategroyShowNavViewDelegate,GategroyNavViewDelegate,UICollectionViewDelegate,UICollectionViewDataSource>
 {
     CGFloat showHomeAppViewH;
-    CGFloat tableViewH;
+    CGFloat appCollectionViewH;
 }
+@property (nonatomic, strong) NSMutableArray *homeDataArray;
 @property (nonatomic, strong) UIScrollView *categoryScrollView;
 @property (nonatomic, strong) CategoryShowHomeAppView *showHomeAppView;
 @property (nonatomic, strong) CategoryHomeAppView *homeAppView;
-@property (nonatomic, strong) CategoryTableView *tableView;
 @property (nonatomic, strong) GategroyNavView *navView;
 @property (nonatomic, strong) GategroyShowNavView *showNavView;
+@property (nonatomic, strong) UICollectionView *appCollectionView;
 
 @end
 
@@ -33,7 +34,21 @@ const CGFloat homeAppViewH = 44;
 const CGFloat homeAppBackViewH = 280;
 const CGFloat spacing = 8;
 
+static NSString *cellId = @"CategoryCollectionCell";
+
 @implementation CategoryVC
+
+
+- (NSMutableArray *)homeDataArray{
+    if (_homeDataArray == nil) {
+        _homeDataArray = [[NSMutableArray alloc] init];
+        for (int i = 1; i <= 6; i++) {
+            NSString *imageName = [NSString stringWithFormat:@"%d",i];
+            [_homeDataArray addObject:imageName];
+        }
+    }
+    return _homeDataArray;
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -63,18 +78,37 @@ const CGFloat spacing = 8;
     [self.categoryScrollView addSubview:self.homeAppView];
     self.homeAppView.backgroundColor = [UIColor whiteColor];
     self.homeAppView.delegate = self;
-
+    
     self.showHomeAppView = [CategoryShowHomeAppView createWithXib];
     [self setUphomeFunctionArrayCount:self.showHomeAppView.homeAppArray.count];
     [self.categoryScrollView addSubview:self.showHomeAppView ];
     self.showHomeAppView .alpha = 0;
     
-    self.tableView = [[CategoryTableView alloc] init];
-    tableViewH = self.tableView.homeDataArray.count * 200 + (homeAppViewH+spacing);
-    self.tableView.frame = CGRectMake(0, homeAppViewH+spacing, kFBaseWidth, tableViewH);
-    self.categoryScrollView.contentSize = CGSizeMake(0, tableViewH);
-    [self.categoryScrollView addSubview:self.tableView];
-
+    UICollectionViewFlowLayout *layout=[[UICollectionViewFlowLayout alloc]init];
+    layout.minimumInteritemSpacing = 0;
+    layout.minimumLineSpacing = 0;
+    layout.itemSize = CGSizeMake(kFBaseWidth/5, KFAppHeight/3);
+    
+    self.appCollectionView.backgroundColor = [UIColor whiteColor];
+    // 行数 * 单个app的高度 * 组数
+    CGFloat number;
+    if ((self.homeDataArray.count % 4) > 0) {
+        number = self.homeDataArray.count / 4 + 1;
+    }else{
+        number = self.homeDataArray.count / 4;
+    }
+    CGFloat appH = number * homeAppBackViewH / 3  * self.homeDataArray.count + 20;
+    
+    appCollectionViewH = appH + (homeAppViewH+spacing);
+    self.appCollectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, homeAppViewH+spacing, kFBaseWidth, appCollectionViewH) collectionViewLayout:layout];
+    
+    self.categoryScrollView.contentSize = CGSizeMake(0, appCollectionViewH);
+    [self.categoryScrollView addSubview:self.appCollectionView];
+    self.appCollectionView.backgroundColor = [UIColor whiteColor];
+    self.appCollectionView.delegate = self;
+    self.appCollectionView.dataSource = self;
+    [self.appCollectionView  registerNib:[UINib nibWithNibName:NSStringFromClass([CategoryCollectionCell class]) bundle:nil] forCellWithReuseIdentifier:cellId];
+    [self setUpInteractivePopGestureRecognizerEnabled:YES scrollEnabled:NO];
 }
 
 #pragma mark CategoryHomeAppViewDelegate
@@ -103,7 +137,8 @@ const CGFloat spacing = 8;
 - (void)showSubView:(BOOL)show{
     if (show) {
         [self setUpInteractivePopGestureRecognizerEnabled:YES scrollEnabled:NO];
-        [self.tableView selectRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:NO scrollPosition:UITableViewScrollPositionTop];
+                [self.appCollectionView selectItemAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:NO scrollPosition:UICollectionViewScrollPositionTop];
+        
         [UIView animateWithDuration:0.3 animations:^{
             self.navView.alpha = 1;
             self.showNavView.alpha = 0;
@@ -120,10 +155,10 @@ const CGFloat spacing = 8;
         });
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.7 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [UIView animateWithDuration:0.3 animations:^{
-                CGRect newFrame = self.tableView.frame;
+                CGRect newFrame = self.appCollectionView.frame;
                 newFrame.origin.y = homeAppViewH+spacing+spacing;
-                newFrame.size.height = tableViewH;
-                self.tableView.frame = newFrame;
+                newFrame.size.height = appCollectionViewH;
+                self.appCollectionView.frame = newFrame;
             }];
         });
     }else{
@@ -138,10 +173,10 @@ const CGFloat spacing = 8;
             newFrame.origin.y = homeAppViewH/2;
             self.homeAppView.editApplication.frame = newFrame;
             
-            newFrame = self.tableView.frame;
+            newFrame = self.appCollectionView.frame;
             newFrame.origin.y = showHomeAppViewH+spacing;
             newFrame.size.height = kFBaseHeight -(navViewH+spacing)-homeAppBackViewH;
-            self.tableView.frame = newFrame;
+            self.appCollectionView.frame = newFrame;
         }];
     }
 }
@@ -152,10 +187,10 @@ const CGFloat spacing = 8;
     }
     if (scrollEnabled) {
         self.categoryScrollView.scrollEnabled = NO;
-        self.tableView.scrollEnabled = YES;
+        self.appCollectionView.scrollEnabled = YES;
     }else{
         self.categoryScrollView.scrollEnabled = YES;
-        self.tableView.scrollEnabled = NO;
+        self.appCollectionView.scrollEnabled = NO;
     }
 }
 
@@ -168,6 +203,36 @@ const CGFloat spacing = 8;
         showHomeAppViewH = homeAppBackViewH/3;
     }
     self.showHomeAppView.frame = CGRectMake(0, 0, kFBaseWidth, showHomeAppViewH);
+}
+
+#pragma mark UICollectionViewDataSource
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
+    return self.homeDataArray.count;
+}
+
+- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
+    return self.homeDataArray.count;
+}
+
+- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
+    CategoryCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellId forIndexPath:indexPath];
+    return cell;
+}
+
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
+    return CGSizeMake(80, 80);
+}
+
+- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section{
+    return UIEdgeInsetsMake(10, 10, 10, 10);
+}
+
+- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section{
+    return 10.0f;
+}
+
+- (UIColor *)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout colorForSectionAtIndex:(NSInteger)section{
+    return [UIColor redColor];
 }
 
 @end

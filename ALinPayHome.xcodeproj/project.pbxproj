@@ -52,18 +52,17 @@
 		6669ABB71EEF72FB004CAABA /* TitleImageBtn.m in Sources */ = {isa = PBXBuildFile; fileRef = 6669ABB61EEF72FB004CAABA /* TitleImageBtn.m */; };
 		6669ABBA1EEF7816004CAABA /* CategoryHomeAppView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6669ABB91EEF7816004CAABA /* CategoryHomeAppView.m */; };
 		6669ABBC1EEF7827004CAABA /* CategoryHomeAppView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6669ABBB1EEF7827004CAABA /* CategoryHomeAppView.xib */; };
-		6669ABBF1EEF7FD4004CAABA /* CategoryTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6669ABBE1EEF7FD4004CAABA /* CategoryTableView.m */; };
 		6669ABC21EEF8571004CAABA /* CategoryShowHomeAppView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6669ABC11EEF8571004CAABA /* CategoryShowHomeAppView.m */; };
 		6669ABC41EEF8581004CAABA /* CategoryShowHomeAppView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6669ABC31EEF8581004CAABA /* CategoryShowHomeAppView.xib */; };
 		6669ABC71EEF8EC8004CAABA /* GategroyNavView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6669ABC61EEF8EC8004CAABA /* GategroyNavView.m */; };
-		6669ABCA1EEF8EE1004CAABA /* GategroyShowNavView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6669ABC91EEF8EE1004CAABA /* GategroyShowNavView.m */; };
 		6669ABCC1EEF8EED004CAABA /* GategroyNavView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6669ABCB1EEF8EED004CAABA /* GategroyNavView.xib */; };
 		6669ABCE1EEF8EFA004CAABA /* GategroyShowNavView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6669ABCD1EEF8EFA004CAABA /* GategroyShowNavView.xib */; };
 		6669ABD61EEFD315004CAABA /* UIView+LoadNib.m in Sources */ = {isa = PBXBuildFile; fileRef = 6669ABD51EEFD315004CAABA /* UIView+LoadNib.m */; };
 		6669ABDF1EEFD979004CAABA /* CategoryHomeShowAppCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6669ABDD1EEFD979004CAABA /* CategoryHomeShowAppCell.m */; };
 		6669ABE01EEFD979004CAABA /* CategoryHomeShowAppCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6669ABDE1EEFD979004CAABA /* CategoryHomeShowAppCell.xib */; };
-		66DA906B1EF8A6F20000DBB0 /* CategoryTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 66DA90691EF8A6F20000DBB0 /* CategoryTableViewCell.m */; };
-		66DA906C1EF8A6F20000DBB0 /* CategoryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 66DA906A1EF8A6F20000DBB0 /* CategoryTableViewCell.xib */; };
+		66DA90731EF8F7420000DBB0 /* CategoryCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 66DA90711EF8F7420000DBB0 /* CategoryCollectionCell.m */; };
+		66DA90741EF8F7420000DBB0 /* CategoryCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 66DA90721EF8F7420000DBB0 /* CategoryCollectionCell.xib */; };
+		66DA907A1EF918D80000DBB0 /* GategroyShowNavView.m in Sources */ = {isa = PBXBuildFile; fileRef = 66DA90791EF918D80000DBB0 /* GategroyShowNavView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -169,15 +168,11 @@
 		6669ABB81EEF7816004CAABA /* CategoryHomeAppView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryHomeAppView.h; sourceTree = "<group>"; };
 		6669ABB91EEF7816004CAABA /* CategoryHomeAppView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryHomeAppView.m; sourceTree = "<group>"; };
 		6669ABBB1EEF7827004CAABA /* CategoryHomeAppView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CategoryHomeAppView.xib; sourceTree = "<group>"; };
-		6669ABBD1EEF7FD4004CAABA /* CategoryTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryTableView.h; sourceTree = "<group>"; };
-		6669ABBE1EEF7FD4004CAABA /* CategoryTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryTableView.m; sourceTree = "<group>"; };
 		6669ABC01EEF8571004CAABA /* CategoryShowHomeAppView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryShowHomeAppView.h; sourceTree = "<group>"; };
 		6669ABC11EEF8571004CAABA /* CategoryShowHomeAppView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryShowHomeAppView.m; sourceTree = "<group>"; };
 		6669ABC31EEF8581004CAABA /* CategoryShowHomeAppView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CategoryShowHomeAppView.xib; sourceTree = "<group>"; };
 		6669ABC51EEF8EC8004CAABA /* GategroyNavView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GategroyNavView.h; sourceTree = "<group>"; };
 		6669ABC61EEF8EC8004CAABA /* GategroyNavView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GategroyNavView.m; sourceTree = "<group>"; };
-		6669ABC81EEF8EE1004CAABA /* GategroyShowNavView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GategroyShowNavView.h; sourceTree = "<group>"; };
-		6669ABC91EEF8EE1004CAABA /* GategroyShowNavView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GategroyShowNavView.m; sourceTree = "<group>"; };
 		6669ABCB1EEF8EED004CAABA /* GategroyNavView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GategroyNavView.xib; sourceTree = "<group>"; };
 		6669ABCD1EEF8EFA004CAABA /* GategroyShowNavView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GategroyShowNavView.xib; sourceTree = "<group>"; };
 		6669ABD41EEFD315004CAABA /* UIView+LoadNib.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+LoadNib.h"; sourceTree = "<group>"; };
@@ -185,9 +180,11 @@
 		6669ABDC1EEFD979004CAABA /* CategoryHomeShowAppCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryHomeShowAppCell.h; sourceTree = "<group>"; };
 		6669ABDD1EEFD979004CAABA /* CategoryHomeShowAppCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryHomeShowAppCell.m; sourceTree = "<group>"; };
 		6669ABDE1EEFD979004CAABA /* CategoryHomeShowAppCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CategoryHomeShowAppCell.xib; sourceTree = "<group>"; };
-		66DA90681EF8A6F20000DBB0 /* CategoryTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryTableViewCell.h; sourceTree = "<group>"; };
-		66DA90691EF8A6F20000DBB0 /* CategoryTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryTableViewCell.m; sourceTree = "<group>"; };
-		66DA906A1EF8A6F20000DBB0 /* CategoryTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CategoryTableViewCell.xib; sourceTree = "<group>"; };
+		66DA90701EF8F7420000DBB0 /* CategoryCollectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CategoryCollectionCell.h; sourceTree = "<group>"; };
+		66DA90711EF8F7420000DBB0 /* CategoryCollectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CategoryCollectionCell.m; sourceTree = "<group>"; };
+		66DA90721EF8F7420000DBB0 /* CategoryCollectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CategoryCollectionCell.xib; sourceTree = "<group>"; };
+		66DA90781EF918D80000DBB0 /* GategroyShowNavView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GategroyShowNavView.h; sourceTree = "<group>"; };
+		66DA90791EF918D80000DBB0 /* GategroyShowNavView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GategroyShowNavView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -418,17 +415,15 @@
 				6669ABDC1EEFD979004CAABA /* CategoryHomeShowAppCell.h */,
 				6669ABDD1EEFD979004CAABA /* CategoryHomeShowAppCell.m */,
 				6669ABDE1EEFD979004CAABA /* CategoryHomeShowAppCell.xib */,
-				6669ABBD1EEF7FD4004CAABA /* CategoryTableView.h */,
-				6669ABBE1EEF7FD4004CAABA /* CategoryTableView.m */,
-				66DA90681EF8A6F20000DBB0 /* CategoryTableViewCell.h */,
-				66DA90691EF8A6F20000DBB0 /* CategoryTableViewCell.m */,
-				66DA906A1EF8A6F20000DBB0 /* CategoryTableViewCell.xib */,
 				6669ABC51EEF8EC8004CAABA /* GategroyNavView.h */,
 				6669ABC61EEF8EC8004CAABA /* GategroyNavView.m */,
 				6669ABCB1EEF8EED004CAABA /* GategroyNavView.xib */,
-				6669ABC81EEF8EE1004CAABA /* GategroyShowNavView.h */,
-				6669ABC91EEF8EE1004CAABA /* GategroyShowNavView.m */,
+				66DA90781EF918D80000DBB0 /* GategroyShowNavView.h */,
+				66DA90791EF918D80000DBB0 /* GategroyShowNavView.m */,
 				6669ABCD1EEF8EFA004CAABA /* GategroyShowNavView.xib */,
+				66DA90701EF8F7420000DBB0 /* CategoryCollectionCell.h */,
+				66DA90711EF8F7420000DBB0 /* CategoryCollectionCell.m */,
+				66DA90721EF8F7420000DBB0 /* CategoryCollectionCell.xib */,
 			);
 			path = category;
 			sourceTree = "<group>";
@@ -556,8 +551,8 @@
 				6669AB931EEE338B004CAABA /* HomeFunctionCell.xib in Resources */,
 				6669ABE01EEFD979004CAABA /* CategoryHomeShowAppCell.xib in Resources */,
 				6669AB221EEE3365004CAABA /* LaunchScreen.storyboard in Resources */,
+				66DA90741EF8F7420000DBB0 /* CategoryCollectionCell.xib in Resources */,
 				6669AB8E1EEE338B004CAABA /* CompleteNavView.xib in Resources */,
-				66DA906C1EF8A6F20000DBB0 /* CategoryTableViewCell.xib in Resources */,
 				6669AB991EEE338B004CAABA /* NavView.xib in Resources */,
 				6669ABCC1EEF8EED004CAABA /* GategroyNavView.xib in Resources */,
 				6669AB901EEE338B004CAABA /* HomeClassificationView.xib in Resources */,
@@ -597,11 +592,9 @@
 				6669AB9E1EEE338B004CAABA /* MJRefreshFooter.m in Sources */,
 				6669ABAA1EEE338B004CAABA /* MJRefreshConst.m in Sources */,
 				6669ABC71EEF8EC8004CAABA /* GategroyNavView.m in Sources */,
-				6669ABCA1EEF8EE1004CAABA /* GategroyShowNavView.m in Sources */,
 				6669AB1A1EEE3365004CAABA /* ViewController.m in Sources */,
 				6669ABA71EEE338B004CAABA /* MJRefreshNormalHeader.m in Sources */,
 				6669ABAE1EEE338B004CAABA /* UIView+MJExtension.m in Sources */,
-				66DA906B1EF8A6F20000DBB0 /* CategoryTableViewCell.m in Sources */,
 				6669ABAD1EEE338B004CAABA /* UIScrollView+MJRefresh.m in Sources */,
 				6669AB9D1EEE338B004CAABA /* MJRefreshComponent.m in Sources */,
 				6669ABB71EEF72FB004CAABA /* TitleImageBtn.m in Sources */,
@@ -613,7 +606,6 @@
 				6669AB961EEE338B004CAABA /* HomeVC.m in Sources */,
 				6669ABA61EEE338B004CAABA /* MJRefreshGifHeader.m in Sources */,
 				6669ABAB1EEE338B004CAABA /* NSBundle+MJRefresh.m in Sources */,
-				6669ABBF1EEF7FD4004CAABA /* CategoryTableView.m in Sources */,
 				6669ABD61EEFD315004CAABA /* UIView+LoadNib.m in Sources */,
 				6669AB911EEE338B004CAABA /* HomeFunction.m in Sources */,
 				6669ABBA1EEF7816004CAABA /* CategoryHomeAppView.m in Sources */,
@@ -621,6 +613,7 @@
 				6669AB981EEE338B004CAABA /* NavView.m in Sources */,
 				6669ABA21EEE338B004CAABA /* MJRefreshAutoStateFooter.m in Sources */,
 				6669ABA81EEE338B004CAABA /* MJRefreshStateHeader.m in Sources */,
+				66DA907A1EF918D80000DBB0 /* GategroyShowNavView.m in Sources */,
 				6669AB941EEE338B004CAABA /* HomeMainTableCell.m in Sources */,
 				6669AB9F1EEE338B004CAABA /* MJRefreshHeader.m in Sources */,
 				6669ABA51EEE338B004CAABA /* MJRefreshBackStateFooter.m in Sources */,
@@ -630,6 +623,7 @@
 				6669AB8F1EEE338B004CAABA /* HomeClassificationView.m in Sources */,
 				6669ABB21EEF6A9B004CAABA /* CategoryVC.m in Sources */,
 				6669ABAC1EEE338B004CAABA /* UIScrollView+MJExtension.m in Sources */,
+				66DA90731EF8F7420000DBB0 /* CategoryCollectionCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
