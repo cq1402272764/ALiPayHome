@@ -63,6 +63,10 @@
 		66DA90731EF8F7420000DBB0 /* CategoryCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 66DA90711EF8F7420000DBB0 /* CategoryCollectionCell.m */; };
 		66DA90741EF8F7420000DBB0 /* CategoryCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 66DA90721EF8F7420000DBB0 /* CategoryCollectionCell.xib */; };
 		66DA907A1EF918D80000DBB0 /* GategroyShowNavView.m in Sources */ = {isa = PBXBuildFile; fileRef = 66DA90791EF918D80000DBB0 /* GategroyShowNavView.m */; };
+		66FF40161EFB7A980045B953 /* CollectionReusableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 66FF40141EFB7A980045B953 /* CollectionReusableHeaderView.m */; };
+		66FF40171EFB7A980045B953 /* CollectionReusableHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 66FF40151EFB7A980045B953 /* CollectionReusableHeaderView.xib */; };
+		66FF401B1EFB7AAB0045B953 /* CollectionReusableFooterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 66FF40191EFB7AAB0045B953 /* CollectionReusableFooterView.m */; };
+		66FF401C1EFB7AAB0045B953 /* CollectionReusableFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 66FF401A1EFB7AAB0045B953 /* CollectionReusableFooterView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -185,6 +189,12 @@
 		66DA90721EF8F7420000DBB0 /* CategoryCollectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CategoryCollectionCell.xib; sourceTree = "<group>"; };
 		66DA90781EF918D80000DBB0 /* GategroyShowNavView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GategroyShowNavView.h; sourceTree = "<group>"; };
 		66DA90791EF918D80000DBB0 /* GategroyShowNavView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GategroyShowNavView.m; sourceTree = "<group>"; };
+		66FF40131EFB7A980045B953 /* CollectionReusableHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionReusableHeaderView.h; sourceTree = "<group>"; };
+		66FF40141EFB7A980045B953 /* CollectionReusableHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionReusableHeaderView.m; sourceTree = "<group>"; };
+		66FF40151EFB7A980045B953 /* CollectionReusableHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CollectionReusableHeaderView.xib; sourceTree = "<group>"; };
+		66FF40181EFB7AAB0045B953 /* CollectionReusableFooterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionReusableFooterView.h; sourceTree = "<group>"; };
+		66FF40191EFB7AAB0045B953 /* CollectionReusableFooterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionReusableFooterView.m; sourceTree = "<group>"; };
+		66FF401A1EFB7AAB0045B953 /* CollectionReusableFooterView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CollectionReusableFooterView.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -424,6 +434,12 @@
 				66DA90701EF8F7420000DBB0 /* CategoryCollectionCell.h */,
 				66DA90711EF8F7420000DBB0 /* CategoryCollectionCell.m */,
 				66DA90721EF8F7420000DBB0 /* CategoryCollectionCell.xib */,
+				66FF40131EFB7A980045B953 /* CollectionReusableHeaderView.h */,
+				66FF40141EFB7A980045B953 /* CollectionReusableHeaderView.m */,
+				66FF40151EFB7A980045B953 /* CollectionReusableHeaderView.xib */,
+				66FF40181EFB7AAB0045B953 /* CollectionReusableFooterView.h */,
+				66FF40191EFB7AAB0045B953 /* CollectionReusableFooterView.m */,
+				66FF401A1EFB7AAB0045B953 /* CollectionReusableFooterView.xib */,
 			);
 			path = category;
 			sourceTree = "<group>";
@@ -548,8 +564,10 @@
 			files = (
 				6669AB951EEE338B004CAABA /* HomeMainTableCell.xib in Resources */,
 				6669ABC41EEF8581004CAABA /* CategoryShowHomeAppView.xib in Resources */,
+				66FF401C1EFB7AAB0045B953 /* CollectionReusableFooterView.xib in Resources */,
 				6669AB931EEE338B004CAABA /* HomeFunctionCell.xib in Resources */,
 				6669ABE01EEFD979004CAABA /* CategoryHomeShowAppCell.xib in Resources */,
+				66FF40171EFB7A980045B953 /* CollectionReusableHeaderView.xib in Resources */,
 				6669AB221EEE3365004CAABA /* LaunchScreen.storyboard in Resources */,
 				66DA90741EF8F7420000DBB0 /* CategoryCollectionCell.xib in Resources */,
 				6669AB8E1EEE338B004CAABA /* CompleteNavView.xib in Resources */,
@@ -605,6 +623,7 @@
 				6669AB8D1EEE338B004CAABA /* CompleteNavView.m in Sources */,
 				6669AB961EEE338B004CAABA /* HomeVC.m in Sources */,
 				6669ABA61EEE338B004CAABA /* MJRefreshGifHeader.m in Sources */,
+				66FF40161EFB7A980045B953 /* CollectionReusableHeaderView.m in Sources */,
 				6669ABAB1EEE338B004CAABA /* NSBundle+MJRefresh.m in Sources */,
 				6669ABD61EEFD315004CAABA /* UIView+LoadNib.m in Sources */,
 				6669AB911EEE338B004CAABA /* HomeFunction.m in Sources */,
@@ -623,6 +642,7 @@
 				6669AB8F1EEE338B004CAABA /* HomeClassificationView.m in Sources */,
 				6669ABB21EEF6A9B004CAABA /* CategoryVC.m in Sources */,
 				6669ABAC1EEE338B004CAABA /* UIScrollView+MJExtension.m in Sources */,
+				66FF401B1EFB7AAB0045B953 /* CollectionReusableFooterView.m in Sources */,
 				66DA90731EF8F7420000DBB0 /* CategoryCollectionCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

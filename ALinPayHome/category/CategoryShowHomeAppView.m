@@ -17,7 +17,7 @@
 
 @end
 
-static NSString *cellId = @"ShowHomeAppView";
+static NSString *const cellId = @"ShowHomeAppView";
 
 @implementation CategoryShowHomeAppView
 

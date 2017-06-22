@@ -13,6 +13,8 @@
 #import "GategroyNavView.h"
 #import "GategroyShowNavView.h"
 #import "CategoryCollectionCell.h"
+#import "CollectionReusableHeaderView.h"
+#import "CollectionReusableFooterView.h"
 
 @interface CategoryVC ()<CategoryHomeAppViewDelegate,GategroyShowNavViewDelegate,GategroyNavViewDelegate,UICollectionViewDelegate,UICollectionViewDataSource>
 {
@@ -33,8 +35,11 @@ const CGFloat navViewH = 64;
 const CGFloat homeAppViewH = 44;
 const CGFloat homeAppBackViewH = 280;
 const CGFloat spacing = 8;
+const CGFloat collectionReusableViewH = 40;
 
-static NSString *cellId = @"CategoryCollectionCell";
+static NSString *const cellId = @"CategoryCollectionCell";
+static NSString *const headerId = @"CollectionReusableHeaderView";
+static NSString *const footerId = @"CollectionReusableFooterView";
 
 @implementation CategoryVC
 
@@ -54,6 +59,7 @@ static NSString *cellId = @"CategoryCollectionCell";
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
     [self subView];
+    
 }
 
 - (void)subView{
@@ -96,7 +102,7 @@ static NSString *cellId = @"CategoryCollectionCell";
     }else{
         number = self.homeDataArray.count / 4;
     }
-    CGFloat appH = number * (homeAppBackViewH / 3 - 10)  * self.homeDataArray.count;
+    CGFloat appH = (number * (homeAppBackViewH / 3 - 10.3) + collectionReusableViewH)  * self.homeDataArray.count;
     
     appCollectionViewH = appH + (homeAppViewH+spacing);
     self.appCollectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, homeAppViewH+spacing, kFBaseWidth, appCollectionViewH) collectionViewLayout:layout];
@@ -107,7 +113,12 @@ static NSString *cellId = @"CategoryCollectionCell";
     self.appCollectionView.delegate = self;
     self.appCollectionView.dataSource = self;
     [self.appCollectionView  registerNib:[UINib nibWithNibName:NSStringFromClass([CategoryCollectionCell class]) bundle:nil] forCellWithReuseIdentifier:cellId];
-    [self setUpInteractivePopGestureRecognizerEnabled:YES scrollEnabled:NO];
+    
+    UINib *cellHeaderNib = [UINib nibWithNibName:NSStringFromClass([CollectionReusableHeaderView class]) bundle:nil];
+    UINib *cellFooterNib = [UINib nibWithNibName:NSStringFromClass([CollectionReusableFooterView class]) bundle:nil];
+    [self.appCollectionView registerNib:cellHeaderNib forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:headerId];
+    
+   [self.appCollectionView registerNib:cellFooterNib forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:footerId];
 }
 
 #pragma mark CategoryHomeAppViewDelegate
@@ -136,7 +147,7 @@ static NSString *cellId = @"CategoryCollectionCell";
 - (void)showSubView:(BOOL)show{
     if (show) {
         [self setUpInteractivePopGestureRecognizerEnabled:YES scrollEnabled:NO];
-                [self.appCollectionView selectItemAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:NO scrollPosition:UICollectionViewScrollPositionTop];
+//                [self.appCollectionView selectItemAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:NO scrollPosition:UICollectionViewScrollPositionTop];
         
         [UIView animateWithDuration:0.3 animations:^{
             self.navView.alpha = 1;
@@ -226,12 +237,27 @@ static NSString *cellId = @"CategoryCollectionCell";
     return UIEdgeInsetsMake(0, 10, 10, 10);
 }
 
-//- (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section{
-//    return 10.0f;
-//}
-
 - (UIColor *)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout colorForSectionAtIndex:(NSInteger)section{
     return [UIColor redColor];
+}
+
+- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath{
+    
+    if ([kind isEqualToString:UICollectionElementKindSectionHeader]) {
+        CollectionReusableHeaderView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:headerId forIndexPath:indexPath];
+        return headerView;
+    }else{
+        CollectionReusableFooterView *footerView = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:footerId forIndexPath:indexPath];
+        return footerView;
+    }
+}
+
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section{
+    return CGSizeMake(kFBaseWidth, collectionReusableViewH);
+}
+
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForFooterInSection:(NSInteger)section{
+    return CGSizeMake(kFBaseWidth, 0.5);
 }
 
 @end
