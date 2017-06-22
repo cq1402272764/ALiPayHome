@@ -97,7 +97,7 @@ static NSString *cellId = @"CategoryCollectionCell";
     }else{
         number = self.homeDataArray.count / 4;
     }
-    CGFloat appH = number * homeAppBackViewH / 3  * self.homeDataArray.count + 20;
+    CGFloat appH = number * homeAppBackViewH / 3  * self.homeDataArray.count;
     
     appCollectionViewH = appH + (homeAppViewH+spacing);
     self.appCollectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, homeAppViewH+spacing, kFBaseWidth, appCollectionViewH) collectionViewLayout:layout];
@@ -224,7 +224,7 @@ static NSString *cellId = @"CategoryCollectionCell";
 }
 
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section{
-    return UIEdgeInsetsMake(10, 10, 10, 10);
+    return UIEdgeInsetsMake(10, 10, 5, 10);
 }
 
 - (CGFloat)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout minimumLineSpacingForSectionAtIndex:(NSInteger)section{
