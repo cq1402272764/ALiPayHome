@@ -12,32 +12,40 @@
 #import "CategoryShowHomeAppView.h"
 #import "GategroyNavView.h"
 #import "GategroyShowNavView.h"
-#import "CategoryCollectionCell.h"
+//#import "CategoryCollectionCell.h"
 #import "CollectionReusableHeaderView.h"
 #import "CollectionReusableFooterView.h"
+#import "CategoryHomeShowAppCell.h"
 
-@interface CategoryVC ()<CategoryHomeAppViewDelegate,GategroyShowNavViewDelegate,GategroyNavViewDelegate,UICollectionViewDelegate,UICollectionViewDataSource>
+#import "CategoryCollectionViewLayout.h"
+#import "CategoryModel.h"
+
+@interface CategoryVC ()<CategoryHomeAppViewDelegate,GategroyShowNavViewDelegate,GategroyNavViewDelegate,UICollectionViewDelegate,UICollectionViewDataSource,CategoryCollectionViewLayoutDelegate>
 {
     CGFloat showHomeAppViewH;
     CGFloat appCollectionViewH;
 }
 @property (nonatomic, strong) NSMutableArray *homeDataArray;
+
+@property (nonatomic, strong) NSMutableArray *groupArray;
+
 @property (nonatomic, strong) UIScrollView *categoryScrollView;
 @property (nonatomic, strong) CategoryShowHomeAppView *showHomeAppView;
 @property (nonatomic, strong) CategoryHomeAppView *homeAppView;
 @property (nonatomic, strong) GategroyNavView *navView;
 @property (nonatomic, strong) GategroyShowNavView *showNavView;
 @property (nonatomic, strong) UICollectionView *appCollectionView;
-
+@property (nonatomic, strong) CategoryCollectionViewLayout *layout;
+@property (nonatomic, assign) BOOL inEditState; //是否处于编辑状态
 @end
 
 const CGFloat navViewH = 64;
 const CGFloat homeAppViewH = 44;
-const CGFloat homeAppBackViewH = 280;
+const CGFloat homeAppBackViewH = 300;
 const CGFloat spacing = 8;
 const CGFloat collectionReusableViewH = 40;
 
-static NSString *const cellId = @"CategoryCollectionCell";
+static NSString *const cellId = @"CategoryHomeShowAppCell";
 static NSString *const headerId = @"CollectionReusableHeaderView";
 static NSString *const footerId = @"CollectionReusableFooterView";
 
@@ -55,11 +63,18 @@ static NSString *const footerId = @"CollectionReusableFooterView";
     return _homeDataArray;
 }
 
+- (NSMutableArray *)groupArray
+{
+    if (_groupArray == nil) {
+        _groupArray = [NSMutableArray arrayWithCapacity:1];
+    }
+    return _groupArray;
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
     [self subView];
-    
 }
 
 - (void)subView{
@@ -89,10 +104,20 @@ static NSString *const footerId = @"CollectionReusableFooterView";
     [self.categoryScrollView addSubview:self.showHomeAppView ];
     self.showHomeAppView .alpha = 0;
     
-    UICollectionViewFlowLayout *layout=[[UICollectionViewFlowLayout alloc]init];
-    layout.minimumInteritemSpacing = 10;
+    CategoryCollectionViewLayout *layout = [[CategoryCollectionViewLayout alloc]init];
+    CGFloat width = (kFBaseWidth - 80) / 4;
+    layout.delegate = self;
+    //设置每个图片的大小
+    layout.itemSize = CGSizeMake(width, width);
+    //设置滚动方向的间距
     layout.minimumLineSpacing = 10;
-    layout.itemSize = CGSizeMake(kFBaseWidth/5, KFAppHeight/3);
+    //设置上方的反方向
+    layout.minimumInteritemSpacing = 0;
+    //设置collectionView整体的上下左右之间的间距
+    layout.sectionInset = UIEdgeInsetsMake(15, 20, 20, 20);
+    //设置滚动方向
+    layout.scrollDirection = UICollectionViewScrollDirectionVertical;
+    
     
     self.appCollectionView.backgroundColor = [UIColor whiteColor];
     // 行数 * 单个app的高度 * 组数
@@ -102,7 +127,7 @@ static NSString *const footerId = @"CollectionReusableFooterView";
     }else{
         number = self.homeDataArray.count / 4;
     }
-    CGFloat appH = (number * (homeAppBackViewH / 3 - 10.3) + collectionReusableViewH)  * self.homeDataArray.count;
+    CGFloat appH = (number * (homeAppBackViewH / 3) + collectionReusableViewH)  * self.homeDataArray.count;
     
     appCollectionViewH = appH + (homeAppViewH+spacing);
     self.appCollectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, homeAppViewH+spacing, kFBaseWidth, appCollectionViewH) collectionViewLayout:layout];
@@ -112,14 +137,12 @@ static NSString *const footerId = @"CollectionReusableFooterView";
     self.appCollectionView.backgroundColor = [UIColor whiteColor];
     self.appCollectionView.delegate = self;
     self.appCollectionView.dataSource = self;
-    [self.appCollectionView  registerNib:[UINib nibWithNibName:NSStringFromClass([CategoryCollectionCell class]) bundle:nil] forCellWithReuseIdentifier:cellId];
     
-    UINib *cellHeaderNib = [UINib nibWithNibName:NSStringFromClass([CollectionReusableHeaderView class]) bundle:nil];
-    UINib *cellFooterNib = [UINib nibWithNibName:NSStringFromClass([CollectionReusableFooterView class]) bundle:nil];
-    [self.appCollectionView registerNib:cellHeaderNib forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:headerId];
-    
-   [self.appCollectionView registerNib:cellFooterNib forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:footerId];
+    [self.appCollectionView  registerNib:[UINib nibWithNibName:NSStringFromClass([CategoryHomeShowAppCell class]) bundle:nil] forCellWithReuseIdentifier:cellId];
+    [self.appCollectionView registerNib:[UINib nibWithNibName:NSStringFromClass([CollectionReusableHeaderView class]) bundle:nil] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:headerId];
+   [self.appCollectionView registerNib:[UINib nibWithNibName:NSStringFromClass([CollectionReusableFooterView class]) bundle:nil] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:footerId];
 }
+
 
 #pragma mark CategoryHomeAppViewDelegate
 // 编辑
@@ -145,9 +168,12 @@ static NSString *const footerId = @"CollectionReusableFooterView";
 }
 
 - (void)showSubView:(BOOL)show{
+    
+    [self.layout setInEditState:self.inEditState];
+    
     if (show) {
         [self setUpInteractivePopGestureRecognizerEnabled:YES scrollEnabled:NO];
-//                [self.appCollectionView selectItemAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:NO scrollPosition:UICollectionViewScrollPositionTop];
+//        [self.appCollectionView selectItemAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:NO scrollPosition:UICollectionViewScrollPositionTop];
         
         [UIView animateWithDuration:0.3 animations:^{
             self.navView.alpha = 1;
@@ -225,24 +251,34 @@ static NSString *const footerId = @"CollectionReusableFooterView";
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
-    CategoryCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellId forIndexPath:indexPath];
+    CategoryHomeShowAppCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellId forIndexPath:indexPath];
+//    [cell setDataAry:self.homeDataArray groupAry:self.groupArray indexPath:indexPath];
+    //是否处于编辑状态，如果处于编辑状态，出现边框和按钮，否则隐藏
+//    cell.inEditState = self.inEditState;
+//    [cell.delegateApp addTarget:self action:@selector(btnClick:event:) forControlEvents:UIControlEventTouchUpInside];
     return cell;
 }
 
-- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
-    return CGSizeMake(70, 70);
+//处于编辑状态
+- (void)didChangeEditState:(BOOL)inEditState
+{
+    self.inEditState = inEditState;
+//    self.rightBtn.selected = inEditState;
+    for (CategoryHomeShowAppCell *cell in self.appCollectionView.visibleCells) {
+        cell.inEditState = inEditState;
+    }
 }
 
-- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section{
-    return UIEdgeInsetsMake(0, 10, 10, 10);
-}
-
-- (UIColor *)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout colorForSectionAtIndex:(NSInteger)section{
-    return [UIColor redColor];
+//改变数据源中model的位置
+- (void)moveItemAtIndexPath:(NSIndexPath *)formPath toIndexPath:(NSIndexPath *)toPath{
+    CategoryModel *model = self.homeDataArray[formPath.row];
+    //先把移动的这个model移除
+    [self.homeDataArray removeObject:model];
+    //再把这个移动的model插入到相应的位置
+    [self.homeDataArray insertObject:model atIndex:toPath.row];
 }
 
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath{
-    
     if ([kind isEqualToString:UICollectionElementKindSectionHeader]) {
         CollectionReusableHeaderView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:headerId forIndexPath:indexPath];
         return headerView;
@@ -258,6 +294,36 @@ static NSString *const footerId = @"CollectionReusableFooterView";
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForFooterInSection:(NSInteger)section{
     return CGSizeMake(kFBaseWidth, 0.5);
+}
+
+- (void)btnClick:(UIButton *)sender event:(id)event
+{
+    //获取点击button的位置
+    NSSet *touches = [event allTouches];
+    UITouch *touch = [touches anyObject];
+    CGPoint currentPoint = [touch locationInView:self.appCollectionView];
+    NSIndexPath *indexPath = [self.appCollectionView indexPathForItemAtPoint:currentPoint];
+    if (indexPath.section == 0 && indexPath != nil) { //点击移除
+        [self.appCollectionView performBatchUpdates:^{
+            [self.appCollectionView deleteItemsAtIndexPaths:@[indexPath]];
+            [self.homeDataArray removeObjectAtIndex:indexPath.row]; //删除
+        } completion:^(BOOL finished) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.appCollectionView reloadData];
+            });
+        }];
+    } else if (indexPath != nil) { //点击添加
+        //在第一组最后增加一个
+        [self.homeDataArray addObject:self.groupArray[indexPath.row]];
+        NSIndexPath *newIndexPath = [NSIndexPath indexPathForRow:self.homeDataArray.count - 1 inSection:0];
+        [self.appCollectionView performBatchUpdates:^{
+            [self.appCollectionView insertItemsAtIndexPaths:@[newIndexPath]];
+        } completion:^(BOOL finished) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.appCollectionView reloadData];
+            });
+        }];
+    }
 }
 
 @end

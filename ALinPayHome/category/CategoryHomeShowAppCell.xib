@@ -61,7 +61,6 @@
             <connections>
                 <outlet property="appTitle" destination="yQj-jU-Vj4" id="f6R-fh-hrM"/>
                 <outlet property="delegateApp" destination="fGc-5C-iKA" id="k3l-dS-Hji"/>
-                <outlet property="signBtn" destination="fGc-5C-iKA" id="dPy-TR-EZD"/>
             </connections>
             <point key="canvasLocation" x="39.5" y="-99.5"/>
         </collectionViewCell>

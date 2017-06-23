@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CategoryModel.h"
 
 @class CategoryHomeShowAppCell;
 @protocol CategoryHomeShowAppCellDelegate <NSObject>
@@ -18,7 +19,22 @@
 @property (weak, nonatomic) id<CategoryHomeShowAppCellDelegate>delegate;
 @property (weak, nonatomic) IBOutlet UILabel *appTitle;
 @property (strong, nonatomic) NSIndexPath *indexPath;
-@property (weak, nonatomic) IBOutlet UIButton *signBtn;
-@property (weak, nonatomic) IBOutlet UIButton *delegateApp;
+
+
+@property (weak, nonatomic) IBOutlet UIButton *delegateApp;// 删除Btn
+
+
+@property (nonatomic, strong) CategoryModel *model;
+
+@property (nonatomic, assign) BOOL inEditState; //是否处于编辑状态
+
+- (void)setModel:(CategoryModel *)model indexPaht:(NSIndexPath *)indexPath exist:(BOOL)exist;
+
+- (void)setDataAry:(NSMutableArray *)dataAry groupAry:(NSMutableArray *)groupAry indexPath:(NSIndexPath *)indexPath;
+
+@property (nonatomic, strong) UILabel *messageLabel;
+
+- (void)addMeaageLabel;
+
 
 @end

@@ -10,12 +10,10 @@
 
 @implementation CategoryHomeAppView
 
-
 - (IBAction)editSelectBtn:(id)sender {
     if ([_delegate respondsToSelector:@selector(categoryHomeAppViewWithEdit:)]) {
         [_delegate categoryHomeAppViewWithEdit:self];
     }
 }
-
 
 @end
