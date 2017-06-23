@@ -10,6 +10,7 @@
 #import "Macro.h"
 #import "CategoryHomeShowAppCell.h"
 #import "CategoryCollectionViewLayout.h"
+#import "CategoryModel.h"
 
 @interface CategoryShowHomeAppView ()<UICollectionViewDelegate,UICollectionViewDataSource,CategoryHomeShowAppCellDelegate,CategoryCollectionViewLayoutDelegate>
 
@@ -22,16 +23,16 @@ static NSString *const cellId = @"ShowHomeAppView";
 
 @implementation CategoryShowHomeAppView
 
-- (NSMutableArray *)homeAppArray{
-    if (_homeAppArray == nil) {
-        _homeAppArray = [NSMutableArray array];
-        for (int i = 1; i <= 11; i++) {
-            NSString *imageName = [NSString stringWithFormat:@"%d",i];
-            [_homeAppArray addObject:imageName];
-        }
-    }
-    return _homeAppArray;
-}
+//- (NSMutableArray *)homeAppArray{
+//    if (_homeAppArray == nil) {
+//        _homeAppArray = [NSMutableArray array];
+//        for (int i = 1; i <= 11; i++) {
+//            NSString *imageName = [NSString stringWithFormat:@"%d",i];
+//            [_homeAppArray addObject:imageName];
+//        }
+//    }
+//    return _homeAppArray;
+//}
 
 - (void)drawRect:(CGRect)rect{
     [super drawRect:rect];
@@ -71,7 +72,9 @@ static NSString *const cellId = @"ShowHomeAppView";
     cell.delegate = self;
     cell.indexPath = indexPath;
 //    [cell addGestureRecognizer:longPress];
-    cell.appTitle.text = [NSString stringWithFormat:@"余额宝%@",self.homeAppArray[indexPath.row]];
+    CategoryModel *model = self.homeAppArray[indexPath.row];
+    cell.appTitle.text = [NSString stringWithFormat:@"%@",model.title];
+    NSLog(@"model.title--------%@",model.title);
     return cell;
 }
 
@@ -161,14 +164,14 @@ static NSString *const cellId = @"ShowHomeAppView";
 //    }
 //}
 
-//- (void)setUpCategoryHomeShowAppCellWithDeleteApp:(CategoryHomeShowAppCell *)deleteApp{
-//    NSLog(@"self.homeAppArray======%@",self.homeAppArray);
+- (void)setUpCategoryHomeShowAppCellWithDeleteApp:(CategoryHomeShowAppCell *)deleteApp{
 //    id objc = [self.homeAppArray objectAtIndex:deleteApp.indexPath.row];
 //    //从资源数组中移除该数据
 //    [self.homeAppArray removeObject:objc];
 //    [self.collectionView reloadData];
-//    NSLog(@"objc--======%@",objc);
-//    NSLog(@"deleteApp.indexPath.row--======%ld",(long)deleteApp.indexPath.row);
-//}
+    if ([_delegate respondsToSelector:@selector(setUpCategoryShowHomeAppViewWithDeleteApp:)]) {
+        [_delegate setUpCategoryShowHomeAppViewWithDeleteApp:self];
+    }
+}
 
 @end

@@ -8,6 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
+
+@class CategoryShowHomeAppView;
+@protocol CategoryShowHomeAppViewDelegate <NSObject>
+@optional
+- (void)setUpCategoryShowHomeAppViewWithDeleteApp:(CategoryShowHomeAppView *)deleteApp;
+@end
 @interface CategoryShowHomeAppView : UIView
+@property (weak, nonatomic) id<CategoryShowHomeAppViewDelegate>delegate;
 @property (strong, nonatomic) NSMutableArray *homeAppArray;
 @end

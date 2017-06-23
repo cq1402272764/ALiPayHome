@@ -23,7 +23,6 @@
 
 @property (weak, nonatomic) IBOutlet UIButton *delegateApp;// 删除Btn
 
-
 @property (nonatomic, strong) CategoryModel *model;
 
 @property (nonatomic, assign) BOOL inEditState; //是否处于编辑状态
@@ -34,7 +33,7 @@
 
 @property (nonatomic, strong) UILabel *messageLabel;
 
-- (void)addMeaageLabel;
+//- (void)addMeaageLabel;
 
 
 @end

@@ -14,7 +14,6 @@
 - (void)moveItemAtIndexPath:(NSIndexPath *)formPath toIndexPath:(NSIndexPath *)toPath;
 
 // 改变编辑状态
-
 - (void)didChangeEditState:(BOOL)inEditState;
 
 @end

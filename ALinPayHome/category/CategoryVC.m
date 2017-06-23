@@ -20,7 +20,7 @@
 #import "CategoryCollectionViewLayout.h"
 #import "CategoryModel.h"
 
-@interface CategoryVC ()<CategoryHomeAppViewDelegate,GategroyShowNavViewDelegate,GategroyNavViewDelegate,UICollectionViewDelegate,UICollectionViewDataSource,CategoryCollectionViewLayoutDelegate>
+@interface CategoryVC ()<CategoryHomeAppViewDelegate,GategroyShowNavViewDelegate,GategroyNavViewDelegate,UICollectionViewDelegate,UICollectionViewDataSource,CategoryCollectionViewLayoutDelegate,CategoryShowHomeAppViewDelegate>
 {
     CGFloat showHomeAppViewH;
     CGFloat appCollectionViewH;
@@ -54,19 +54,15 @@ static NSString *const footerId = @"CollectionReusableFooterView";
 
 - (NSMutableArray *)homeDataArray{
     if (_homeDataArray == nil) {
-        _homeDataArray = [[NSMutableArray alloc] init];
-        for (int i = 1; i <= 6; i++) {
-            NSString *imageName = [NSString stringWithFormat:@"%d",i];
-            [_homeDataArray addObject:imageName];
-        }
+        _homeDataArray = [NSMutableArray array];
+        
     }
     return _homeDataArray;
 }
 
-- (NSMutableArray *)groupArray
-{
+- (NSMutableArray *)groupArray{
     if (_groupArray == nil) {
-        _groupArray = [NSMutableArray arrayWithCapacity:1];
+        _groupArray = [NSMutableArray array];
     }
     return _groupArray;
 }
@@ -74,7 +70,23 @@ static NSString *const footerId = @"CollectionReusableFooterView";
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
+    [self setUpData];
     [self subView];
+}
+
+- (void)setUpData{
+    
+    for (int i = 1; i <= 11; i++) {
+        CategoryModel *model = [[CategoryModel alloc] init];
+        model.title = [NSString stringWithFormat:@"支付宝%@", @(i)];
+        [self.homeDataArray addObject:model];
+        [self.groupArray addObject:model];
+    }
+    for (int i = 0; i < 6; i++) {
+        CategoryModel *model = [[CategoryModel alloc] init];
+        model.title = [NSString stringWithFormat:@"生活%@", @(i)];
+        [self.groupArray addObject:model];
+    }
 }
 
 - (void)subView{
@@ -100,23 +112,25 @@ static NSString *const footerId = @"CollectionReusableFooterView";
     self.homeAppView.delegate = self;
     
     self.showHomeAppView = [CategoryShowHomeAppView createWithXib];
+    self.showHomeAppView.homeAppArray = self.homeDataArray;
     [self setUphomeFunctionArrayCount:self.showHomeAppView.homeAppArray.count];
     [self.categoryScrollView addSubview:self.showHomeAppView ];
-    self.showHomeAppView .alpha = 0;
+    self.showHomeAppView.alpha = 0;
+    self.showHomeAppView.delegate = self;
     
-    CategoryCollectionViewLayout *layout = [[CategoryCollectionViewLayout alloc]init];
+    self.layout = [[CategoryCollectionViewLayout alloc]init];
     CGFloat width = (kFBaseWidth - 80) / 4;
-    layout.delegate = self;
+    self.layout.delegate = self;
     //设置每个图片的大小
-    layout.itemSize = CGSizeMake(width, width);
+    self.layout.itemSize = CGSizeMake(width, width);
     //设置滚动方向的间距
-    layout.minimumLineSpacing = 10;
+    self.layout.minimumLineSpacing = 10;
     //设置上方的反方向
-    layout.minimumInteritemSpacing = 0;
+    self.layout.minimumInteritemSpacing = 0;
     //设置collectionView整体的上下左右之间的间距
-    layout.sectionInset = UIEdgeInsetsMake(15, 20, 20, 20);
+    self.layout.sectionInset = UIEdgeInsetsMake(15, 20, 20, 20);
     //设置滚动方向
-    layout.scrollDirection = UICollectionViewScrollDirectionVertical;
+    self.layout.scrollDirection = UICollectionViewScrollDirectionVertical;
     
     
     self.appCollectionView.backgroundColor = [UIColor whiteColor];
@@ -130,7 +144,7 @@ static NSString *const footerId = @"CollectionReusableFooterView";
     CGFloat appH = (number * (homeAppBackViewH / 3) + collectionReusableViewH)  * self.homeDataArray.count;
     
     appCollectionViewH = appH + (homeAppViewH+spacing);
-    self.appCollectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, homeAppViewH+spacing, kFBaseWidth, appCollectionViewH) collectionViewLayout:layout];
+    self.appCollectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, homeAppViewH+spacing, kFBaseWidth, appCollectionViewH) collectionViewLayout:self.layout];
     
     self.categoryScrollView.contentSize = CGSizeMake(0, appCollectionViewH);
     [self.categoryScrollView addSubview:self.appCollectionView];
@@ -140,7 +154,7 @@ static NSString *const footerId = @"CollectionReusableFooterView";
     
     [self.appCollectionView  registerNib:[UINib nibWithNibName:NSStringFromClass([CategoryHomeShowAppCell class]) bundle:nil] forCellWithReuseIdentifier:cellId];
     [self.appCollectionView registerNib:[UINib nibWithNibName:NSStringFromClass([CollectionReusableHeaderView class]) bundle:nil] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:headerId];
-   [self.appCollectionView registerNib:[UINib nibWithNibName:NSStringFromClass([CollectionReusableFooterView class]) bundle:nil] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:footerId];
+    [self.appCollectionView registerNib:[UINib nibWithNibName:NSStringFromClass([CollectionReusableFooterView class]) bundle:nil] forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:footerId];
 }
 
 
@@ -148,17 +162,34 @@ static NSString *const footerId = @"CollectionReusableFooterView";
 // 编辑
 - (void)categoryHomeAppViewWithEdit:(CategoryHomeAppView *)edit{
     [self showSubView:NO];
+    
+//    if (!self.inEditState) { //点击了编辑
+        self.inEditState = YES;
+        self.appCollectionView.allowsSelection = NO;
+//    }
+    [self.layout setInEditState:self.inEditState];
+    NSLog(@"点击了编辑按钮");
+
 }
 
 #pragma mark GategroyShowNavViewDelegate
 // 取消
 - (void)setUpGategroyShowNavViewWithCancel{
     [self showSubView:YES];
+    self.inEditState = NO;
+    self.appCollectionView.allowsSelection = YES;
+    NSLog(@"点击了取消按钮");
 }
 
 // 完成
 - (void)setUpGategroyShowNavViewWithComplete{
     [self showSubView:YES];
+    //点击了完成
+    self.inEditState = NO;
+    self.appCollectionView.allowsSelection = YES;
+    //此处可以调用网络请求，把排序完之后的传给服务端
+    NSLog(@"点击了完成按钮");
+
 }
 
 #pragma mark GategroyNavViewDelegate
@@ -169,7 +200,7 @@ static NSString *const footerId = @"CollectionReusableFooterView";
 
 - (void)showSubView:(BOOL)show{
     
-    [self.layout setInEditState:self.inEditState];
+//    [self.layout setInEditState:self.inEditState];
     
     if (show) {
         [self setUpInteractivePopGestureRecognizerEnabled:YES scrollEnabled:NO];
@@ -252,19 +283,23 @@ static NSString *const footerId = @"CollectionReusableFooterView";
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     CategoryHomeShowAppCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellId forIndexPath:indexPath];
-//    [cell setDataAry:self.homeDataArray groupAry:self.groupArray indexPath:indexPath];
+    NSLog(@"homeDataArray------%@",self.homeDataArray);
+    NSLog(@"groupArray------%@",self.groupArray);
+    [cell setDataAry:self.homeDataArray groupAry:self.groupArray indexPath:indexPath];
     //是否处于编辑状态，如果处于编辑状态，出现边框和按钮，否则隐藏
-//    cell.inEditState = self.inEditState;
-//    [cell.delegateApp addTarget:self action:@selector(btnClick:event:) forControlEvents:UIControlEventTouchUpInside];
+    cell.inEditState = self.inEditState;
+    [cell.delegateApp addTarget:self action:@selector(btnClick:event:) forControlEvents:UIControlEventTouchUpInside];
     return cell;
 }
 
-//处于编辑状态
+
+//处于编辑状态 代理方法
 - (void)didChangeEditState:(BOOL)inEditState
 {
     self.inEditState = inEditState;
 //    self.rightBtn.selected = inEditState;
     for (CategoryHomeShowAppCell *cell in self.appCollectionView.visibleCells) {
+//        NSLog(@"======%@",cell.appTitle.text);
         cell.inEditState = inEditState;
     }
 }
@@ -296,34 +331,66 @@ static NSString *const footerId = @"CollectionReusableFooterView";
     return CGSizeMake(kFBaseWidth, 0.5);
 }
 
-- (void)btnClick:(UIButton *)sender event:(id)event
-{
-    //获取点击button的位置
-    NSSet *touches = [event allTouches];
-    UITouch *touch = [touches anyObject];
-    CGPoint currentPoint = [touch locationInView:self.appCollectionView];
-    NSIndexPath *indexPath = [self.appCollectionView indexPathForItemAtPoint:currentPoint];
-    if (indexPath.section == 0 && indexPath != nil) { //点击移除
-        [self.appCollectionView performBatchUpdates:^{
-            [self.appCollectionView deleteItemsAtIndexPaths:@[indexPath]];
-            [self.homeDataArray removeObjectAtIndex:indexPath.row]; //删除
-        } completion:^(BOOL finished) {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [self.appCollectionView reloadData];
-            });
-        }];
-    } else if (indexPath != nil) { //点击添加
-        //在第一组最后增加一个
-        [self.homeDataArray addObject:self.groupArray[indexPath.row]];
-        NSIndexPath *newIndexPath = [NSIndexPath indexPathForRow:self.homeDataArray.count - 1 inSection:0];
-        [self.appCollectionView performBatchUpdates:^{
-            [self.appCollectionView insertItemsAtIndexPaths:@[newIndexPath]];
-        } completion:^(BOOL finished) {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                [self.appCollectionView reloadData];
-            });
-        }];
-    }
+- (void)btnClick:(UIButton *)sender event:(id)event{
+//    //获取点击button的位置
+//    NSSet *touches = [event allTouches];
+//    UITouch *touch = [touches anyObject];
+//    CGPoint currentPoint = [touch locationInView:self.appCollectionView];
+//    NSLog(@"currentPoint-----%f-----%f",currentPoint.x,currentPoint.y);
+//    NSIndexPath *indexPath = [self.appCollectionView indexPathForItemAtPoint:currentPoint];
+//    if (indexPath.section == 0 && indexPath != nil) { //点击移除
+//        [self.appCollectionView performBatchUpdates:^{
+//            [self.appCollectionView deleteItemsAtIndexPaths:@[indexPath]];
+//            [self.homeDataArray removeObjectAtIndex:indexPath.row]; //删除
+//        } completion:^(BOOL finished) {
+//            dispatch_async(dispatch_get_main_queue(), ^{
+//                [self.appCollectionView reloadData];
+//            });
+//        }];
+//    } else if (indexPath != nil) { //点击添加
+//        //在第一组最后增加一个
+//        [self.homeDataArray addObject:self.groupArray[indexPath.row]];
+//        NSIndexPath *newIndexPath = [NSIndexPath indexPathForRow:self.homeDataArray.count - 1 inSection:0];
+//        [self.appCollectionView performBatchUpdates:^{
+//            [self.appCollectionView insertItemsAtIndexPaths:@[newIndexPath]];
+//        } completion:^(BOOL finished) {
+//            dispatch_async(dispatch_get_main_queue(), ^{
+//                [self.appCollectionView reloadData];
+//            });
+//        }];
+//    }
 }
+
+- (void)setUpCategoryShowHomeAppViewWithDeleteApp:(CategoryShowHomeAppView *)deleteApp{
+//    //获取点击button的位置
+//    NSSet *touches = [event allTouches];
+//    UITouch *touch = [touches anyObject];
+//    CGPoint currentPoint = [touch locationInView:self.appCollectionView];
+//    NSLog(@"currentPoint-----%f-----%f",currentPoint.x,currentPoint.y);
+//    NSIndexPath *indexPath = [self.appCollectionView indexPathForItemAtPoint:currentPoint];
+//    if (indexPath.section == 0 && indexPath != nil) { //点击移除
+//        [self.appCollectionView performBatchUpdates:^{
+//            [self.appCollectionView deleteItemsAtIndexPaths:@[indexPath]];
+//            [self.homeDataArray removeObjectAtIndex:indexPath.row]; //删除
+//        } completion:^(BOOL finished) {
+//            dispatch_async(dispatch_get_main_queue(), ^{
+//                [self.appCollectionView reloadData];
+//            });
+//        }];
+//    } else if (indexPath != nil) { //点击添加
+//        //在第一组最后增加一个
+//        [self.homeDataArray addObject:self.groupArray[indexPath.row]];
+//        NSIndexPath *newIndexPath = [NSIndexPath indexPathForRow:self.homeDataArray.count - 1 inSection:0];
+//        [self.appCollectionView performBatchUpdates:^{
+//            [self.appCollectionView insertItemsAtIndexPaths:@[newIndexPath]];
+//        } completion:^(BOOL finished) {
+//            dispatch_async(dispatch_get_main_queue(), ^{
+//                [self.appCollectionView reloadData];
+//            });
+//        }];
+//    }
+}
+
+
 
 @end
