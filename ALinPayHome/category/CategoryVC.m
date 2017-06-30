@@ -24,7 +24,7 @@
                         CategoryHomeAppViewDelegate,
                         GategroyShowNavViewDelegate,
                         GategroyNavViewDelegate,
-                        CategoryCollectionViewLayoutDelegate,
+//                        CategoryCollectionViewLayoutDelegate,
                         CategoryShowHomeAppViewDelegate,
                         CategoryHomeShowAppCellDelegate>
 {
@@ -82,16 +82,17 @@ static NSString *const footerId = @"CollectionReusableFooterView";
 }
 
 - (void)setUpData{
-    for (int i = 1; i <= 11; i++) {
+    for (int i = 1; i <= 6; i++) {
         CategoryModel *model = [[CategoryModel alloc] init];
         model.title = [NSString stringWithFormat:@"支付宝%@", @(i)];
         [self.homeDataArray addObject:model];
-        [self.groupArray addObject:model];
+        
     }
-    for (int i = 0; i < 11; i++) {
+    for (int i = 0; i < 5; i++) {
         CategoryModel *model = [[CategoryModel alloc] init];
         model.title = [NSString stringWithFormat:@"生活%@", @(i)];
         [self.groupArray addObject:model];
+        [self.homeDataArray addObject:model];
     }
 }
 
@@ -126,7 +127,7 @@ static NSString *const footerId = @"CollectionReusableFooterView";
     
     self.layout = [[CategoryCollectionViewLayout alloc]init];
     CGFloat width = (kFBaseWidth - 80) / 4;
-    self.layout.delegate = self;
+//    self.layout.delegate = self;
     //设置每个图片的大小
     self.layout.itemSize = CGSizeMake(width, width);
     //设置滚动方向的间距
@@ -137,7 +138,6 @@ static NSString *const footerId = @"CollectionReusableFooterView";
     self.layout.sectionInset = UIEdgeInsetsMake(15, 20, 20, 20);
     //设置滚动方向
     self.layout.scrollDirection = UICollectionViewScrollDirectionVertical;
-    
     
     self.appCollectionView.backgroundColor = [UIColor whiteColor];
     // 行数 * 单个app的高度 * 组数
@@ -170,8 +170,6 @@ static NSString *const footerId = @"CollectionReusableFooterView";
     self.inEditState = YES;
     self.appCollectionView.allowsSelection = NO;
     [self.layout setInEditState:self.inEditState];
-    NSLog(@"点击了编辑按钮");
-    
 }
 
 #pragma mark GategroyShowNavViewDelegate
@@ -181,7 +179,6 @@ static NSString *const footerId = @"CollectionReusableFooterView";
     self.inEditState = NO;
     [self.layout setInEditState:self.inEditState];
     self.appCollectionView.allowsSelection = YES;
-    NSLog(@"点击了取消按钮");
 }
 
 // 完成
@@ -192,7 +189,6 @@ static NSString *const footerId = @"CollectionReusableFooterView";
     self.appCollectionView.allowsSelection = YES;
     //此处可以调用网络请求，把排序完之后的传给服务端
     NSLog(@"点击了完成按钮");
-
 }
 
 #pragma mark GategroyNavViewDelegate
@@ -272,9 +268,26 @@ static NSString *const footerId = @"CollectionReusableFooterView";
     self.showHomeAppView.frame = CGRectMake(0, 0, kFBaseWidth, showHomeAppViewH);
 }
 
+////处于编辑状态 代理方法
+//- (void)didChangeEditState:(BOOL)inEditState{
+//    self.inEditState = inEditState;
+//    for (CategoryHomeShowAppCell *cell in self.appCollectionView.visibleCells) {
+//        cell.inEditState = inEditState;
+//    }
+//}
+//
+////改变数据源中model的位置
+//- (void)moveItemAtIndexPath:(NSIndexPath *)formPath toIndexPath:(NSIndexPath *)toPath{
+//    CategoryModel *model = self.homeDataArray[formPath.row];
+//    //先把移动的这个model移除
+//    [self.homeDataArray removeObject:model];
+//    //再把这个移动的model插入到相应的位置
+//    [self.homeDataArray insertObject:model atIndex:toPath.row];
+//}
+
 #pragma mark UICollectionViewDataSource
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
-    return 1;
+    return self.homeDataArray.count;
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
@@ -290,23 +303,10 @@ static NSString *const footerId = @"CollectionReusableFooterView";
     return cell;
 }
 
-
-//处于编辑状态 代理方法
-- (void)didChangeEditState:(BOOL)inEditState
-{
-    self.inEditState = inEditState;
-    for (CategoryHomeShowAppCell *cell in self.appCollectionView.visibleCells) {
-        cell.inEditState = inEditState;
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    if (!self.inEditState) { //如果不在编辑状态
+        NSLog(@"点击了第%@个分区的第%@个cell", @(indexPath.section), @(indexPath.row));
     }
-}
-
-//改变数据源中model的位置
-- (void)moveItemAtIndexPath:(NSIndexPath *)formPath toIndexPath:(NSIndexPath *)toPath{
-    CategoryModel *model = self.showHomeAppView.homeAppArray[formPath.row];
-    //先把移动的这个model移除
-    [self.showHomeAppView.homeAppArray removeObject:model];
-    //再把这个移动的model插入到相应的位置
-    [self.showHomeAppView.homeAppArray insertObject:model atIndex:toPath.row];
 }
 
 - (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath{

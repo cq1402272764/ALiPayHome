@@ -14,7 +14,8 @@
 
 @interface CategoryShowHomeAppView ()<UICollectionViewDelegate,
                                     UICollectionViewDataSource,
-                                    CategoryHomeShowAppCellDelegate>
+                                    CategoryHomeShowAppCellDelegate,
+                                    CategoryCollectionViewLayoutDelegate>
 
 @property (weak, nonatomic) IBOutlet UIView *homeAppView;
 
@@ -28,7 +29,6 @@ static NSString *const cellId = @"ShowHomeAppView";
     [super drawRect:rect];
     CategoryCollectionViewLayout *layout = [[CategoryCollectionViewLayout alloc]init];
     CGFloat width = (kFBaseWidth - 80) / 4;
-//    layout.delegate = self;
     //设置每个图片的大小
     layout.itemSize = CGSizeMake(width, width);
     //设置滚动方向的间距
@@ -39,9 +39,9 @@ static NSString *const cellId = @"ShowHomeAppView";
     layout.sectionInset = UIEdgeInsetsMake(15, 20, 20, 20);
     //设置滚动方向
     layout.scrollDirection = UICollectionViewScrollDirectionVertical;
+    layout.delegate = self;
     
     self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, kFBaseWidth, 300-44) collectionViewLayout:layout];
-//    self.collectionView = collectionView;
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
     self.collectionView.backgroundColor = [UIColor whiteColor];
@@ -67,10 +67,25 @@ static NSString *const cellId = @"ShowHomeAppView";
 }
 
 - (void)setUpCategoryHomeShowAppCellWithDeleteApp:(CategoryHomeShowAppCell *)deleteApp event:(id)event{
-
-    NSLog(@"========%@",event);
     if ([_delegate respondsToSelector:@selector(setUpCategoryShowHomeAppViewWithDeleteApp: event:)]) {
         [_delegate setUpCategoryShowHomeAppViewWithDeleteApp:self event:event];
     }
 }
+
+//处于编辑状态 代理方法
+- (void)didChangeEditState:(BOOL)inEditState{
+    for (CategoryHomeShowAppCell *cell in self.collectionView.visibleCells) {
+        cell.inEditState = NO;
+    }
+}
+
+//改变数据源中model的位置
+- (void)moveItemAtIndexPath:(NSIndexPath *)formPath toIndexPath:(NSIndexPath *)toPath{
+    CategoryModel *model = self.homeAppArray[formPath.row];
+    //先把移动的这个model移除
+    [self.homeAppArray removeObject:model];
+    //再把这个移动的model插入到相应的位置
+    [self.homeAppArray insertObject:model atIndex:toPath.row];
+}
+
 @end
