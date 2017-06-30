@@ -12,9 +12,7 @@
 @class CategoryShowHomeAppView;
 @protocol CategoryShowHomeAppViewDelegate <NSObject>
 @optional
-//- (void)setUpCategoryShowHomeAppViewWithDeleteApp:(CategoryHomeShowAppCell *)deleteApp;
 - (void)setUpCategoryShowHomeAppViewWithDeleteApp:(CategoryShowHomeAppView *)deleteApp event:(id)event;
-
 @end
 @interface CategoryShowHomeAppView : UIView
 @property (weak, nonatomic) id<CategoryShowHomeAppViewDelegate>delegate;

@@ -16,7 +16,8 @@
 #import "CategoryVC.h"
 
 
-@interface HomeVC ()<UIScrollViewDelegate>{
+@interface HomeVC ()<UIScrollViewDelegate>
+{
     CGFloat singleAppHeaderViewHeight;
     CGFloat headerViewH;
 }
