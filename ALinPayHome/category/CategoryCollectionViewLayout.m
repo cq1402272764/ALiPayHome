@@ -15,13 +15,13 @@
 @property (nonatomic, assign) CGPoint movePoint; //移动的中心点
 @property (nonatomic, strong) UIView *moveView; //移动的视图
 
-
 @end
+
+static NSString *layoutObserver = @"CategoryCollectionViewLayout";
 
 @implementation CategoryCollectionViewLayout
 
-- (id)initWithCoder:(NSCoder *)aDecoder
-{
+- (id)initWithCoder:(NSCoder *)aDecoder{
     self = [super initWithCoder:aDecoder];
     if (self) {
         [self configureObserver];
@@ -29,8 +29,7 @@
     return self;
 }
 
-- (instancetype)init
-{
+- (instancetype)init{
     self = [super init];
     if (self) {
         [self configureObserver];
@@ -40,14 +39,12 @@
 
 #pragma mark - 添加观察者
 
-- (void)configureObserver
-{
-    [self addObserver:self forKeyPath:@"collectionView" options:NSKeyValueObservingOptionNew context:nil];
+- (void)configureObserver{
+    [self addObserver:self forKeyPath:layoutObserver options:NSKeyValueObservingOptionNew context:nil];
 }
 
-- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context
-{
-    if ([keyPath isEqualToString:@"collectionView"]) {
+- (void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context{
+    if ([keyPath isEqualToString:layoutObserver]) {
         [self setUpGestureRecognizers];
     } else {
         [super observeValueForKeyPath:keyPath ofObject:object change:change context:context];
@@ -56,8 +53,7 @@
 
 #pragma mark - 长按手势
 
-- (void)setUpGestureRecognizers
-{
+- (void)setUpGestureRecognizers{
     if (self.collectionView == nil) {
         return;
     }
@@ -69,8 +65,7 @@
 
 #pragma mark - 手势动画
 
-- (void)longGesture:(UILongPressGestureRecognizer *)gesture
-{
+- (void)longGesture:(UILongPressGestureRecognizer *)gesture{
     if (!self.inEditState) {
         [self setInEditState:YES];
     }
@@ -134,8 +129,7 @@
 
 #pragma mark - 处于编辑状态
 
-- (void)setInEditState:(BOOL)inEditState
-{
+- (void)setInEditState:(BOOL)inEditState{
     if (_inEditState != inEditState) {
         //通过代理方法改变处于编辑状态的cell
         if (_delegate && [_delegate respondsToSelector:@selector(didChangeEditState:)]) {
@@ -147,9 +141,8 @@
 
 #pragma mark - 移除观察者
 
-- (void)dealloc
-{
-    [self removeObserver:self forKeyPath:@"collectionView"];
+- (void)dealloc{
+    [self removeObserver:self forKeyPath:layoutObserver];
 }
 
 @end

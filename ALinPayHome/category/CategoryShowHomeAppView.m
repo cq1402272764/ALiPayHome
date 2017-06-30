@@ -12,10 +12,10 @@
 #import "CategoryCollectionViewLayout.h"
 #import "CategoryModel.h"
 
-@interface CategoryShowHomeAppView ()<UICollectionViewDelegate,UICollectionViewDataSource,CategoryHomeShowAppCellDelegate,CategoryCollectionViewLayoutDelegate>
+@interface CategoryShowHomeAppView ()<UICollectionViewDelegate,UICollectionViewDataSource,CategoryHomeShowAppCellDelegate>
 
 @property (weak, nonatomic) IBOutlet UIView *homeAppView;
-@property (weak, nonatomic) UICollectionView *collectionView;
+//@property (weak, nonatomic) UICollectionView *collectionView;
 
 @end
 
@@ -27,8 +27,9 @@ static NSString *const cellId = @"ShowHomeAppView";
 //    if (_homeAppArray == nil) {
 //        _homeAppArray = [NSMutableArray array];
 //        for (int i = 1; i <= 11; i++) {
-//            NSString *imageName = [NSString stringWithFormat:@"%d",i];
-//            [_homeAppArray addObject:imageName];
+//            CategoryModel *model = [[CategoryModel alloc] init];
+//            model.title = [NSString stringWithFormat:@"生活%@", @(i)];
+//            [self.homeAppArray addObject:model];
 //        }
 //    }
 //    return _homeAppArray;
@@ -38,7 +39,7 @@ static NSString *const cellId = @"ShowHomeAppView";
     [super drawRect:rect];
     CategoryCollectionViewLayout *layout = [[CategoryCollectionViewLayout alloc]init];
     CGFloat width = (kFBaseWidth - 80) / 4;
-    layout.delegate = self;
+//    layout.delegate = self;
     //设置每个图片的大小
     layout.itemSize = CGSizeMake(width, width);
     //设置滚动方向的间距
@@ -50,14 +51,14 @@ static NSString *const cellId = @"ShowHomeAppView";
     //设置滚动方向
     layout.scrollDirection = UICollectionViewScrollDirectionVertical;
     
-    UICollectionView *collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, kFBaseWidth, 300-44) collectionViewLayout:layout];
-    self.collectionView = collectionView;
-    collectionView.delegate = self;
-    collectionView.dataSource = self;
-    collectionView.backgroundColor = [UIColor whiteColor];
-    [self.homeAppView addSubview:collectionView];
+    self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, kFBaseWidth, 300-44) collectionViewLayout:layout];
+//    self.collectionView = collectionView;
+    self.collectionView.delegate = self;
+    self.collectionView.dataSource = self;
+    self.collectionView.backgroundColor = [UIColor whiteColor];
+    [self.homeAppView addSubview:self.collectionView];
     
-    [collectionView registerNib:[UINib nibWithNibName:@"CategoryHomeShowAppCell" bundle:nil] forCellWithReuseIdentifier:cellId];
+    [self.collectionView registerNib:[UINib nibWithNibName:@"CategoryHomeShowAppCell" bundle:nil] forCellWithReuseIdentifier:cellId];
 }
 
 #pragma mark UICollectionViewDataSource
@@ -72,9 +73,10 @@ static NSString *const cellId = @"ShowHomeAppView";
     cell.delegate = self;
     cell.indexPath = indexPath;
 //    [cell addGestureRecognizer:longPress];
+    
     CategoryModel *model = self.homeAppArray[indexPath.row];
-    cell.appTitle.text = [NSString stringWithFormat:@"%@",model.title];
-    NSLog(@"model.title--------%@",model.title);
+    cell.appTitle.text = model.title;//[NSString stringWithFormat:@"%@",model.title];
+//    NSLog(@"model.title--------%@",model.title);
     return cell;
 }
 
@@ -164,14 +166,39 @@ static NSString *const cellId = @"ShowHomeAppView";
 //    }
 //}
 
-- (void)setUpCategoryHomeShowAppCellWithDeleteApp:(CategoryHomeShowAppCell *)deleteApp{
+- (void)setUpCategoryHomeShowAppCellWithDeleteApp:(CategoryHomeShowAppCell *)deleteApp event:(id)event{
 //    id objc = [self.homeAppArray objectAtIndex:deleteApp.indexPath.row];
 //    //从资源数组中移除该数据
 //    [self.homeAppArray removeObject:objc];
 //    [self.collectionView reloadData];
-    if ([_delegate respondsToSelector:@selector(setUpCategoryShowHomeAppViewWithDeleteApp:)]) {
-        [_delegate setUpCategoryShowHomeAppViewWithDeleteApp:self];
+//    if ([_delegate respondsToSelector:@selector(setUpCategoryShowHomeAppViewWithDeleteApp:)]) {
+//        [_delegate setUpCategoryShowHomeAppViewWithDeleteApp:deleteApp];
+//    }
+    NSLog(@"========%@",event);
+    if ([_delegate respondsToSelector:@selector(setUpCategoryShowHomeAppViewWithDeleteApp: event:)]) {
+        [_delegate setUpCategoryShowHomeAppViewWithDeleteApp:self event:event];
     }
 }
+
+////处于编辑状态 代理方法
+//- (void)didChangeEditState:(BOOL)inEditState
+//{
+//    self.inEditState = inEditState;
+//    //    self.rightBtn.selected = inEditState;
+//    for (CategoryHomeShowAppCell *cell in self.collectionView.visibleCells) {
+//        //        NSLog(@"======%@",cell.appTitle.text);
+//        cell.inEditState = inEditState;
+//    }
+//}
+//
+////改变数据源中model的位置
+//- (void)moveItemAtIndexPath:(NSIndexPath *)formPath toIndexPath:(NSIndexPath *)toPath{
+//    CategoryModel *model = self.showHomeAppView.homeAppArray[formPath.row];
+//    //先把移动的这个model移除
+//    [self.showHomeAppView.homeAppArray removeObject:model];
+//    //再把这个移动的model插入到相应的位置
+//    [self.showHomeAppView.homeAppArray insertObject:model atIndex:toPath.row];
+//}
+
 
 @end

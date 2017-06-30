@@ -39,7 +39,7 @@
                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         </state>
                         <connections>
-                            <action selector="deleteApp" destination="gTV-IL-0wX" eventType="touchUpInside" id="bgn-VJ-doY"/>
+                            <action selector="deleteAppWithSender:forEvent:" destination="gTV-IL-0wX" eventType="touchUpInside" id="yk8-bA-oTT"/>
                         </connections>
                     </button>
                 </subviews>
@@ -62,7 +62,7 @@
                 <outlet property="appTitle" destination="yQj-jU-Vj4" id="f6R-fh-hrM"/>
                 <outlet property="delegateApp" destination="fGc-5C-iKA" id="k3l-dS-Hji"/>
             </connections>
-            <point key="canvasLocation" x="39.5" y="-99.5"/>
+            <point key="canvasLocation" x="-207" y="-21"/>
         </collectionViewCell>
     </objects>
     <resources>

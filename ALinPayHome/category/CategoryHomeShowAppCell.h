@@ -12,7 +12,8 @@
 @class CategoryHomeShowAppCell;
 @protocol CategoryHomeShowAppCellDelegate <NSObject>
 @optional
-- (void)setUpCategoryHomeShowAppCellWithDeleteApp:(CategoryHomeShowAppCell *)deleteApp;
+- (void)setUpCategoryHomeShowAppCellWithDeleteApp:(CategoryHomeShowAppCell *)deleteApp event:(id)event;
+- (void)setUpCategoryShowAppCellWithDeleteApp:(CategoryHomeShowAppCell *)deleteApp event:(id)event;
 @end
 
 @interface CategoryHomeShowAppCell : UICollectionViewCell
@@ -27,13 +28,8 @@
 
 @property (nonatomic, assign) BOOL inEditState; //是否处于编辑状态
 
-- (void)setModel:(CategoryModel *)model indexPaht:(NSIndexPath *)indexPath exist:(BOOL)exist;
-
 - (void)setDataAry:(NSMutableArray *)dataAry groupAry:(NSMutableArray *)groupAry indexPath:(NSIndexPath *)indexPath;
 
 @property (nonatomic, strong) UILabel *messageLabel;
-
-//- (void)addMeaageLabel;
-
 
 @end
