@@ -19,14 +19,15 @@
 #import "CategoryCollectionViewLayout.h"
 #import "CategoryModel.h"
 
+
+
 @interface CategoryVC ()<UICollectionViewDelegate,
-                        UICollectionViewDataSource,
-                        CategoryHomeAppViewDelegate,
-                        GategroyShowNavViewDelegate,
-                        GategroyNavViewDelegate,
-//                        CategoryCollectionViewLayoutDelegate,
-                        CategoryShowHomeAppViewDelegate,
-                        CategoryHomeShowAppCellDelegate>
+UICollectionViewDataSource,
+CategoryHomeAppViewDelegate,
+GategroyShowNavViewDelegate,
+GategroyNavViewDelegate,
+CategoryShowHomeAppViewDelegate,
+CategoryHomeShowAppCellDelegate>
 {
     CGFloat showHomeAppViewH;
     CGFloat appCollectionViewH;
@@ -88,7 +89,7 @@ static NSString *const footerId = @"CollectionReusableFooterView";
         [self.homeDataArray addObject:model];
         
     }
-    for (int i = 0; i < 5; i++) {
+    for (int i = 0; i < 6; i++) {
         CategoryModel *model = [[CategoryModel alloc] init];
         model.title = [NSString stringWithFormat:@"生活%@", @(i)];
         [self.groupArray addObject:model];
@@ -120,14 +121,14 @@ static NSString *const footerId = @"CollectionReusableFooterView";
     
     self.showHomeAppView = [CategoryShowHomeAppView createWithXib];
     self.showHomeAppView.homeAppArray = self.groupArray;
-    [self setUphomeFunctionArrayCount:self.showHomeAppView.homeAppArray.count];
+    //    [self setUphomeFunctionArrayCount:self.showHomeAppView.homeAppArray.count];
     [self.categoryScrollView addSubview:self.showHomeAppView ];
     self.showHomeAppView.alpha = 0;
     self.showHomeAppView.delegate = self;
     
     self.layout = [[CategoryCollectionViewLayout alloc]init];
     CGFloat width = (kFBaseWidth - 80) / 4;
-//    self.layout.delegate = self;
+    //    self.layout.delegate = self;
     //设置每个图片的大小
     self.layout.itemSize = CGSizeMake(width, width);
     //设置滚动方向的间距
@@ -140,23 +141,15 @@ static NSString *const footerId = @"CollectionReusableFooterView";
     self.layout.scrollDirection = UICollectionViewScrollDirectionVertical;
     
     self.appCollectionView.backgroundColor = [UIColor whiteColor];
-    // 行数 * 单个app的高度 * 组数
-    CGFloat number;
-    if ((self.homeDataArray.count % 4) > 0) {
-        number = self.homeDataArray.count / 4 + 1;
-    }else{
-        number = self.homeDataArray.count / 4;
-    }
-    CGFloat appH = (number * (homeAppBackViewH / 3) + collectionReusableViewH)  * self.homeDataArray.count;
-    
-    appCollectionViewH = appH + (homeAppViewH+spacing);
     self.appCollectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, homeAppViewH+spacing, kFBaseWidth, appCollectionViewH) collectionViewLayout:self.layout];
-    
-    self.categoryScrollView.contentSize = CGSizeMake(0, appCollectionViewH);
     [self.categoryScrollView addSubview:self.appCollectionView];
     self.appCollectionView.backgroundColor = [UIColor whiteColor];
     self.appCollectionView.delegate = self;
     self.appCollectionView.dataSource = self;
+    CGFloat appCollectionH = self.appCollectionView.collectionViewLayout.collectionViewContentSize.height;
+    appCollectionViewH = appCollectionH + (homeAppViewH+spacing);
+    self.appCollectionView.frame = CGRectMake(0, homeAppViewH+spacing, kFBaseWidth, appCollectionViewH);
+    self.categoryScrollView.contentSize = CGSizeMake(0, appCollectionViewH);
     
     [self.appCollectionView  registerNib:[UINib nibWithNibName:NSStringFromClass([CategoryHomeShowAppCell class]) bundle:nil] forCellWithReuseIdentifier:cellId];
     [self.appCollectionView registerNib:[UINib nibWithNibName:NSStringFromClass([CollectionReusableHeaderView class]) bundle:nil] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:headerId];
@@ -200,7 +193,7 @@ static NSString *const footerId = @"CollectionReusableFooterView";
 - (void)showSubView:(BOOL)show{
     if (show) {
         [self setUpInteractivePopGestureRecognizerEnabled:YES scrollEnabled:NO];
-//        [self.appCollectionView selectItemAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:NO scrollPosition:UICollectionViewScrollPositionTop];
+        //        [self.appCollectionView selectItemAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:NO scrollPosition:UICollectionViewScrollPositionTop];
         
         [UIView animateWithDuration:0.3 animations:^{
             self.navView.alpha = 1;
@@ -235,11 +228,7 @@ static NSString *const footerId = @"CollectionReusableFooterView";
             CGRect newFrame = self.homeAppView.editApplication.frame;
             newFrame.origin.y = homeAppViewH/2;
             self.homeAppView.editApplication.frame = newFrame;
-            
-            newFrame = self.appCollectionView.frame;
-            newFrame.origin.y = showHomeAppViewH+spacing;
-            newFrame.size.height = kFBaseHeight -(navViewH+spacing)-homeAppBackViewH;
-            self.appCollectionView.frame = newFrame;
+            [self setUphomeFunctionWithFrame];
         }];
     }
 }
@@ -257,33 +246,16 @@ static NSString *const footerId = @"CollectionReusableFooterView";
     }
 }
 
-- (void)setUphomeFunctionArrayCount:(NSInteger)count{
-    if ( count > 8) {
-        showHomeAppViewH = homeAppBackViewH;
-    }else if (count > 4 & count <= 8){
-        showHomeAppViewH = homeAppBackViewH * 2 / 3;
-    }else{
-        showHomeAppViewH = homeAppBackViewH/3;
-    }
-    self.showHomeAppView.frame = CGRectMake(0, 0, kFBaseWidth, showHomeAppViewH);
+- (void)setUphomeFunctionWithFrame{
+    
+    showHomeAppViewH = self.showHomeAppView.collectionView.collectionViewLayout.collectionViewContentSize.height;
+    if ( self.groupArray.count < 4) showHomeAppViewH = 90;
+    
+    CGRect newFrame = self.appCollectionView.frame;
+    newFrame.origin.y = showHomeAppViewH + 44;
+    newFrame.size.height = kFBaseHeight - (navViewH+spacing) - newFrame.origin.y;
+    self.appCollectionView.frame = newFrame;
 }
-
-////处于编辑状态 代理方法
-//- (void)didChangeEditState:(BOOL)inEditState{
-//    self.inEditState = inEditState;
-//    for (CategoryHomeShowAppCell *cell in self.appCollectionView.visibleCells) {
-//        cell.inEditState = inEditState;
-//    }
-//}
-//
-////改变数据源中model的位置
-//- (void)moveItemAtIndexPath:(NSIndexPath *)formPath toIndexPath:(NSIndexPath *)toPath{
-//    CategoryModel *model = self.homeDataArray[formPath.row];
-//    //先把移动的这个model移除
-//    [self.homeDataArray removeObject:model];
-//    //再把这个移动的model插入到相应的位置
-//    [self.homeDataArray insertObject:model atIndex:toPath.row];
-//}
 
 #pragma mark UICollectionViewDataSource
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
@@ -342,27 +314,36 @@ static NSString *const footerId = @"CollectionReusableFooterView";
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.showHomeAppView.collectionView reloadData];
             [self.appCollectionView reloadData];
+            [UIView animateWithDuration:0.3 animations:^{
+                [self setUphomeFunctionWithFrame];
+            }];
         });
     }];
 }
 
 // 添加
 - (void)setUpCategoryShowAppCellWithDeleteApp:(CategoryHomeShowAppCell *)deleteApp event:(id)event{
-    NSSet *touches = [event allTouches];
-    UITouch *touch = [touches anyObject];
-    CGPoint currentPoint = [touch locationInView:self.appCollectionView];
-    NSIndexPath *indexPath = [self.appCollectionView indexPathForItemAtPoint:currentPoint];
-    [self.showHomeAppView.homeAppArray addObject:self.homeDataArray[indexPath.row]];
-    NSIndexPath *newIndexPath = [NSIndexPath indexPathForRow:self.showHomeAppView.homeAppArray.count - 1 inSection:0];
-    [self.showHomeAppView.collectionView performBatchUpdates:^{
-        [self.showHomeAppView.collectionView insertItemsAtIndexPaths:@[newIndexPath]];
-    } completion:^(BOOL finished) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self.showHomeAppView.collectionView reloadData];
-            [self.appCollectionView reloadData];
-        });
-    }];
+    if (self.showHomeAppView.homeAppArray.count >= 11){
+        NSLog(@"首页最多添加11个应用");
+    }else{
+        NSSet *touches = [event allTouches];
+        UITouch *touch = [touches anyObject];
+        CGPoint currentPoint = [touch locationInView:self.appCollectionView];
+        NSIndexPath *indexPath = [self.appCollectionView indexPathForItemAtPoint:currentPoint];
+        [self.showHomeAppView.homeAppArray addObject:self.homeDataArray[indexPath.row]];
+        NSIndexPath *newIndexPath = [NSIndexPath indexPathForRow:self.showHomeAppView.homeAppArray.count - 1 inSection:0];
+        [self.showHomeAppView.collectionView performBatchUpdates:^{
+            [self.showHomeAppView.collectionView insertItemsAtIndexPaths:@[newIndexPath]];
+        } completion:^(BOOL finished) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.showHomeAppView.collectionView reloadData];
+                [self.appCollectionView reloadData];
+                [UIView animateWithDuration:0.3 animations:^{
+                    [self setUphomeFunctionWithFrame];
+                }];
+            });
+        }];
+    }
 }
-
 
 @end
