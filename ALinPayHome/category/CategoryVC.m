@@ -22,12 +22,12 @@
 
 
 @interface CategoryVC ()<UICollectionViewDelegate,
-UICollectionViewDataSource,
-CategoryHomeAppViewDelegate,
-GategroyShowNavViewDelegate,
-GategroyNavViewDelegate,
-CategoryShowHomeAppViewDelegate,
-CategoryHomeShowAppCellDelegate>
+                        UICollectionViewDataSource,
+                        CategoryHomeAppViewDelegate,
+                        GategroyShowNavViewDelegate,
+                        GategroyNavViewDelegate,
+                        CategoryShowHomeAppViewDelegate,
+                        CategoryHomeShowAppCellDelegate>
 {
     CGFloat showHomeAppViewH;
     CGFloat appCollectionViewH;
@@ -50,7 +50,6 @@ CategoryHomeShowAppCellDelegate>
 
 const CGFloat navViewH = 64;
 const CGFloat homeAppViewH = 44;
-const CGFloat homeAppBackViewH = 300;
 const CGFloat spacing = 8;
 const CGFloat collectionReusableViewH = 40;
 
