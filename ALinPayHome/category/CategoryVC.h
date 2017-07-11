@@ -7,7 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-
+@class CategoryVC;
+@protocol CategoryDelegate <NSObject>
+@optional
+- (void)setUpMoreCategoryWithMoreArray:(CategoryVC *)more;
+@end
 @interface CategoryVC : UIViewController
-
+@property (nonatomic, weak) id<CategoryDelegate> delegate;
+@property (nonatomic, strong) NSMutableArray *groupArray;
 @end

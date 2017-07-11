@@ -11,7 +11,7 @@
 @interface HomeFunction : UIView
 
 @property (nonatomic, strong) void (^moreCategory)();
-
+@property (nonatomic, strong) UICollectionView *collectionView;
 @property (nonatomic, strong) NSMutableArray *homeFunctionArray;
 
 @end

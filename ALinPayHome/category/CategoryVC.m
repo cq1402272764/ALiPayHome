@@ -33,7 +33,7 @@
     CGFloat appCollectionViewH;
 }
 @property (nonatomic, strong) NSMutableArray *homeDataArray;
-@property (nonatomic, strong) NSMutableArray *groupArray;
+
 
 @property (nonatomic, strong) UIScrollView *categoryScrollView;
 @property (nonatomic, strong) CategoryShowHomeAppView *showHomeAppView;
@@ -186,6 +186,9 @@ static NSString *const footerId = @"CollectionReusableFooterView";
 #pragma mark GategroyNavViewDelegate
 // 返回
 - (void)setUpGategroyNavViewPopHomeVC{
+    if ([_delegate respondsToSelector:@selector(setUpMoreCategoryWithMoreArray:)]) {
+        [_delegate setUpMoreCategoryWithMoreArray:self];
+    }
     [self.navigationController popViewControllerAnimated:YES];
 }
 

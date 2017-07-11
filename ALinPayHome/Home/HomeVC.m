@@ -16,7 +16,7 @@
 #import "CategoryVC.h"
 
 
-@interface HomeVC ()<UIScrollViewDelegate>
+@interface HomeVC ()<UIScrollViewDelegate,CategoryDelegate>
 {
     CGFloat singleAppHeaderViewHeight;
     CGFloat headerViewH;
@@ -72,6 +72,7 @@ const CGFloat classViewY = 64;
      headerViewH = functionHeaderViewHeight + singleAppHeaderViewHeight;
     appView.moreCategory = ^{
         CategoryVC *category = [[CategoryVC alloc] init];
+        category.delegate = self;
         [self.navigationController pushViewController:category animated:YES];
     };
     
@@ -181,5 +182,15 @@ const CGFloat classViewY = 64;
     self.appView.frame = CGRectMake(0, functionHeaderViewHeight, kFBaseWidth, singleAppHeaderViewHeight);
 }
 
+#define maek CategoryDelegate
+
+- (void)setUpMoreCategoryWithMoreArray:(CategoryVC *)more{
+    self.appView.homeFunctionArray = nil;
+    self.homeAppArray = nil;
+    self.appView.homeFunctionArray = more.groupArray;
+    self.homeAppArray = more.groupArray;
+    [self setUphomeFunctionArrayCount:self.homeAppArray.count];
+    [self.appView.collectionView reloadData];
+}
 
 @end

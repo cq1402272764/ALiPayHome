@@ -9,13 +9,13 @@
 #import "HomeFunction.h"
 #import "Macro.h"
 #import "HomeFunctionCell.h"
+#import "CategoryModel.h"
 
 @interface HomeFunction ()<UICollectionViewDelegate,UICollectionViewDataSource>
 {
     CGFloat singleAppHeaderViewHeight; 
 }
 @property (nonatomic, strong) UICollectionViewFlowLayout *layout;
-@property (nonatomic, strong) UICollectionView *collectionView;
 @end
 
 static NSString *cellId = @"HomeFunction";
@@ -26,8 +26,9 @@ static NSString *cellId = @"HomeFunction";
     if (_homeFunctionArray == nil) {
         _homeFunctionArray = [NSMutableArray array];
         for (int i = 1; i <= 7; i++) {
-            NSString *imageName = [NSString stringWithFormat:@"%d",i];
-            [_homeFunctionArray addObject:imageName];
+            CategoryModel *model = [[CategoryModel alloc] init];
+            model.title = [NSString stringWithFormat:@"支付宝%@", @(i)];
+            [_homeFunctionArray addObject:model];
         }
     }
     return _homeFunctionArray;
@@ -74,14 +75,16 @@ static NSString *cellId = @"HomeFunction";
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     
     HomeFunctionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:cellId forIndexPath:indexPath];
-    
+    CategoryModel *model = self.homeFunctionArray[indexPath.row];
     if (indexPath.row == (self.homeFunctionArray.count-1)) {
         cell.more.text = @"更多";
         cell.more.textColor = [UIColor redColor];
     }else{
-        cell.more.text = [NSString stringWithFormat:@"余额宝%@",self.homeFunctionArray[indexPath.row]];
+        cell.more.text = model.title;
+        cell.more.textColor = [UIColor blackColor];
     }
     return cell;
+
 }
 
 #pragma mark UICollectionViewDelegate
