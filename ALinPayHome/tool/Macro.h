@@ -18,4 +18,4 @@
 
 #define KFMainBackColor kFRGB(242, 242, 242);
 
-#define KFAppHeight 194
+#define KFAppHeight 230

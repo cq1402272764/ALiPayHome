@@ -58,11 +58,9 @@ static NSString *const headerId = @"CollectionReusableHeaderView";
 static NSString *const footerId = @"CollectionReusableFooterView";
 
 @implementation CategoryVC
-
 - (NSMutableArray *)homeDataArray{
     if (_homeDataArray == nil) {
         _homeDataArray = [NSMutableArray array];
-        
     }
     return _homeDataArray;
 }
@@ -120,7 +118,6 @@ static NSString *const footerId = @"CollectionReusableFooterView";
     
     self.showHomeAppView = [CategoryShowHomeAppView createWithXib];
     self.showHomeAppView.homeAppArray = self.groupArray;
-    //    [self setUphomeFunctionArrayCount:self.showHomeAppView.homeAppArray.count];
     [self.categoryScrollView addSubview:self.showHomeAppView ];
     self.showHomeAppView.alpha = 0;
     self.showHomeAppView.delegate = self;
@@ -179,6 +176,9 @@ static NSString *const footerId = @"CollectionReusableFooterView";
     self.inEditState = NO;
     [self.layout setInEditState:self.inEditState];
     self.appCollectionView.allowsSelection = YES;
+    if ([_delegate respondsToSelector:@selector(setUpMoreCategoryWithMoreArray:)]) {
+        [_delegate setUpMoreCategoryWithMoreArray:self];
+    }
     //此处可以调用网络请求，把排序完之后的传给服务端
     NSLog(@"点击了完成按钮");
 }
@@ -186,17 +186,13 @@ static NSString *const footerId = @"CollectionReusableFooterView";
 #pragma mark GategroyNavViewDelegate
 // 返回
 - (void)setUpGategroyNavViewPopHomeVC{
-    if ([_delegate respondsToSelector:@selector(setUpMoreCategoryWithMoreArray:)]) {
-        [_delegate setUpMoreCategoryWithMoreArray:self];
-    }
+    
     [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)showSubView:(BOOL)show{
     if (show) {
         [self setUpInteractivePopGestureRecognizerEnabled:YES scrollEnabled:NO];
-        //        [self.appCollectionView selectItemAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0] animated:NO scrollPosition:UICollectionViewScrollPositionTop];
-        
         [UIView animateWithDuration:0.3 animations:^{
             self.navView.alpha = 1;
             self.showNavView.alpha = 0;
@@ -294,7 +290,7 @@ static NSString *const footerId = @"CollectionReusableFooterView";
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section{
-    return CGSizeMake(kFBaseWidth, collectionReusableViewH);
+    return CGSizeMake(kFBaseWidth, 20);
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout referenceSizeForFooterInSection:(NSInteger)section{
@@ -347,5 +343,6 @@ static NSString *const footerId = @"CollectionReusableFooterView";
         }];
     }
 }
+
 
 @end

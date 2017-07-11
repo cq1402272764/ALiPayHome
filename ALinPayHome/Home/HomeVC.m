@@ -68,8 +68,6 @@ const CGFloat classViewY = 64;
     appView.backgroundColor = [UIColor whiteColor];
     self.homeAppArray = appView.homeFunctionArray;
     [self setUphomeFunctionArrayCount:self.homeAppArray.count];
-    self.appView.frame = CGRectMake(0, functionHeaderViewHeight, kFBaseWidth, singleAppHeaderViewHeight);
-     headerViewH = functionHeaderViewHeight + singleAppHeaderViewHeight;
     appView.moreCategory = ^{
         CategoryVC *category = [[CategoryVC alloc] init];
         category.delegate = self;
@@ -180,6 +178,7 @@ const CGFloat classViewY = 64;
         singleAppHeaderViewHeight = KFAppHeight/3;
     }
     self.appView.frame = CGRectMake(0, functionHeaderViewHeight, kFBaseWidth, singleAppHeaderViewHeight);
+    headerViewH = functionHeaderViewHeight + singleAppHeaderViewHeight;
 }
 
 #define maek CategoryDelegate
@@ -191,6 +190,18 @@ const CGFloat classViewY = 64;
     self.homeAppArray = more.groupArray;
     [self setUphomeFunctionArrayCount:self.homeAppArray.count];
     [self.appView.collectionView reloadData];
+    
+    CGRect newFrame = self.appView.collectionView.frame;
+    newFrame.size.height = singleAppHeaderViewHeight;
+    self.appView.collectionView.frame = newFrame;
+    
+    newFrame = self.headerView.frame;
+    newFrame.size.height = headerViewH;
+    self.headerView.frame = newFrame;
+    
+    newFrame = self.mainTableView.frame;
+    newFrame.origin.y = headerViewH;
+    self.mainTableView.frame = newFrame;
 }
 
 @end

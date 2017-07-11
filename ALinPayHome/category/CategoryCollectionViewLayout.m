@@ -63,8 +63,8 @@ static NSString *layoutObserver = @"CategoryCollectionViewLayout";
 
 #pragma mark - 手势动画
 - (void)longGesture:(UILongPressGestureRecognizer *)gesture{
-//    if (!self.inEditState)
-//        [self setInEditState:YES];
+    if (!self.inEditState)
+        [self setInEditState:YES];
     switch (gesture.state) {
         case UIGestureRecognizerStateBegan: {  //手势开始
             CGPoint location = [gesture locationInView:self.collectionView];
@@ -126,13 +126,13 @@ static NSString *layoutObserver = @"CategoryCollectionViewLayout";
 #pragma mark - 处于编辑状态
 
 - (void)setInEditState:(BOOL)inEditState{
-//    if (_inEditState != inEditState) {
+    if (_inEditState != inEditState) {
         //通过代理方法改变处于编辑状态的cell
         if (_delegate && [_delegate respondsToSelector:@selector(didChangeEditState:)]) {
             [_delegate didChangeEditState:inEditState];
         }
-//    }
-//    _inEditState = inEditState;
+    }
+    _inEditState = inEditState;
 }
 
 #pragma mark - 移除观察者
