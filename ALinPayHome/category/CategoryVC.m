@@ -19,8 +19,6 @@
 #import "CategoryCollectionViewLayout.h"
 #import "CategoryModel.h"
 
-
-
 @interface CategoryVC ()<UICollectionViewDelegate,
                         UICollectionViewDataSource,
                         CategoryHomeAppViewDelegate,

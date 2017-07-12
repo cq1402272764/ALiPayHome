@@ -201,6 +201,9 @@ const CGFloat classViewY = 64;
     
     newFrame = self.mainTableView.frame;
     newFrame.origin.y = headerViewH;
+    CGFloat mainTableViewH = self.mainTableView.homeDataArray.count * 200 + headerViewH;
+    newFrame.size.height = mainTableViewH;
+    self.mainScrollView.contentSize = CGSizeMake(0, mainTableViewH);
     self.mainTableView.frame = newFrame;
 }
 
