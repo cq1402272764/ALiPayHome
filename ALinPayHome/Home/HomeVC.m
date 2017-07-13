@@ -18,8 +18,8 @@
 
 @interface HomeVC ()<UIScrollViewDelegate,CategoryDelegate>
 {
-    CGFloat singleAppHeaderViewHeight;
-    CGFloat headerViewH;
+    CGFloat _singleAppHeaderViewHeight;
+    CGFloat _headerViewH;
 }
 
 @property (nonatomic, strong) UIScrollView *mainScrollView;
@@ -90,12 +90,12 @@ const CGFloat classViewY = 64;
     completeNavView.alpha = 0;
     
     self.mainScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, classViewY, kFBaseWidth, kFBaseHeight-classViewY)];
-    self.mainScrollView.scrollIndicatorInsets = UIEdgeInsetsMake(headerViewH, 0, 0, 0);
+    self.mainScrollView.scrollIndicatorInsets = UIEdgeInsetsMake(_headerViewH, 0, 0, 0);
     self.mainScrollView.delegate = self;
     [self.view addSubview:self.mainScrollView];
     
     // 顶部View
-    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kFBaseWidth, headerViewH)];
+    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, kFBaseWidth, _headerViewH)];
     self.headerView = headerView;
     headerView.backgroundColor = kFMainColor;
     
@@ -106,9 +106,9 @@ const CGFloat classViewY = 64;
     self.functionView = functionView;
     
     MainTableView *mainTableView = [[MainTableView alloc] init];
-    CGFloat mainTableViewH = mainTableView.homeDataArray.count * 200 + headerViewH;
+    CGFloat mainTableViewH = mainTableView.homeDataArray.count * 200 + _headerViewH;
     
-    mainTableView.frame = CGRectMake(0, headerViewH, kFBaseWidth, mainTableViewH);
+    mainTableView.frame = CGRectMake(0, _headerViewH, kFBaseWidth, mainTableViewH);
     
     self.mainScrollView.contentSize = CGSizeMake(0, mainTableViewH);
     
@@ -130,7 +130,7 @@ const CGFloat classViewY = 64;
         self.headerView.frame = newFrame;
         
         newFrame = self.mainTableView.frame;
-        newFrame.origin.y = y + headerViewH;
+        newFrame.origin.y = y + _headerViewH;
         self.mainTableView.frame = newFrame;
         
         //设置tableview的偏移量
@@ -171,14 +171,14 @@ const CGFloat classViewY = 64;
 
 - (void)setUphomeFunctionArrayCount:(NSInteger)count{
     if (count > 8) {
-        singleAppHeaderViewHeight = KFAppHeight;
+        _singleAppHeaderViewHeight = KFAppHeight;
     }else if (count > 4 & count <= 8){
-        singleAppHeaderViewHeight = KFAppHeight * 2 / 3;
+        _singleAppHeaderViewHeight = KFAppHeight * 2 / 3;
     }else{
-        singleAppHeaderViewHeight = KFAppHeight/3;
+        _singleAppHeaderViewHeight = KFAppHeight/3;
     }
-    self.appView.frame = CGRectMake(0, functionHeaderViewHeight, kFBaseWidth, singleAppHeaderViewHeight);
-    headerViewH = functionHeaderViewHeight + singleAppHeaderViewHeight;
+    self.appView.frame = CGRectMake(0, functionHeaderViewHeight, kFBaseWidth, _singleAppHeaderViewHeight);
+    _headerViewH = functionHeaderViewHeight + _singleAppHeaderViewHeight;
 }
 
 #define maek CategoryDelegate
@@ -192,20 +192,20 @@ const CGFloat classViewY = 64;
     [self.appView.collectionView reloadData];
     
     CGRect newFrame = self.appView.collectionView.frame;
-    newFrame.size.height = singleAppHeaderViewHeight;
+    newFrame.size.height = _singleAppHeaderViewHeight;
     self.appView.collectionView.frame = newFrame;
     
     newFrame = self.headerView.frame;
-    newFrame.size.height = headerViewH;
+    newFrame.size.height = _headerViewH;
     self.headerView.frame = newFrame;
     
     newFrame = self.mainTableView.frame;
-    newFrame.origin.y = headerViewH;
-    CGFloat mainTableViewH = self.mainTableView.homeDataArray.count * 200 + headerViewH;
+    newFrame.origin.y = _headerViewH;
+    CGFloat mainTableViewH = self.mainTableView.homeDataArray.count * 200 + _headerViewH;
     newFrame.size.height = mainTableViewH;
     self.mainScrollView.contentSize = CGSizeMake(0, mainTableViewH);
     self.mainTableView.frame = newFrame;
-    self.mainScrollView.scrollIndicatorInsets = UIEdgeInsetsMake(headerViewH, 0, 0, 0);
+    self.mainScrollView.scrollIndicatorInsets = UIEdgeInsetsMake(_headerViewH, 0, 0, 0);
 }
 
 @end

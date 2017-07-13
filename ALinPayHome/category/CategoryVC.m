@@ -27,8 +27,8 @@
                         CategoryShowHomeAppViewDelegate,
                         CategoryHomeShowAppCellDelegate>
 {
-    CGFloat showHomeAppViewH;
-    CGFloat appCollectionViewH;
+    CGFloat _showHomeAppViewH;
+    CGFloat _appCollectionViewH;
 }
 @property (nonatomic, strong) NSMutableArray *homeDataArray;
 
@@ -135,15 +135,15 @@ static NSString *const footerId = @"CollectionReusableFooterView";
     self.layout.scrollDirection = UICollectionViewScrollDirectionVertical;
     
     self.appCollectionView.backgroundColor = [UIColor whiteColor];
-    self.appCollectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, homeAppViewH+spacing, kFBaseWidth, appCollectionViewH) collectionViewLayout:self.layout];
+    self.appCollectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, homeAppViewH+spacing, kFBaseWidth, _appCollectionViewH) collectionViewLayout:self.layout];
     [self.categoryScrollView addSubview:self.appCollectionView];
     self.appCollectionView.backgroundColor = [UIColor whiteColor];
     self.appCollectionView.delegate = self;
     self.appCollectionView.dataSource = self;
     CGFloat appCollectionH = self.appCollectionView.collectionViewLayout.collectionViewContentSize.height;
-    appCollectionViewH = appCollectionH + (homeAppViewH+spacing);
-    self.appCollectionView.frame = CGRectMake(0, homeAppViewH+spacing, kFBaseWidth, appCollectionViewH);
-    self.categoryScrollView.contentSize = CGSizeMake(0, appCollectionViewH);
+    _appCollectionViewH = appCollectionH + (homeAppViewH+spacing);
+    self.appCollectionView.frame = CGRectMake(0, homeAppViewH+spacing, kFBaseWidth, _appCollectionViewH);
+    self.categoryScrollView.contentSize = CGSizeMake(0, _appCollectionViewH);
     
     [self.appCollectionView  registerNib:[UINib nibWithNibName:NSStringFromClass([CategoryHomeShowAppCell class]) bundle:nil] forCellWithReuseIdentifier:cellId];
     [self.appCollectionView registerNib:[UINib nibWithNibName:NSStringFromClass([CollectionReusableHeaderView class]) bundle:nil] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:headerId];
@@ -209,7 +209,7 @@ static NSString *const footerId = @"CollectionReusableFooterView";
             [UIView animateWithDuration:0.3 animations:^{
                 CGRect newFrame = self.appCollectionView.frame;
                 newFrame.origin.y = homeAppViewH+spacing+spacing;
-                newFrame.size.height = appCollectionViewH;
+                newFrame.size.height = _appCollectionViewH;
                 self.appCollectionView.frame = newFrame;
             }];
         });
@@ -244,11 +244,11 @@ static NSString *const footerId = @"CollectionReusableFooterView";
 
 - (void)setUphomeFunctionWithFrame{
     
-    showHomeAppViewH = self.showHomeAppView.collectionView.collectionViewLayout.collectionViewContentSize.height;
-    if ( self.groupArray.count < 4) showHomeAppViewH = 90;
+    _showHomeAppViewH = self.showHomeAppView.collectionView.collectionViewLayout.collectionViewContentSize.height;
+    if ( self.groupArray.count < 4) _showHomeAppViewH = 90;
     
     CGRect newFrame = self.appCollectionView.frame;
-    newFrame.origin.y = showHomeAppViewH + 44;
+    newFrame.origin.y = _showHomeAppViewH + 44;
     newFrame.size.height = kFBaseHeight - (navViewH+spacing) - newFrame.origin.y;
     self.appCollectionView.frame = newFrame;
 }

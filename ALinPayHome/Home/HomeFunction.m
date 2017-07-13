@@ -13,7 +13,7 @@
 
 @interface HomeFunction ()<UICollectionViewDelegate,UICollectionViewDataSource>
 {
-    CGFloat singleAppHeaderViewHeight; 
+    CGFloat _singleAppHeaderViewHeight; 
 }
 @property (nonatomic, strong) UICollectionViewFlowLayout *layout;
 @end
@@ -47,15 +47,15 @@ static NSString *cellId = @"HomeFunction";
         }
         NSInteger count = self.homeFunctionArray.count;
         if (count > 8) {
-            singleAppHeaderViewHeight = KFAppHeight;
+            _singleAppHeaderViewHeight = KFAppHeight;
         }else if (count > 4 & count <= 8){
-            singleAppHeaderViewHeight = KFAppHeight * 2 / 3;
+            _singleAppHeaderViewHeight = KFAppHeight * 2 / 3;
         }else{
-            singleAppHeaderViewHeight = KFAppHeight/3;
+            _singleAppHeaderViewHeight = KFAppHeight/3;
         }
-        self.collectionView.frame = CGRectMake(0, 0, kFBaseWidth, singleAppHeaderViewHeight);
+        self.collectionView.frame = CGRectMake(0, 0, kFBaseWidth, _singleAppHeaderViewHeight);
         if (self.collectionView == nil) {
-            self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, kFBaseWidth, singleAppHeaderViewHeight) collectionViewLayout:self.layout];
+            self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, kFBaseWidth, _singleAppHeaderViewHeight) collectionViewLayout:self.layout];
             self.collectionView .delegate = self;
             self.collectionView .dataSource = self;
             self.collectionView .backgroundColor = [UIColor whiteColor];
