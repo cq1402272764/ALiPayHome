@@ -205,6 +205,7 @@ const CGFloat classViewY = 64;
     newFrame.size.height = mainTableViewH;
     self.mainScrollView.contentSize = CGSizeMake(0, mainTableViewH);
     self.mainTableView.frame = newFrame;
+    self.mainScrollView.scrollIndicatorInsets = UIEdgeInsetsMake(headerViewH, 0, 0, 0);
 }
 
 @end
