@@ -25,7 +25,8 @@
                         GategroyShowNavViewDelegate,
                         GategroyNavViewDelegate,
                         CategoryShowHomeAppViewDelegate,
-                        CategoryHomeShowAppCellDelegate>
+                        CategoryHomeShowAppCellDelegate,
+                        CategoryCollectionViewLayoutDelegate>
 {
     CGFloat _showHomeAppViewH;
     CGFloat _appCollectionViewH;
@@ -92,6 +93,51 @@ static NSString *const footerId = @"CollectionReusableFooterView";
     }
 }
 
+- (UIScrollView *)categoryScrollView{
+    if (_categoryScrollView == nil) {
+        self.categoryScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, navViewH, kFBaseWidth, kFBaseHeight-navViewH)];
+        self.categoryScrollView.scrollIndicatorInsets = UIEdgeInsetsMake(0, 0, 0, 0);
+        [self.view addSubview:self.categoryScrollView];
+        self.categoryScrollView.backgroundColor = [UIColor whiteColor];
+    }
+    return _categoryScrollView;
+}
+
+- (CategoryCollectionViewLayout *)layout{
+    if (_layout == nil) {
+        self.layout = [[CategoryCollectionViewLayout alloc]init];
+        CGFloat width = (kFBaseWidth - 80) / 4;
+        self.layout.delegate = self;
+        //设置每个图片的大小
+        self.layout.itemSize = CGSizeMake(width, width);
+        //设置滚动方向的间距
+        self.layout.minimumLineSpacing = 10;
+        //设置上方的反方向
+        self.layout.minimumInteritemSpacing = 0;
+        //设置collectionView整体的上下左右之间的间距
+        self.layout.sectionInset = UIEdgeInsetsMake(15, 20, 20, 20);
+        //设置滚动方向
+        self.layout.scrollDirection = UICollectionViewScrollDirectionVertical;
+    }
+    return _layout;
+}
+
+- (UICollectionView *)appCollectionView{
+    if (_appCollectionView == nil) {
+        self.appCollectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, homeAppViewH+spacing, kFBaseWidth, _appCollectionViewH) collectionViewLayout:self.layout];
+        [self.categoryScrollView addSubview:self.appCollectionView];
+        self.appCollectionView.backgroundColor = [UIColor whiteColor];
+        self.appCollectionView.delegate = self;
+        self.appCollectionView.dataSource = self;
+        CGFloat appCollectionH = self.appCollectionView.collectionViewLayout.collectionViewContentSize.height;
+        _appCollectionViewH = appCollectionH + (homeAppViewH+spacing);
+        self.appCollectionView.frame = CGRectMake(0, homeAppViewH+spacing, kFBaseWidth, _appCollectionViewH);
+        self.categoryScrollView.contentSize = CGSizeMake(0, _appCollectionViewH);
+    }
+    return _appCollectionView;
+}
+
+
 - (void)subView{
     self.navView = [GategroyNavView createWithXib];
     self.navView.frame = CGRectMake(0, 0, kFBaseWidth, navViewH);
@@ -104,11 +150,6 @@ static NSString *const footerId = @"CollectionReusableFooterView";
     [self.view addSubview:self.showNavView];
     self.showNavView.delegate = self;
     
-    self.categoryScrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, navViewH, kFBaseWidth, kFBaseHeight-navViewH)];
-    self.categoryScrollView.scrollIndicatorInsets = UIEdgeInsetsMake(0, 0, 0, 0);
-    [self.view addSubview:self.categoryScrollView];
-    self.categoryScrollView.backgroundColor = [UIColor whiteColor];
-    
     self.homeAppView = [CategoryHomeAppView createWithXib];
     self.homeAppView.frame= CGRectMake(0, 0, kFBaseWidth, homeAppViewH);
     [self.categoryScrollView addSubview:self.homeAppView];
@@ -120,30 +161,6 @@ static NSString *const footerId = @"CollectionReusableFooterView";
     self.showHomeAppView.alpha = 0;
     self.showHomeAppView.delegate = self;
     
-    self.layout = [[CategoryCollectionViewLayout alloc]init];
-    CGFloat width = (kFBaseWidth - 80) / 4;
-    //    self.layout.delegate = self;
-    //设置每个图片的大小
-    self.layout.itemSize = CGSizeMake(width, width);
-    //设置滚动方向的间距
-    self.layout.minimumLineSpacing = 10;
-    //设置上方的反方向
-    self.layout.minimumInteritemSpacing = 0;
-    //设置collectionView整体的上下左右之间的间距
-    self.layout.sectionInset = UIEdgeInsetsMake(15, 20, 20, 20);
-    //设置滚动方向
-    self.layout.scrollDirection = UICollectionViewScrollDirectionVertical;
-    
-    self.appCollectionView.backgroundColor = [UIColor whiteColor];
-    self.appCollectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, homeAppViewH+spacing, kFBaseWidth, _appCollectionViewH) collectionViewLayout:self.layout];
-    [self.categoryScrollView addSubview:self.appCollectionView];
-    self.appCollectionView.backgroundColor = [UIColor whiteColor];
-    self.appCollectionView.delegate = self;
-    self.appCollectionView.dataSource = self;
-    CGFloat appCollectionH = self.appCollectionView.collectionViewLayout.collectionViewContentSize.height;
-    _appCollectionViewH = appCollectionH + (homeAppViewH+spacing);
-    self.appCollectionView.frame = CGRectMake(0, homeAppViewH+spacing, kFBaseWidth, _appCollectionViewH);
-    self.categoryScrollView.contentSize = CGSizeMake(0, _appCollectionViewH);
     
     [self.appCollectionView  registerNib:[UINib nibWithNibName:NSStringFromClass([CategoryHomeShowAppCell class]) bundle:nil] forCellWithReuseIdentifier:cellId];
     [self.appCollectionView registerNib:[UINib nibWithNibName:NSStringFromClass([CollectionReusableHeaderView class]) bundle:nil] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:headerId];
@@ -342,5 +359,19 @@ static NSString *const footerId = @"CollectionReusableFooterView";
     }
 }
 
+#define mark CategoryCollectionViewLayoutDelegate
+
+- (void)didChangeEditState:(BOOL)inEditState{
+    self.inEditState = inEditState;
+    for (CategoryHomeShowAppCell *cell in self.appCollectionView.visibleCells) {
+        cell.inEditState = inEditState;
+    }
+}
+
+- (void)moveItemAtIndexPath:(NSIndexPath *)formPath toIndexPath:(NSIndexPath *)toPath{
+    CategoryModel *model = self.homeDataArray[formPath.row];
+    [self.homeDataArray removeObject:model];
+    [self.homeDataArray insertObject:model atIndex:toPath.row];
+}
 
 @end
