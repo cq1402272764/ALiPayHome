@@ -190,6 +190,9 @@ const CGFloat classViewY = 64;
     self.homeAppArray = nil;
     self.appView.homeFunctionArray = more.groupArray;
     self.homeAppArray = more.groupArray;
+    
+    [self.homeAppArray addObject:more.groupArray.lastObject];
+    
     [self setUphomeFunctionArrayCount:self.homeAppArray.count];
     [self.appView.collectionView reloadData];
     
