@@ -68,7 +68,9 @@ const CGFloat classViewY = 64;
     appView.backgroundColor = [UIColor whiteColor];
     self.homeAppArray = appView.homeFunctionArray;
     [self setUphomeFunctionArrayCount:self.homeAppArray.count];
+    kWeakSelf(self);
     appView.moreCategory = ^{
+        kStrongSelf(self);
         CategoryVC *category = [[CategoryVC alloc] init];
         category.delegate = self;
         [self.navigationController pushViewController:category animated:YES];

@@ -19,3 +19,6 @@
 #define KFMainBackColor kFRGB(242, 242, 242);
 
 #define KFAppHeight 230
+
+#define kWeakSelf(type)   __weak typeof(type) weak##type = type;
+#define kStrongSelf(type) __strong typeof(type) type = weak##type;
