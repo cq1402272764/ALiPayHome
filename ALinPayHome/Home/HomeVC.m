@@ -191,7 +191,7 @@ const CGFloat classViewY = 64;
     self.appView.homeFunctionArray = more.groupArray;
     self.homeAppArray = more.groupArray;
     
-    [self.homeAppArray addObject:more.groupArray.lastObject];
+    [self.homeAppArray addObject:@"更多"];
     
     [self setUphomeFunctionArrayCount:self.homeAppArray.count];
     [self.appView.collectionView reloadData];
