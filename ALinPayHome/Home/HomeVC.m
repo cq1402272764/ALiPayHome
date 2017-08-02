@@ -183,7 +183,7 @@ const CGFloat classViewY = 64;
     _headerViewH = functionHeaderViewHeight + _singleAppHeaderViewHeight;
 }
 
-#define maek CategoryDelegate
+#pragma maek CategoryDelegate
 
 - (void)setUpMoreCategoryWithMoreArray:(CategoryVC *)more{
     self.appView.homeFunctionArray = nil;

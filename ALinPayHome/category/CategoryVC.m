@@ -394,7 +394,7 @@ static NSString *const footerId = @"CollectionReusableFooterView";
     self.groupArray = [tempArr mutableCopy];
 }
 
-#define mark CategoryCollectionViewLayoutDelegate
+#pragma mark CategoryCollectionViewLayoutDelegate
 
 - (void)didChangeEditState:(BOOL)inEditState{
     self.inEditState = inEditState;

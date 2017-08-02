@@ -14,8 +14,7 @@
 
 @interface CategoryShowHomeAppView ()<UICollectionViewDelegate,
                                     UICollectionViewDataSource,
-                                    CategoryHomeShowAppCellDelegate,
-                                    CategoryCollectionViewLayoutDelegate>
+                                    CategoryHomeShowAppCellDelegate>
 
 @property (weak, nonatomic) IBOutlet UIView *homeAppView;
 @property (strong, nonatomic) CategoryCollectionViewLayout *layout;
