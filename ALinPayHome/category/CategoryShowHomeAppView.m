@@ -14,7 +14,7 @@
 
 @interface CategoryShowHomeAppView ()<UICollectionViewDelegate,
                                     UICollectionViewDataSource,
-                                    CategoryHomeShowAppCellDelegate>
+                                    CategoryHomeShowAppCellDelegate,UIGestureRecognizerDelegate>
 
 @property (weak, nonatomic) IBOutlet UIView *homeAppView;
 @property (strong, nonatomic) CategoryCollectionViewLayout *layout;
@@ -33,15 +33,15 @@ static NSString *const cellId = @"ShowHomeAppView";
 - (CategoryCollectionViewLayout *)layout{
     if (_layout == nil) {
         self.layout = [[CategoryCollectionViewLayout alloc]init];
-        CGFloat width = (kFBaseWidth - 80) / 4;
+        CGFloat width = (kFBaseWidth - 40) / 4;
         //设置每个图片的大小
-        self.layout.itemSize = CGSizeMake(width, width);
+        self.layout.itemSize = CGSizeMake(width, width-15);
         //设置滚动方向的间距
         self.layout.minimumLineSpacing = 10;
         //设置上方的反方向
         self.layout.minimumInteritemSpacing = 0;
         //设置collectionView整体的上下左右之间的间距
-        self.layout.sectionInset = UIEdgeInsetsMake(15, 20, 20, 20);
+        self.layout.sectionInset = UIEdgeInsetsMake(5, 10, 10, 10);
         //设置滚动方向
         self.layout.scrollDirection = UICollectionViewScrollDirectionVertical;
     }
@@ -53,12 +53,13 @@ static NSString *const cellId = @"ShowHomeAppView";
         self.collectionView = [[UICollectionView alloc] initWithFrame:CGRectMake(0, 0, kFBaseWidth, 300-44) collectionViewLayout:self.layout];
         self.collectionView.delegate = self;
         self.collectionView.dataSource = self;
+        self.collectionView.scrollEnabled = NO;
         self.collectionView.backgroundColor = [UIColor whiteColor];
         [self.homeAppView addSubview:self.collectionView];
         
         UILongPressGestureRecognizer *longPressGesture = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(longPressAction:)];
         longPressGesture.minimumPressDuration = 0.3f;
-        
+        longPressGesture.delegate = self;
         [_collectionView addGestureRecognizer:longPressGesture];
         
     }

@@ -99,6 +99,7 @@ static NSString *const footerId = @"CollectionReusableFooterView";
         self.categoryScrollView.scrollIndicatorInsets = UIEdgeInsetsMake(0, 0, 0, 0);
         [self.view addSubview:self.categoryScrollView];
         self.categoryScrollView.backgroundColor = [UIColor whiteColor];
+        self.categoryScrollView.showsVerticalScrollIndicator = NO;
     }
     return _categoryScrollView;
 }
@@ -106,16 +107,16 @@ static NSString *const footerId = @"CollectionReusableFooterView";
 - (CategoryCollectionViewLayout *)layout{
     if (_layout == nil) {
         self.layout = [[CategoryCollectionViewLayout alloc]init];
-        CGFloat width = (kFBaseWidth - 80) / 4;
+        CGFloat width = (kFBaseWidth - 40) / 4;
         self.layout.delegate = self;
         //设置每个图片的大小
-        self.layout.itemSize = CGSizeMake(width, width);
+        self.layout.itemSize = CGSizeMake(width, width-15);
         //设置滚动方向的间距
         self.layout.minimumLineSpacing = 10;
         //设置上方的反方向
         self.layout.minimumInteritemSpacing = 0;
         //设置collectionView整体的上下左右之间的间距
-        self.layout.sectionInset = UIEdgeInsetsMake(15, 20, 20, 20);
+        self.layout.sectionInset = UIEdgeInsetsMake(5, 10, 10, 10);
         //设置滚动方向
         self.layout.scrollDirection = UICollectionViewScrollDirectionVertical;
     }
@@ -129,6 +130,7 @@ static NSString *const footerId = @"CollectionReusableFooterView";
         self.appCollectionView.backgroundColor = [UIColor whiteColor];
         self.appCollectionView.delegate = self;
         self.appCollectionView.dataSource = self;
+        self.appCollectionView.showsVerticalScrollIndicator = NO;
         CGFloat appCollectionH = self.appCollectionView.collectionViewLayout.collectionViewContentSize.height;
         _appCollectionViewH = appCollectionH + (homeAppViewH+spacing);
         self.appCollectionView.frame = CGRectMake(0, homeAppViewH+spacing, kFBaseWidth, _appCollectionViewH);
