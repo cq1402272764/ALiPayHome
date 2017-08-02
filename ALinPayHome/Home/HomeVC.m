@@ -188,10 +188,11 @@ const CGFloat classViewY = 64;
 - (void)setUpMoreCategoryWithMoreArray:(CategoryVC *)more{
     self.appView.homeFunctionArray = nil;
     self.homeAppArray = nil;
-    self.appView.homeFunctionArray = more.groupArray;
-    self.homeAppArray = more.groupArray;
+    self.appView.homeFunctionArray = [more.groupArray mutableCopy];
+    self.homeAppArray = [more.groupArray mutableCopy];
     
-    [self.homeAppArray addObject:@"更多"];
+    [self.appView.homeFunctionArray addObject:[more.groupArray lastObject]];
+    [self.homeAppArray addObject:[more.groupArray lastObject]];
     
     [self setUphomeFunctionArrayCount:self.homeAppArray.count];
     [self.appView.collectionView reloadData];

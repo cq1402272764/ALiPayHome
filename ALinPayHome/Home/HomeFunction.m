@@ -30,7 +30,7 @@ static NSString *cellId = @"HomeFunction";
             model.title = [NSString stringWithFormat:@"支付宝%@", @(i)];
             [_homeFunctionArray addObject:model];
         }
-        [self.homeFunctionArray addObject:@"更多"];
+        [self.homeFunctionArray addObject:[self.homeFunctionArray lastObject]];
     }
     return _homeFunctionArray;
 }

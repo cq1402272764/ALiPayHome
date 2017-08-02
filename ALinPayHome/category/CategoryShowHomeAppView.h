@@ -13,6 +13,7 @@
 @protocol CategoryShowHomeAppViewDelegate <NSObject>
 @optional
 - (void)setUpCategoryShowHomeAppViewWithDeleteApp:(CategoryShowHomeAppView *)deleteApp event:(id)event;
+- (void)setUpCategoryShowHomeAppViewWithDragChangeItem:(CategoryShowHomeAppView *)Item index:(NSIndexPath *)index toIndexPath:(NSIndexPath *)toIndexPath;
 @end
 @interface CategoryShowHomeAppView : UIView
 @property (weak, nonatomic) id<CategoryShowHomeAppViewDelegate>delegate;

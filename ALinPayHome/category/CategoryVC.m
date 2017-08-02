@@ -315,23 +315,27 @@ static NSString *const footerId = @"CollectionReusableFooterView";
 //删除
 - (void)setUpCategoryShowHomeAppViewWithDeleteApp:(CategoryHomeShowAppCell *)deleteApp event:(id)event{
     // 获取点击button的位置
-    NSSet *touches = [event allTouches];
-    UITouch *touch = [touches anyObject];
-    CGPoint currentPoint = [touch locationInView:self.showHomeAppView.collectionView];
-    NSIndexPath *indexPath = [self.showHomeAppView.collectionView indexPathForItemAtPoint:currentPoint];
-    if (indexPath == nil) return;
-    [self.showHomeAppView.collectionView performBatchUpdates:^{
-        [self.showHomeAppView.collectionView deleteItemsAtIndexPaths:@[indexPath]];
-        [self.showHomeAppView.homeAppArray removeObjectAtIndex:indexPath.row];
-    } completion:^(BOOL finished) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self.showHomeAppView.collectionView reloadData];
-            [self.appCollectionView reloadData];
-            [UIView animateWithDuration:0.3 animations:^{
-                [self setUphomeFunctionWithFrame];
-            }];
-        });
-    }];
+    if (self.showHomeAppView.homeAppArray.count <= 3){
+        NSLog(@"首页最少添加3个应用");
+    }else{
+        NSSet *touches = [event allTouches];
+        UITouch *touch = [touches anyObject];
+        CGPoint currentPoint = [touch locationInView:self.showHomeAppView.collectionView];
+        NSIndexPath *indexPath = [self.showHomeAppView.collectionView indexPathForItemAtPoint:currentPoint];
+        if (indexPath == nil) return;
+        [self.showHomeAppView.collectionView performBatchUpdates:^{
+            [self.showHomeAppView.collectionView deleteItemsAtIndexPaths:@[indexPath]];
+            [self.showHomeAppView.homeAppArray removeObjectAtIndex:indexPath.row];
+        } completion:^(BOOL finished) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self.showHomeAppView.collectionView reloadData];
+                [self.appCollectionView reloadData];
+                [UIView animateWithDuration:0.3 animations:^{
+                    [self setUphomeFunctionWithFrame];
+                }];
+            });
+        }];
+    }
 }
 
 // 添加
@@ -357,6 +361,37 @@ static NSString *const footerId = @"CollectionReusableFooterView";
             });
         }];
     }
+}
+
+
+
+- (void)setUpCategoryShowHomeAppViewWithDragChangeItem:(CategoryShowHomeAppView *)Item index:(NSIndexPath *)index toIndexPath:(NSIndexPath *)toIndexPath{
+    BOOL canChange = self.showHomeAppView.homeAppArray.count > index.item && self.showHomeAppView.homeAppArray.count > toIndexPath.item;
+    if (canChange) {
+        [self handleDatasourceExchangeWithSourceIndexPath:index destinationIndexPath:toIndexPath];
+    }
+    
+}
+
+- (void)handleDatasourceExchangeWithSourceIndexPath:(NSIndexPath *)sourceIndexPath destinationIndexPath:(NSIndexPath *)destinationIndexPath{
+    
+    NSMutableArray *tempArr = [self.showHomeAppView.homeAppArray mutableCopy];
+    
+    NSInteger activeRange = destinationIndexPath.item - sourceIndexPath.item;
+    BOOL moveForward = activeRange > 0;
+    NSInteger originIndex = 0;
+    NSInteger targetIndex = 0;
+    
+    for (NSInteger i = 1; i <= labs(activeRange); i ++) {
+        
+        NSInteger moveDirection = moveForward?1:-1;
+        originIndex = sourceIndexPath.item + i*moveDirection;
+        targetIndex = originIndex  - 1*moveDirection;
+        
+        [tempArr exchangeObjectAtIndex:originIndex withObjectAtIndex:targetIndex];
+    }
+    self.showHomeAppView.homeAppArray = [tempArr mutableCopy];
+    self.groupArray = [tempArr mutableCopy];
 }
 
 #define mark CategoryCollectionViewLayoutDelegate
