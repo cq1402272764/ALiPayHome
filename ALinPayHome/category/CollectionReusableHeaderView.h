@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface CollectionReusableHeaderView : UICollectionReusableView
-
+@property (weak, nonatomic) IBOutlet UIView *intervalViews;
 @end

@@ -10,9 +10,6 @@
 
 @protocol CategoryCollectionViewLayoutDelegate <NSObject>
 
-// 更新数据源
-- (void)moveItemAtIndexPath:(NSIndexPath *)formPath toIndexPath:(NSIndexPath *)toPath;
-
 // 改变编辑状态
 - (void)didChangeEditState:(BOOL)inEditState;
 

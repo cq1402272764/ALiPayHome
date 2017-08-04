@@ -26,7 +26,14 @@ static NSString *const cellId = @"ShowHomeAppView";
 
 - (void)drawRect:(CGRect)rect{
     [super drawRect:rect];
-    
+    CAGradientLayer *gradient = [CAGradientLayer layer];
+    gradient.frame = self.coverViews.bounds;
+    gradient.colors = [NSArray arrayWithObjects:
+                       (id)[UIColor colorWithRed:150/255.0 green:150/255.0 blue:150/255.0 alpha:1.0].CGColor,
+                       (id)[UIColor colorWithRed:220/255.0 green:220/255.0 blue:220/255.0 alpha:0.7].CGColor,
+                       (id)[UIColor colorWithRed:255/255.0 green:255/255.0 blue:255/255.0 alpha:0.3].CGColor, nil];
+    [self.coverViews.layer addSublayer:gradient];
+
     [self.collectionView registerNib:[UINib nibWithNibName:NSStringFromClass([CategoryHomeShowAppCell class]) bundle:nil] forCellWithReuseIdentifier:cellId];
 }
 

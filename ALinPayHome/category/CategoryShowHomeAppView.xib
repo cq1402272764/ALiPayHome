@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="CategoryShowHomeAppView">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="290"/>
+            <rect key="frame" x="0.0" y="0.0" width="375" height="305"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="首页应用" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vFZ-wn-CaW">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="我的应用" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vFZ-wn-CaW">
                     <rect key="frame" x="10" y="0.0" width="60" height="44"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="44" id="VUs-d4-d4Z"/>
@@ -28,28 +28,19 @@
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="(按住拖动调整排序)" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K5N-Zo-sGo">
                     <rect key="frame" x="75" y="0.0" width="300" height="44"/>
                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="13"/>
-                    <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9FY-Ic-2jx">
-                    <rect key="frame" x="0.0" y="290" width="375" height="30"/>
-                    <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="3" translatesAutoresizingMaskIntoConstraints="NO" id="U78-at-qjw">
-                            <rect key="frame" x="0.0" y="0.0" width="375" height="30"/>
-                        </imageView>
-                    </subviews>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <constraints>
-                        <constraint firstItem="U78-at-qjw" firstAttribute="leading" secondItem="9FY-Ic-2jx" secondAttribute="leading" id="4oV-XH-owS"/>
-                        <constraint firstAttribute="bottom" secondItem="U78-at-qjw" secondAttribute="bottom" id="6Jj-DI-JfQ"/>
-                        <constraint firstItem="U78-at-qjw" firstAttribute="top" secondItem="9FY-Ic-2jx" secondAttribute="top" id="H92-Z1-edV"/>
-                        <constraint firstAttribute="trailing" secondItem="U78-at-qjw" secondAttribute="trailing" id="jfw-Ar-tlX"/>
-                        <constraint firstAttribute="height" constant="30" id="yRY-FH-ugC"/>
-                    </constraints>
-                </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nQI-rd-JVO">
-                    <rect key="frame" x="0.0" y="44" width="375" height="246"/>
+                    <rect key="frame" x="0.0" y="44" width="375" height="261"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </view>
+                <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lWj-l8-fwz">
+                    <rect key="frame" x="0.0" y="305" width="375" height="20"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="20" id="XdJ-yE-v6c"/>
+                    </constraints>
                 </view>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -61,21 +52,20 @@
                 <constraint firstItem="K5N-Zo-sGo" firstAttribute="bottom" secondItem="vFZ-wn-CaW" secondAttribute="bottom" id="Iak-Gd-tuB"/>
                 <constraint firstItem="vFZ-wn-CaW" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="N2A-on-O14"/>
                 <constraint firstItem="nQI-rd-JVO" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="OP7-9x-He2"/>
-                <constraint firstItem="9FY-Ic-2jx" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="RGD-Zk-WMl"/>
                 <constraint firstItem="nQI-rd-JVO" firstAttribute="top" secondItem="K5N-Zo-sGo" secondAttribute="bottom" id="V0a-fj-hGU"/>
-                <constraint firstAttribute="trailing" secondItem="9FY-Ic-2jx" secondAttribute="trailing" id="fji-h4-aR4"/>
+                <constraint firstAttribute="bottom" secondItem="lWj-l8-fwz" secondAttribute="bottom" constant="-20" id="Wsn-Xg-xfY"/>
+                <constraint firstItem="lWj-l8-fwz" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="XdJ-Ag-W3c"/>
+                <constraint firstAttribute="trailing" secondItem="lWj-l8-fwz" secondAttribute="trailing" id="fIH-9u-Ob9"/>
                 <constraint firstItem="K5N-Zo-sGo" firstAttribute="leading" secondItem="vFZ-wn-CaW" secondAttribute="trailing" constant="5" id="jZb-a6-Wah"/>
+                <constraint firstItem="lWj-l8-fwz" firstAttribute="top" secondItem="nQI-rd-JVO" secondAttribute="bottom" id="pdn-9S-NFA"/>
                 <constraint firstItem="vFZ-wn-CaW" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="10" id="wCm-GE-XF6"/>
-                <constraint firstItem="9FY-Ic-2jx" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="290" id="yHW-bx-gbS"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
+                <outlet property="coverViews" destination="lWj-l8-fwz" id="xEm-4K-zOc"/>
                 <outlet property="homeAppView" destination="nQI-rd-JVO" id="yLH-gH-mbH"/>
             </connections>
-            <point key="canvasLocation" x="15.5" y="-307"/>
+            <point key="canvasLocation" x="36.5" y="-554.5"/>
         </view>
     </objects>
-    <resources>
-        <image name="3" width="742" height="38"/>
-    </resources>
 </document>

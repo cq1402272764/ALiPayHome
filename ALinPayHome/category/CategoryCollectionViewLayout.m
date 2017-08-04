@@ -8,10 +8,7 @@
 
 #import "CategoryCollectionViewLayout.h"
 
-@interface CategoryCollectionViewLayout ()<UIGestureRecognizerDelegate>
-
-@property (nonatomic, strong) UILongPressGestureRecognizer *longGesture;
-
+@interface CategoryCollectionViewLayout ()
 
 @end
 

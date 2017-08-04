@@ -40,8 +40,7 @@
 #pragma mark - 是否处于编辑状态
 - (void)setInEditState:(BOOL)inEditState{
     if (inEditState && self.inEditState != inEditState) {
-        self.layer.borderWidth = 0.5;
-        self.layer.borderColor = [UIColor grayColor].CGColor;
+        self.backgroundColor = [UIColor colorWithRed:241/255.0 green:241/255.0 blue:241/255.0 alpha:1.0];
         self.delegateApp.hidden = NO;
     } else {
         self.layer.borderColor = [UIColor clearColor].CGColor;

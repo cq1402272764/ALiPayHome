@@ -19,4 +19,5 @@
 @property (weak, nonatomic) id<CategoryShowHomeAppViewDelegate>delegate;
 @property (strong, nonatomic) NSMutableArray *homeAppArray;
 @property (strong, nonatomic) UICollectionView *collectionView;
+@property (weak, nonatomic) IBOutlet UIView *coverViews;
 @end

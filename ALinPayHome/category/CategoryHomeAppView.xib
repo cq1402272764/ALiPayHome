@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -15,6 +15,13 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="81"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dsn-Vx-EPB">
+                    <rect key="frame" x="0.0" y="80" width="375" height="1"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="0.5" id="C50-Xy-6Mb"/>
+                    </constraints>
+                </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="首页应用" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CKZ-GQ-UiY">
                     <rect key="frame" x="10" y="0.0" width="60" height="81"/>
                     <constraints>
@@ -89,15 +96,18 @@
             <constraints>
                 <constraint firstItem="CKZ-GQ-UiY" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="10" id="7AT-cL-hv8"/>
                 <constraint firstAttribute="bottom" secondItem="39O-fL-cTl" secondAttribute="bottom" id="Jhc-FF-qdt"/>
+                <constraint firstAttribute="bottom" secondItem="dsn-Vx-EPB" secondAttribute="bottom" id="UNd-jl-Mbr"/>
                 <constraint firstAttribute="trailing" secondItem="39O-fL-cTl" secondAttribute="trailing" constant="60" id="Xvv-0Q-ELd"/>
                 <constraint firstAttribute="trailing" secondItem="IFN-81-CwF" secondAttribute="trailing" id="Zn8-dp-dcg"/>
                 <constraint firstItem="CKZ-GQ-UiY" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="a17-VH-wBy"/>
                 <constraint firstItem="39O-fL-cTl" firstAttribute="leading" secondItem="CKZ-GQ-UiY" secondAttribute="trailing" id="ffw-VR-77E"/>
                 <constraint firstAttribute="bottom" secondItem="CKZ-GQ-UiY" secondAttribute="bottom" id="g4h-BQ-f4c"/>
+                <constraint firstAttribute="trailing" secondItem="dsn-Vx-EPB" secondAttribute="trailing" id="guw-SZ-XM7"/>
                 <constraint firstItem="IFN-81-CwF" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="oPe-Dn-xUp"/>
                 <constraint firstAttribute="bottom" secondItem="IFN-81-CwF" secondAttribute="bottom" id="rDJ-md-Mks"/>
                 <constraint firstItem="39O-fL-cTl" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="tbs-it-AfQ"/>
                 <constraint firstItem="IFN-81-CwF" firstAttribute="leading" secondItem="39O-fL-cTl" secondAttribute="trailing" constant="8" id="veb-Wf-VNW"/>
+                <constraint firstItem="dsn-Vx-EPB" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="xzG-DK-wz6"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
@@ -105,7 +115,7 @@
                 <outlet property="editBtn" destination="IFN-81-CwF" id="MT9-48-nya"/>
                 <outlet property="homeAppTitle" destination="CKZ-GQ-UiY" id="uiR-JF-0GI"/>
             </connections>
-            <point key="canvasLocation" x="134" y="-57"/>
+            <point key="canvasLocation" x="133.5" y="-57.5"/>
         </view>
     </objects>
     <resources>
