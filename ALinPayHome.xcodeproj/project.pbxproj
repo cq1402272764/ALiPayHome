@@ -525,6 +525,7 @@
 				TargetAttributes = {
 					6669AB0E1EEE3365004CAABA = {
 						CreatedOnToolsVersion = 8.3.2;
+						DevelopmentTeam = SPJ74MPHW7;
 						ProvisioningStyle = Automatic;
 					};
 					6669AB271EEE3365004CAABA = {
@@ -796,6 +797,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = SPJ74MPHW7;
 				INFOPLIST_FILE = ALinPayHome/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.yto.ALinPayHome;
@@ -807,6 +809,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = SPJ74MPHW7;
 				INFOPLIST_FILE = ALinPayHome/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.yto.ALinPayHome;

@@ -168,6 +168,12 @@ const CGFloat classViewY = 64;
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             [self.mainTableView endRefreshing];
         });
+    }else if (y > 0 && y<= functionHeaderViewHeight){
+        if (y > functionHeaderViewHeight/2.0){
+            [scrollView setContentOffset:CGPointMake(0, functionHeaderViewHeight) animated:YES];
+        }else{
+            [scrollView setContentOffset:CGPointMake(0, 0) animated:YES];
+        }
     }
 }
 
